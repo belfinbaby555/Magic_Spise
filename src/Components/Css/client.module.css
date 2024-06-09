@@ -1,0 +1,59 @@
+.trusted_clients{
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+.trusted_clients > h5{
+    color: rgb(97, 97, 97);
+    font-size: 25px;
+    margin:50px auto;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-family: var(--font);
+}
+.trusted_clients > .client_scroll_container{
+    width: calc(100vw - 150px);
+    height: 100px;
+    overflow-x: scroll;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+    margin: auto;
+    margin-bottom: 50px;
+    scrollbar-width: none;
+    position: relative;
+    box-sizing: border-box;
+    mask-image: linear-gradient(to right,rgba(255, 255, 255, 0) ,rgb(255, 255, 255) 20%,rgb(255, 255, 255) 80%,rgba(255, 255, 255, 0));
+}
+.client_scroll_container > img{
+    display: block;
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    white-space: nowrap;
+    animation: marq 30s linear infinite;
+    left: -100%;
+}
+.client_scroll_container > img:nth-child(2){
+    animation-delay: 15s;
+}
+@keyframes marq {
+    0%{left: -100%;}
+    50%{left: 0%;}
+    100%{left:100%}
+    
+}
+.client_scroll_container::-webkit-scrollbar{
+    width: 0;
+}
+.trusted_clients > .deal_of_the_day{
+    width: calc(100vw - 150px);
+    margin: auto ;
+    background-image: url(/src/Assets/Images/poster.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height:calc((100vw - 150px)/2.9);
+    margin-bottom: 0px;
+}

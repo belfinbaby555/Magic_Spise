@@ -1,0 +1,144 @@
+.wallpaper{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-image: url(/src/Assets/Images/wallpaper_withname.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.background{
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(3px) ;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    position: absolute;
+}
+.login_container{
+    width:400px;
+    height: 500px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.60);
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 30px 40px;
+    justify-content: space-between;
+
+}
+.login_container > h1{
+    font-size: 22px;
+    font-family: var(--font);
+    color: var(--prime);
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.login_container > h2{
+    font-size: 24px;
+    font-family: var(--font);
+    color: var(--font);
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.login_container > h5{
+    font-family: var(--font);
+    font-size: 18px;
+    color: var(--font-color);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+.login_container > input{
+    width: 100%;
+    height: 24px;
+    padding: 20px 15px;
+    outline: 0;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.6);
+    font-family: var(--font);
+    border-radius: 7px;
+   margin: 0 auto;
+}
+.forgot{
+    background-color: transparent;
+    color: var(--prime);
+    font-family: var(--font);
+    border: 0;
+    outline: 0;
+    margin-left: auto;
+    margin-top: 0;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    padding-right: 0;
+}
+.signin{
+    width: 100%;
+    font-family: var(--font);
+    color: white;
+    background-color: var(--prime);
+    padding: 10px;
+    border-radius: 7px;
+    outline: 0;
+    border: 0;
+    margin: 10px 0px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.login_container > p{
+    font-family: var(--font);
+    color: var(--font-color);
+    font-size: 13px;
+    text-align: center;
+    margin-top: 0;
+    font-weight: 500;
+}
+.login_container > p > a{
+    font-weight: 600;
+    color: var(--prime);
+    cursor: pointer;
+    text-decoration: none;
+}
+.google{
+    width: 100%;
+    font-family: var(--font);
+    color: white;
+    background-color: var(--prime);
+    padding: 10px;
+    border-radius: 7px;
+    outline: 0;
+    border: 0;
+    margin: 10px 0px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.login_container > span{
+    display: flex;
+    flex-direction: row;
+    font-family: var(--font);
+    font-size: 12px;
+    margin: 0;
+    margin-top: 15px
+}
+.login_container > span > input{
+    margin: 0;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+}
+.login_container > span > p{
+    margin: 0;
+    width: fit-content;
+    height: fit-content;
+    font-size: 14px;
+}
+.login_container > span > p >a{
+    text-decoration: none;
+    color: var(--prime);
+    font-weight: bold;
+}

@@ -1,0 +1,172 @@
+
+.bar{
+    width: 100svw;
+    height: 75px;
+    box-shadow: 1px 1px 5px grey;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    background-color: #eff7ff;
+    z-index: 1000;
+}
+.bar > .option{
+    width: fit-content;
+    height: fit-content;
+    margin:auto;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.option > form{
+    display: flex;
+    flex-direction: row;
+    margin: auto 20px;
+    height: fit-content;
+    border-radius: 1000px;
+    overflow: hidden;
+}
+.option > div > a{
+    font-family: var(--font);
+    color: var(--font-color);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    height: 30px;
+    width:calc(100% - 10px);
+    transition: 0.3s;
+    text-align: center;
+    &:hover{
+        color: white;
+        border-radius: 5px;
+        background-color: var(--prime);
+    }
+}
+.option > form > button{
+    background-color: white;
+    margin: 0;
+    outline: 0;
+    border: 0;
+    border-radius: 10px 0px 0px 10px;
+}
+.option > form > button > img{
+    width: 18px;
+    height: fit-content;
+    margin: 5px 7px;
+}
+.option > form > input{
+    width: 150px;
+    height:30px ;
+    border-radius: 0px 10px 10px 0px;
+    outline: 0;
+    border: 0;
+    background-color: #ffffff;
+    font-family: var(--font);
+    font-size: 18px;
+    padding: 10px 25px;
+    padding-left: 5px;
+}
+.option > a{
+    font-family: var(--font);
+    color: var(--font-color);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    margin: auto 20px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    height: 30px;
+}
+.option > a > span{
+    position: absolute;
+    border-bottom: 3px solid var(--prime);
+    width: 0px;
+    height: 0px;
+    bottom: 0;
+    left: 0;
+    transition: linear 0.4s;
+    
+}
+.option > a:hover > span{
+    width: 90px;
+}
+.buttons{
+    width: 300px;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    margin: auto 30px;
+    justify-content: space-between;
+    
+}
+.login,.signup{
+    width: 100px;
+    height: 40px;
+    border-radius: 50px;
+    color: white;
+    background-color: var(--prime);
+    outline: 0;
+    border: 0;
+    font-family: var(--font);
+    font-size: 18px;
+    margin: auto 10px;
+    cursor:pointer;
+}
+.cart{
+    width: 30px;
+    height: 40px;
+    margin: auto;
+    position: relative;
+}
+.cart > svg{
+    fill: #3e54d3cf;
+}
+.logo{
+    width: 55px;
+    height: fit-content;
+    margin-left: 25px;
+    margin-right: auto;
+    cursor: pointer;
+}
+.banner{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(/src/Assets/Images/wallpaper.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+.banner > h3 {
+    margin: auto;
+    padding-top: 80px;
+    font-family: var(--font);
+    font-size: 60px;
+    text-align: center;
+    color: var(--prime);
+    font-weight: 500;
+}
+.banner > h3 > h4{
+    margin:0;
+    font-size: 18px;
+    color: rgb(68, 68, 68);
+    font-weight: 600;
+}
+.partner{
+    outline: 0;
+    border: 0;
+    background-color: var(--prime);
+    color: white;
+    font-family: var(--font);
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 150px;
+    cursor: pointer;
+    margin-top: 20px;
+    position: relative;
+}
