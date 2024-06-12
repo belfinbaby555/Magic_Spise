@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import login from './Assets/login.module.css'
 import wall from './Assets/Images/wallpaper_withname.png'
 
 function Login(){
+
     return(
         <div className={login.wallpaper}>
         <div className={login.background}>

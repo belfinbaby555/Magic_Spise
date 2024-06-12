@@ -46,14 +46,14 @@
     margin: 0;
     margin-bottom: 10px;
 }
-.login_container > h5{
+.login_container >form > h5{
     font-family: var(--font);
     font-size: 18px;
     color: var(--font-color);
     margin-bottom: 5px;
     font-weight: 500;
 }
-.login_container > input{
+.login_container > form > input{
     width: 100%;
     height: 24px;
     padding: 20px 15px;
@@ -117,7 +117,7 @@
     font-size: 15px;
     cursor: pointer;
 }
-.login_container > span{
+.login_container > form > span{
     display: flex;
     flex-direction: row;
     font-family: var(--font);
@@ -125,19 +125,19 @@
     margin: 0;
     margin-top: 15px
 }
-.login_container > span > input{
+.login_container > form > span > input{
     margin: 0;
     width: 30px;
     height: 20px;
     cursor: pointer;
 }
-.login_container > span > p{
+.login_container > form > span > p{
     margin: 0;
     width: fit-content;
     height: fit-content;
     font-size: 14px;
 }
-.login_container > span > p >a{
+.login_container > form > span > p >a{
     text-decoration: none;
     color: var(--prime);
     font-weight: bold;

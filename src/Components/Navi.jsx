@@ -5,19 +5,6 @@ import s_icon from "../Assets/Images/icons/search.png"
 import { Route,redirect,useNavigate,Link, json } from "react-router-dom";
 
 function Navi(){
-
-
-    fetch('http://drop12.pythonanywhere.com/login/')
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-    })
-    .catch(error => {
-        console.error('Error fetching CSRF token:', error);
-    });
-
-
-
     return(
         <div>
             <div className={nav.bar}>
