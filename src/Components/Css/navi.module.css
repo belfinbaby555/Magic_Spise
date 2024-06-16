@@ -139,6 +139,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    /* background */
     display: flex;
     flex-direction: column;
 }
@@ -169,4 +170,9 @@
     cursor: pointer;
     margin-top: 20px;
     position: relative;
+}
+@media screen and (max-width:650px) {
+    .banner{
+        background-image: url(/src/Assets/Images/wallpaper_phone.jpg);
+    }
 }

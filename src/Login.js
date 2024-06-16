@@ -1,9 +1,40 @@
 import React, { useEffect, useState } from "react";
+
 import login from './Assets/login.module.css'
-import wall from './Assets/Images/wallpaper_withname.png'
+import axios from "axios";
 
 function Login(){
+    const [getcsrf,setcsrf]=useState("")
 
+    useEffect(()=>{
+        async function fetchdata(){
+        const csrf= await axios.get("http://localhost:8000/get_csrf")
+        setcsrf(csrf.data.csrf_token,getcsrf);
+        document.cookie=`CSRFTOKEN=${getcsrf}; path='/'`
+        }
+        fetchdata();
+},[])
+
+async function formSubmit(){
+    var formdat=new FormData();
+
+    formdat.append('email',document.getElementById('email').value)
+    formdat.append('password',document.getElementById('pass').value)
+
+    await axios({
+        method:'POST',
+        data:formdat,
+        url:"http://localhost:8000/login",
+        xsrfCookieName:'CSRFTOKEN',
+        xsrfHeaderName:'X-CSRFTOKEN',
+        headers:{
+            'Content-Type':'multipart/form-data',
+            'X-CSRFTOKEN':getcsrf
+        }
+    })
+
+}
+    console.log(getcsrf)
     return(
         <div className={login.wallpaper}>
         <div className={login.background}>
@@ -15,7 +46,7 @@ function Login(){
                 <h5>Password</h5>
                 <input type="password" className="pass" id="pass" placeholder="Password"></input>
                 <button className={login.forgot}>Forgot Password?</button>
-                <button className={login.signin}>Sign in</button>
+                <button className={login.signin} onClick={formSubmit}>Sign in</button>
                 {/* <button className="google"><i class="fas fa-clock"></i>Sign-in with Google</button> */}
                 <p>Dont't have an account yet? <a href="/signup">Register for free</a></p>
             </div>

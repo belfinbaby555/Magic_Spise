@@ -14,7 +14,7 @@ function Product(){
                 <h1>{items}</h1>
                 <p>100g | 200g</p>
                 <h3>₹{price[index]} <b>In stock</b></h3>
-                <button className="w-full h-10 bg-blue-600 text-stone-100 rounded my-2 mx-auto">+ Add to Cart</button>
+                <button className="w-full h-10 bg-blue-600 text-stone-100 rounded ease-in-out duration-200 my-2 mx-auto active:bg-gray-800 sm:hover:bg-gray-800">+ Add to Cart</button>
                 
                 </div>
         </div>

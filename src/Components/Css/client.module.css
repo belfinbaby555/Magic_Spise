@@ -15,10 +15,10 @@
 .trusted_clients > .client_scroll_container{
     width: calc(100vw - 150px);
     height: 100px;
-    overflow-x: scroll;
+    overflow-x: hidden;
     display: flex;
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
     margin: auto;
     margin-bottom: 50px;
     scrollbar-width: none;
@@ -50,10 +50,16 @@
 .trusted_clients > .deal_of_the_day{
     width: calc(100vw - 150px);
     margin: auto ;
-    background-image: url(/src/Assets/Images/poster.png);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    height:calc((100vw - 150px)/2.9);
+    background-image:linear-gradient(to right,#e4e9feaa,#b2cbfec1);
+    height:fit-content;
     margin-bottom: 0px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+}
+@media screen and (max-width:650px) {
+    .trusted_clients > .deal_of_the_day{
+        flex-direction: column;
+        width: calc(100vw - 40px);
+    }
 }

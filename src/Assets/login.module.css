@@ -46,7 +46,7 @@
     margin: 0;
     margin-bottom: 10px;
 }
-.login_container >form > h5{
+.login_container > form > h5{
     font-family: var(--font);
     font-size: 18px;
     color: var(--font-color);
@@ -137,7 +137,7 @@
     height: fit-content;
     font-size: 14px;
 }
-.login_container > form > span > p >a{
+.login_container > form > span > p > a{
     text-decoration: none;
     color: var(--prime);
     font-weight: bold;
