@@ -29,7 +29,7 @@ function Client() {
     <div className="flex text-center">
       <div className={cli.trusted_clients}>
         <h5>Trusted by Over 50+ Client Nationwide</h5>
-        <div className={cli.client_scroll_container}><img src={tru}></img><img src={tru}></img></div>
+        <div className={cli.client_scroll_container}><div></div></div>
         <div className={cli.deal_of_the_day}>
           <img src={cork} className="w-24 h-fit hidden sm:block m-3 sm:mt-auto"/>
           <div className="flex flex-col justify-around items-start sm:pl-24 sm:pt-16 pt-10 h-fit m-2">

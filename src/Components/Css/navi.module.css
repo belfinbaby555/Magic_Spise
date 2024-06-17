@@ -175,4 +175,12 @@
     .banner{
         background-image: url(/src/Assets/Images/wallpaper_phone.jpg);
     }
+    .banner > h3{
+        font-size: 50px;
+        box-sizing: border-box;
+        padding: 0px 20px;
+    }
+    .banner > h3 > h4{
+        font-size: 15px;
+    }
 }
