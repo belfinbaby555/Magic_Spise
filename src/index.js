@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import Home from "./Home";
 import Login from "./Login"
@@ -8,10 +8,12 @@ import Produc from "./Product"
 import Cart from "./Cart"
 import Order from "./Useradress";
 import Pay from "./Confirm"
+import ProductDetail from "./ProductDetails";
 import "./index.css";
 
 
 export default function App(){
+
   return(
   <BrowserRouter>
   
@@ -23,6 +25,8 @@ export default function App(){
   <Route path="/cart" element={<Cart/>}/>
   <Route path="/order" element={<Order/>}/>
   <Route path="/payment" element={<Pay/>}/>
+  <Route path="/payment" element={<Pay/>}/>
+  <Route path="/product/:name" element={<ProductDetail/>}/>
   </Routes>
   </BrowserRouter>
   )

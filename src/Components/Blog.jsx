@@ -8,7 +8,7 @@ import side from "../Assets/Images/icons/side.png"
 function Blog(){
 
     return(
-        <div className={blog.blog}>
+        <div className={blog.blog} id="blog">
             <h1>Popular Blog</h1>
             <div className={blog.main_container}>
                 <div className={blog.container1}>

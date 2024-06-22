@@ -3,9 +3,9 @@ import React from "react";
 const Address = () => {
   return (
     <div className="pt-0 ">
-      <h1 className="text-center text-2xl  font-bold">Add a New Address</h1>
-      <div className="flex items-center justify-center p-5 ">
-        <div className="mx-auto w-full max-w-[550px] bg-blue-100 p-10 rounded-lg">
+      <h1 className="text-center text-2xl pb-3 sm:pb-0 font-bold">Add a New Address</h1>
+      <div className="flex items-center justify-center sm:p-5 ">
+        <div className="mx-auto w-full max-w-[550px] bg-blue-100 px-5 py-10 sm:p-10 rounded-lg">
           <form>
             <div className="mb-5">
               <label

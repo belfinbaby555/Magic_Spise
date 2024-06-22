@@ -41,12 +41,14 @@ async function formSubmit(){
             <div className={login.login_container}>
                 <h1>#the MAGIC SPICE</h1>
                 <h2>Login</h2>
+                <form>
                 <h5>Email</h5>
                 <input type="email" className="email" id="email" placeholder="example@email.com"></input>
                 <h5>Password</h5>
                 <input type="password" className="pass" id="pass" placeholder="Password"></input>
                 <button className={login.forgot}>Forgot Password?</button>
                 <button className={login.signin} onClick={formSubmit}>Sign in</button>
+                </form>
                 {/* <button className="google"><i class="fas fa-clock"></i>Sign-in with Google</button> */}
                 <p>Dont't have an account yet? <a href="/signup">Register for free</a></p>
             </div>

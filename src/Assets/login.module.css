@@ -58,7 +58,7 @@
     height: 24px;
     padding: 20px 15px;
     outline: 0;
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    border: 1px solid rgb(255, 255, 255);
     background-color: rgba(255, 255, 255, 0.6);
     font-family: var(--font);
     border-radius: 7px;
@@ -141,4 +141,22 @@
     text-decoration: none;
     color: var(--prime);
     font-weight: bold;
+}
+@media screen and (max-width:650px) {
+    .wallpaper{
+        background-image: url(../Assets/Images/wallpaper_phone.jpg);
+
+    }
+    .background{
+        
+        backdrop-filter: blur(2px);
+    }
+    .login_container{
+        backdrop-filter: none;
+        background-color: transparent;
+        box-shadow: 0 0 0;
+        padding:20px;
+        justify-content: space-around;
+        height:75vh;
+    }
 }
