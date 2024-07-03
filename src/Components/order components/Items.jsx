@@ -2,7 +2,7 @@ import React from "react";
 
 const Items = (item) => {
   return (
-    <li class="flex py-6 sm:py-4 text-left flex-row sm:space-x-5">
+    <li class="flex flex-col py-6 sm:py-4 text-left sm:flex-row sm:space-x-5">
       <div class="shrink-0 relative">
         <img
           class="h-20 w-20 max-w-full rounded-lg object-cover"
@@ -12,20 +12,20 @@ const Items = (item) => {
       </div>
 
       <div class="relative flex flex-1 flex-col justify-between">
-        <div class="flex">
-          <div class="pr-8 sm:pr-5 my-auto ml-5 sm:ml-0">
+        <div class="sm:col-gap-5 sm:grid sm:grid-cols-2">
+          <div class="pr-8 sm:pr-5">
             <p class="text-base font-semibold text-gray-900">{item.name}</p>
             <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">
               In Stock | {item.quantity}KG
             </p>
           </div>
 
-          <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end sm:text-right ml-auto mr-3">
+          <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end sm:text-right">
             <div className="flex flex-col">
-              <p class="shrink-0 w-fit sm:w-20 text-xl font-semibold text-gray-900 sm:order-2 sm:ml-8 ">
+              <p class="shrink-0 w-20 text-xl font-semibold text-gray-900 sm:order-2 sm:ml-8 ">
                 ${item.unitPrice}
               </p>
-              <p class="shrink-0 w-fit sm:w-20 text-sm text-gray-400 sm:order-2 sm:ml-8 ">
+              <p class="shrink-0 w-20 text-sm text-gray-400 sm:order-2 sm:ml-8 ">
                 Qty: {item.quantity}
               </p>
             </div>

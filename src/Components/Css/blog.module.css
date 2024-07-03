@@ -5,7 +5,7 @@
     margin-top: 100px;
 }
 .blog > h1{
-    font-size: 36px;
+    font-size: 40px;
     border-left: 7px solid var(--prime);
     padding-left: 10px;
     line-height: 30px;
@@ -62,17 +62,14 @@
     line-height: 45px;
     padding:20px;
     color: white;
-    z-index: 10;
 }
 .container3 > h3 > h4{
     color: white;
     padding:20px 0px;
     font-size: 30px;
-    z-index: 10;
 }
 .container3 > img{
     width: 100%;
-    z-index: 10;
 }
 .container3 > button{
     width: 70px;
@@ -110,21 +107,4 @@
     width: 40px;
     margin: 10px;
     margin-left: auto;
-}
-@media screen and (max-width:650px) {
-    .blog{
-        margin: 25px;
-        width: calc(100vw - 50px);
-        margin-top: 100px;
-        height:fit-content;
-    }
-    .main_container{
-        flex-direction: column;
-        height: fit-content;
-    }
-    .container1,.container2,.container3{
-        margin: 20px 0px;
-        height: 500px;
-    }
-    
 }

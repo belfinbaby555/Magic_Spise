@@ -4,7 +4,7 @@ import bookmark from "../../Assets/Images/icons/bookmark.svg";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg flex flex-col justify-between w-[270px] h-[360px] cursor-pointer">
+    <div className="bg-white shadow-md rounded-lg w-[270px] h-[360px] cursor-pointer">
       <img
         src={product.image}
         alt={product.name}
@@ -15,10 +15,10 @@ const ProductCard = ({ product }) => {
         <img src={bookmark} alt="" className="w-8 object-cover mr-1" />
       </p>
 
-     
+      <span className="text-xl mx-4 text-orange-400">★★★★★</span>
       <p className="text-gray-700 mx-4">{product.description}</p>
-      <p className="text-lg font-medium mb-2 mx-4 flex flex-col gap-0">
-        <span className="text-black">Rs.{product.price}</span>
+      <p className="text-lg font-medium mb-2 mx-4 flex gap-4">
+        <span className="text-black">{product.price}</span>
         <span className="text-gray-500 font-normal line-through">
           {product.price}
         </span>

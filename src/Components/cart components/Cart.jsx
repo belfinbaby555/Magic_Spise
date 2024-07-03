@@ -39,10 +39,10 @@ const Cart = () => {
   ];
   return (
     <div>
-      <div class="pt-24 h-fit pb-24">
-        <h1 class="mb-10 text-left text-2xl  font-bold border-l-4 ml-7 sm:ml-56 px-3 border-sky-900">My Cart</h1>
+      <div class="pt-24 h-[100vh]">
+        <h1 class="mb-10 text-left text-2xl  font-bold border-l-4 ml-56 px-3 border-sky-900 text-left">My Cart</h1>
         <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
-          <div class="rounded-lg sm:w-2/3">
+          <div class="rounded-lg md:w-2/3">
             {items.map((item) => {
               return (
                 <Item
@@ -85,7 +85,7 @@ const Cart = () => {
                 <p class=" ">$2.00</p>
               </div>
             </div>
-            <Link to="/order"><button class="mt-6 w-full rounded-md bg-blue-700 py-1.5 font-medium text-blue-50 duration-200 sm:duration-500 active:bg-gray-800 sm:hover:bg-gray-800">
+            <Link to="/order"><button class="mt-6 w-full rounded-md bg-blue-700 py-1.5 font-medium text-blue-50 duration-500 hover:bg-gray-800">
               Proceed to Buy
             </button></Link>
           </div>

@@ -5,7 +5,7 @@
     margin-top: 100px;
 }
 .feedback > h1{
-    font-size: 36px;
+    font-size: 40px;
     border-left: 7px solid var(--prime);
     padding-left: 10px;
     line-height: 30px;
@@ -23,7 +23,7 @@
 }
 .clientimg{
     width: 350px;
-    height: 400px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,28 +47,9 @@
     height: 100%;
     border-radius: 10px;
     background-color: #3e54d342;
+    
     display:flex;
     flex-direction: column;
     box-sizing: border-box;
     padding: 30px;
-}
-@media screen and (max-width:650px) {
-.feedback{
-    width: calc(100vw - 30px);
-    margin: 15px;
-    margin-top: 100px;
-    height: fit-content;
-}
-.feedbox{
-    height: fit-content;
-    flex-direction: column;
-    gap: 15px;
-}
-.clientimg{
-    width: 100%;
-    height: 300px;
-}
-.feedback1{
-    width: 100%;
-}
 }

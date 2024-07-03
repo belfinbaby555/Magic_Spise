@@ -8,12 +8,12 @@ function About() {
       return !toggle;
     });
   return (
-    <div className="sm:px-20 px-1 pt-20 pb-10 bg-stone-100" id="about">
-      <h1 className="text-4xl font-medium ml-3" style={{borderLeft:'7px solid var(--prime)',paddingLeft:'10px',marginBottom:'30px'}}>About Us</h1>
-      <h1 className="text-4xl text-center no-visibile py-8 font-medium sm:block hidden">
-        Get to Know <span className="text-blue-700 ">Us</span>
+    <div className="px-20 pt-20 pb-10 bg-stone-100" id="about">
+      <h1 className="text-4xl font-medium " style={{borderLeft:'7px solid var(--prime)',paddingLeft:'10px'}}>About Us</h1>
+      <h1 className="text-4xl text-center no-visibile py-8 font-medium">
+        Get to Know <span className="text-blue-700">Us</span>
       </h1>
-      <div className="grid sm:grid-cols-2 px-3 sm:px-20">
+      <div className="grid grid-cols-2 px-20">
         <h2 className="text-5xl text-left py-5 my-auto">
           A Little Bit
           <br />
@@ -23,7 +23,7 @@ function About() {
             the Magic <br /> Spice
           </b>
           <div
-            className="cursor-pointer sm:flex hidden text-lg font-normal border rounded-md px-3 border-blue-600 w-fit gap-6 mt-10"
+            className="cursor-pointer flex text-lg font-normal border rounded-md px-3 border-blue-600 w-fit gap-6 mt-10"
             onClick={togButton}>
             <button className="">{!toggle &&('Know More')} {toggle &&('Show Less')}</button>
             <img src={arrow} alt="" className="h-10 w-5 object-contain" />
@@ -81,12 +81,6 @@ function About() {
             Magic Spice, the spice of life.
           </p>
         )}
-        <div
-            className="cursor-pointer sm:hidden flex text-lg font-normal border rounded-md px-3 border-blue-600 w-fit gap-6 mt-10"
-            onClick={togButton}>
-            <button className="">{!toggle &&('Know More')} {toggle &&('Show Less')}</button>
-            <img src={arrow} alt="" className="h-10 w-5 object-contain" />
-          </div>
       </div>
     </div>
   );

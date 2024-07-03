@@ -1,53 +1,74 @@
 import React, { useEffect, useState } from "react";
-
 import login from './Assets/login.module.css'
-import axios from "axios";
+
 
 function Login(){
-    const [getcsrf,setcsrf]=useState("")
+    const [csrf,getcsrf] = useState('');
 
     useEffect(()=>{
-        async function fetchdata(){
-        const csrf= await axios.get("http://localhost:8000/get_csrf")
-        setcsrf(csrf.data.csrf_token,getcsrf);
-        document.cookie=`CSRFTOKEN=${getcsrf}; path='/'`
-        }
-        fetchdata();
-},[])
+        fetch("http://localhost:8000/get_csrf")
+        .then(res=>res.json())
+        .then(json=>getcsrf(json.csrf_token,csrf))
+        console.log(csrf);
+    },[])
 
-async function formSubmit(){
-    var formdat=new FormData();
+    
 
-    formdat.append('email',document.getElementById('email').value)
-    formdat.append('password',document.getElementById('pass').value)
+setTimeout(()=>{
+    document.getElementById("submi_login").addEventListener("submit",(event)=>{
+        event.preventDefault()
 
-    await axios({
-        method:'POST',
-        data:formdat,
-        url:"http://localhost:8000/login",
-        xsrfCookieName:'CSRFTOKEN',
-        xsrfHeaderName:'X-CSRFTOKEN',
-        headers:{
-            'Content-Type':'multipart/form-data',
-            'X-CSRFTOKEN':getcsrf
-        }
+        fetch("http://localhost:8000/login",{
+            method:'POST',
+            headers:{
+                "Content-Type":"application/json",
+                "X-CSRFToken":csrf,
+            },
+            body:JSON.stringify({
+                'email':document.getElementById('email').value,
+                'password':document.getElementById('pass').value,
+                
+            }),
+            
+        })
+        .then(res=>res.json())
+        .then(async(json)=>{
+                switch(json.message){
+                    case 'success':
+                        console.log("account created")
+                        break;
+                        
+                    case 'verify':
+                        fetch('http://localhost:8000/unverified')
+                        .then(res=>console.log(res.json()))
+                    
+                       
+                    default:
+                        console.log(json.message)
+                        break
+                       
+                }
+        })
+        
     })
+},100)
 
-}
-    console.log(getcsrf)
+
+    
+
     return(
         <div className={login.wallpaper}>
         <div className={login.background}>
             <div className={login.login_container}>
                 <h1>#the MAGIC SPICE</h1>
                 <h2>Login</h2>
-                <form>
+                <form id="submi_login">
                 <h5>Email</h5>
                 <input type="email" className="email" id="email" placeholder="example@email.com"></input>
                 <h5>Password</h5>
                 <input type="password" className="pass" id="pass" placeholder="Password"></input>
                 <button className={login.forgot}>Forgot Password?</button>
-                <button className={login.signin} onClick={formSubmit}>Sign in</button>
+                <button className={login.signin} type="submit">Sign in</button>
                 </form>
                 {/* <button className="google"><i class="fas fa-clock"></i>Sign-in with Google</button> */}
                 <p>Dont't have an account yet? <a href="/signup">Register for free</a></p>

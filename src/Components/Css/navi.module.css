@@ -9,9 +9,6 @@
     background-color: #eff7ff;
     z-index: 1000;
 }
-.sidebar{
-    display: none;
-}
 .bar > .option{
     width: fit-content;
     height: fit-content;
@@ -23,7 +20,6 @@
 .option > form{
     display: flex;
     flex-direction: row;
-    width: 200px;
     margin: auto 20px;
     height: fit-content;
     border-radius: 1000px;
@@ -33,8 +29,8 @@
     font-family: var(--font);
     color: var(--font-color);
     text-decoration: none;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 500;
     margin: 5px;
     cursor: pointer;
     position: relative;
@@ -62,7 +58,7 @@
     margin: 5px 7px;
 }
 .option > form > input{
-    width: 100%;
+    width: 150px;
     height:30px ;
     border-radius: 0px 10px 10px 0px;
     outline: 0;
@@ -119,7 +115,6 @@
     font-size: 18px;
     margin: auto 10px;
     cursor:pointer;
-    position: relative;
 }
 .cart{
     width: 30px;
@@ -131,8 +126,8 @@
     fill: #3e54d3cf;
 }
 .logo{
-    width: fit-content;
-    height:100%;
+    width: 55px;
+    height: fit-content;
     margin-left: 25px;
     margin-right: auto;
     cursor: pointer;
@@ -144,7 +139,6 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    /* background */
     display: flex;
     flex-direction: column;
 }
@@ -163,60 +157,16 @@
     color: rgb(68, 68, 68);
     font-weight: 600;
 }
-@media screen and (max-width:650px) {
-    
-    .banner{
-        background-image: url(/src/Assets/Images/wallpaper_phone.jpg);
-    }
-    .banner > h3{
-        font-size: 50px;
-        box-sizing: border-box;
-        padding: 0px 20px;
-    }
-    .banner > h3 > h4{
-        font-size: 15px;
-    }
-    .bar{
-        height: 50px;
-        flex-direction: column;
-        overflow: hidden;
-    }
-    .logo{
-        height: 60px;
-    }
-    .bar > .option{
-       flex-direction: column;
-       height: 50vh;
-       margin: 0 auto;
-       text-align: left;
-    }
-    .option > form{
-        order: -1;
-        width: calc(100vw - 40px);
-        text-align: left;
-    }
-    #drop{
-        height: 50vh;
-    }
-    .option > div > a{
-        text-align: left;
-        margin:auto 20px;
-        width: calc(100vw - 40px);
-    }
-    .option > a:hover{
-        &hover{
-            color: white;
-        border-radius: 5px;
-        background-color: var(--prime);
-        }
-    }
-    .buttons{
-        display: grid;
-        grid-template-columns: auto auto;
-        height: 150px;
-        margin: 0 auto;
-        margin-top: auto;
-        justify-content: center;
-    }
-    
+.partner{
+    outline: 0;
+    border: 0;
+    background-color: var(--prime);
+    color: white;
+    font-family: var(--font);
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 150px;
+    cursor: pointer;
+    margin-top: 20px;
+    position: relative;
 }
