@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import nav from "./Css/navi.module.css"
 import logo from "../Assets/Images/logos/logo_default.png";
 import s_icon from "../Assets/Images/icons/search.png"
-import { Route,redirect,useNavigate,Link, json } from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Navi(){
 
+const [status,setstatus]=useState('')
 
+axios.get('/dash',{withCredentials:true})
+.then(res=>{console.log(res.data)})
 
     return(
         <div>
@@ -18,7 +22,7 @@ function Navi(){
                     <a href="/products">Products<span></span></a>
                     <a href="/#about">About us<span></span></a>
                     <a href="" className="relative">More <i className="fa fa-angle-down text-xl mt-[-10px]"></i><span></span></a>
-                    <div className="w-[200px] h-0 hidden bg-stone-100 absolute top-[50px] right-[175px] flex flex-col rounded border-[1px] border-slate-300">
+                    <div className="w-[200px] h-0 flex bg-stone-100 absolute top-[50px] right-[175px] flex-col rounded border-[1px] border-slate-300">
                         <a href="">Blog</a>
                         <a href="">Partnership</a>
                         <a href="">Gift</a>

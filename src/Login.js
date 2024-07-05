@@ -1,78 +1,122 @@
 import React, { useEffect, useState } from "react";
 import login from './Assets/login.module.css'
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 function Login(){
-    const [csrf,getcsrf] = useState('');
+    const [verify,setverify]=useState(false)
+    const [mail,setmail]=useState('');
+    const [time,settime]=useState('');
+    var csrf;
 
-    useEffect(()=>{
-        fetch("http://localhost:8000/get_csrf")
-        .then(res=>res.json())
-        .then(json=>getcsrf(json.csrf_token,csrf))
-        console.log(csrf);
-    },[])
+        axios.get("/get_csrf",{withCredentials:true})
+        .then(res=>csrf=res.data)
 
     
 
-setTimeout(()=>{
+setTimeout(!verify && (()=>{
     document.getElementById("submi_login").addEventListener("submit",(event)=>{
         event.preventDefault()
 
-        fetch("http://localhost:8000/login",{
-            method:'POST',
+var info=JSON.stringify({
+    'email':document.getElementById('email').value,
+    'password':document.getElementById('pass').value,
+    
+})
+        axios.post("/login",info,{
             headers:{
-                "Content-Type":"application/json",
-                "X-CSRFToken":csrf,
+                    "Content-Type":"application/json",
+                    "X-CSRFToken":csrf,
             },
-            body:JSON.stringify({
-                'email':document.getElementById('email').value,
-                'password':document.getElementById('pass').value,
-                
-            }),
-            
+            withCredentials:true
         })
-        .then(res=>res.json())
-        .then(async(json)=>{
-                switch(json.message){
+        .then(async(res)=>{
+                switch(res.data.message){
                     case 'success':
-                        console.log("account created")
+                        window.location.href='/'
                         break;
                         
                     case 'verify':
-                        fetch('http://localhost:8000/unverified')
-                        .then(res=>console.log(res.json()))
+                        axios.get('/unverified',{withCredentials:true})
+                        .then(res=>{console.log(res.data)
+
+                        document.getElementById('mail_error').innerHTML=''
+                        document.getElementById('pass_error').innerHTML=''
+                        setmail(res.data.email,mail)
+                        settime(res.data.timer_duration,time)
+                        countdown();
+                        setverify(true,verify)
+                        })
+                        break;
                     
                        
-                    default:
-                        console.log(json.message)
-                        break
+                    case 'User does not exist':
+                        document.getElementById('mail_error').innerHTML=res.data.message
+                        document.getElementById('pass_error').innerHTML=''
+                        break;
+                    
+                    case 'Incorrect password':
+                        document.getElementById('pass_error').innerHTML=res.data.message
+                        document.getElementById('mail_error').innerHTML=''
+                        break;
                        
                 }
         })
         
     })
-},100)
+}),100)
 
+const resend=()=>{
+    axios.get('/resend',{withCredentials:true})
+    .then(res=>console.log(res.data.message))
+}
 
+    const countdown = ()=>{
+        const inter = setInterval(()=>{
+            settime(time-1,time)
+            if(time<=0){
+                settime('Resend',time)
+                clearInterval(inter)
+            }
+            console.log(time)
+        },1000)
+        inter;
+        console.log(mail)
+    }
     
 
     return(
         <div className={login.wallpaper}>
         <div className={login.background}>
-            <div className={login.login_container}>
-                <h1>#the MAGIC SPICE</h1>
-                <h2>Login</h2>
-                <form id="submi_login">
-                <h5>Email</h5>
-                <input type="email" className="email" id="email" placeholder="example@email.com"></input>
-                <h5>Password</h5>
-                <input type="password" className="pass" id="pass" placeholder="Password"></input>
-                <button className={login.forgot}>Forgot Password?</button>
-                <button className={login.signin} type="submit">Sign in</button>
-                </form>
-                {/* <button className="google"><i class="fas fa-clock"></i>Sign-in with Google</button> */}
-                <p>Dont't have an account yet? <a href="/signup">Register for free</a></p>
-            </div>
+                {!verify && (
+                <div className={login.login_container}>
+                    <h1>#the MAGIC SPICE</h1>
+                    <h2>Login</h2>
+                    <form id="submi_login">
+                    <h5>Email</h5>
+                    <input type="email" className="email" id="email" placeholder="example@email.com"></input>
+                    <p className="w-full h-fit text-red-600" id="mail_error"></p>
+                    <h5>Password</h5>
+                    <input type="password" className="pass" id="pass" placeholder="Password"></input>
+                    <p className="w-full h-fit text-red-600" id="pass_error"></p>
+                    <button className={login.forgot}>Forgot Password?</button>
+                    <button className={login.signin} type="submit">Sign in</button>
+                    </form>
+                    {/* <button className="google"><i class="fas fa-clock"></i>Sign-in with Google</button> */}
+                    <p>Dont't have an account yet? <a href="/signup">Register for free</a></p>
+                </div>
+)}
+                {verify && (
+                     <div className={login.login_container}>
+                        <h1>#the MAGIC SPICE</h1>
+                        <h2 className="text-center">Verification required</h2>
+                        <h3 className="text-center my-4 text-base">Verification mail has been send to <br/><b>{mail}</b></h3>
+                        <button className={login.signin} onClick={resend} >{time}</button>
+                     </div>
+                )}
+                
+            
         </div>
         </div>
     )

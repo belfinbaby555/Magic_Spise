@@ -8,10 +8,14 @@ import Produc from "./Product"
 import Cart from "./Cart"
 import Order from "./Useradress";
 import Pay from "./Confirm"
+import ProductDetail from "./ProductDetails";
 import "./index.css";
+import axios from "axios";
 
 
 export default function App(){
+  axios.defaults.baseURL="http://localhost:8000";
+
   return(
   <BrowserRouter>
   
@@ -23,6 +27,7 @@ export default function App(){
   <Route path="/cart" element={<Cart/>}/>
   <Route path="/order" element={<Order/>}/>
   <Route path="/payment" element={<Pay/>}/>
+  <Route path="/item/:name" element={<ProductDetail/> }/>
   </Routes>
   </BrowserRouter>
   )
