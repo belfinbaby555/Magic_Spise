@@ -9,7 +9,6 @@ const [add,setaddress]=useState(false);
 
   const chan=()=>{
     setaddress(()=>{
-      console.log(add);
       return !add;
 
     })}

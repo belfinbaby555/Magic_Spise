@@ -1,56 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Cart = () => {
-  const items = [
-    {
-      id: 1,
-      name: "Black Clove",
-      inStock: true,
-      quantity: 1,
-      unitPrice: 25,
-      isGift: true,
-    },
-    {
-      id: 2,
-      name: "Cinnamon",
-      inStock: true,
-      quantity: 3,
-      unitPrice: 45,
-      isGift: false,
-    },
-    {
-      id: 3,
-      name: "Turmeric",
-      inStock: true,
-      quantity: 3,
-      unitPrice: 25,
-      isGift: true,
-    },
-    {
-      id: 4,
-      name: "Nutmeg",
-      inStock: true,
-      quantity: 3,
-      unitPrice: 25,
-      isGift: false,
-    },
-  ];
+  const [items,setitems]=useState([])
+  var total=0
+  
+
+  useEffect(()=>{
+    axios.get("/get_cart",{withCredentials:true})
+  .then(res=>{setitems(res.data.cart,items)})
+  },[])
+  
+for(let i=0;i<=Object.entries(items).length-1;i++){
+  total=total+items[i].price;
+}
+
+const amount={
+  'price':'Rs.'+total,
+  'delivery':'Rs.'+60,
+  'discount':'Rs.'+5,
+  'gst':18+'%'
+}
+
   return (
     <div>
       <div class="pt-24 h-[100vh]">
-        <h1 class="mb-10 text-left text-2xl  font-bold border-l-4 ml-56 px-3 border-sky-900 text-left">My Cart</h1>
+        <h1 class="mb-10 text-2xl  font-bold border-l-4 ml-56 px-3 border-sky-900 text-left">My Cart</h1>
         <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
           <div class="rounded-lg md:w-2/3">
             {items.map((item) => {
               return (
                 <Item
                   key={item.id}
-                  name={item.name}
+                  name={item.item}
                   inStock={item.inStock}
                   quantity={item.quantity}
-                  unitPrice={item.unitPrice}
+                  unitPrice={item.price}
                   isGift={item.isGift}
                 />
               );
@@ -66,23 +53,23 @@ const Cart = () => {
               </h1>
               <div class="flex items-center justify-between text-gray-600">
                 <p class="">Order</p>
-                <p class="font-semibold ">$239.00</p>
+                <p class="font-semibold ">{amount.price}</p>
               </div>
               <div class="flex items-center justify-between text-gray-600">
                 <p class="">Delivery</p>
-                <p class="font-semibold ">$5.30</p>
+                <p class="font-semibold ">{amount.delivery}</p>
               </div>
               <div class="flex items-center justify-between text-gray-600">
                 <p class="">Discount</p>
-                <p class="font-semibold ">$12.00</p>
+                <p class="font-semibold ">{amount.discount}</p>
               </div>
               <div class="flex items-center justify-between text-gray-600">
                 <p class="">GST Tax</p>
-                <p class="font-semibold ">$2.00</p>
+                <p class="font-semibold ">{amount.gst}</p>
               </div>
               <div class="flex items-center font-bold justify-between text-black pt-5">
                 <p class="">Total</p>
-                <p class=" ">$2.00</p>
+                <p class=" ">{amount.price}</p>
               </div>
             </div>
             <Link to="/order"><button class="mt-6 w-full rounded-md bg-blue-700 py-1.5 font-medium text-blue-50 duration-500 hover:bg-gray-800">

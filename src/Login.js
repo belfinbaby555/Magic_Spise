@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import login from './Assets/login.module.css'
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 
 function Login(){

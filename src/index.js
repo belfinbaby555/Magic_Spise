@@ -23,11 +23,11 @@ export default function App(){
   <Route index element={<Home/>}/>
   <Route path="/login" element={<Login/>}/>
   <Route path="/signup" element={<Signup/>}/>
-  <Route path="/products" element={<Produc/>}/>
+  <Route path="/products" Component={Produc}/>
   <Route path="/cart" element={<Cart/>}/>
   <Route path="/order" element={<Order/>}/>
   <Route path="/payment" element={<Pay/>}/>
-  <Route path="/item/:name" element={<ProductDetail/> }/>
+  <Route path={`/item/:id`} Component={ProductDetail} />
   </Routes>
   </BrowserRouter>
   )

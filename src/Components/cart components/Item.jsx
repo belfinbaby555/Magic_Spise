@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import up from "../../Assets/Images/icons/arrow_up.svg";
 import dlt from "../../Assets/Images/icons/dlt.svg";
+import axios from "axios";
 
 const Item = (item) => {
-  const [units, setUnits] = useState(1); // change value here to og quantity when doing backend
+  const [units, setUnits] = useState(item.quantity); // change value here to og quantity when doing backend
   const incUnit = () => {
     setUnits(() => {
       return units + 1;
@@ -16,6 +17,12 @@ const Item = (item) => {
       } else return units;
     });
   };
+
+const del=()=>{
+  axios.get(`/delete/${item.name}`,{withCredentials:true})
+
+  location.reload()}
+
   return (
     <div className="justify-between mb-6 rounded-lg px-3 pb-1 shadow-md sm:flex sm:justify-start bg-blue-100 ">
       {/* Change image here with appropriate spices */}
@@ -55,12 +62,14 @@ const Item = (item) => {
               />
             </div>
             <span className="w-[70px] ml-3 text-blue-700 font-bold text-lg">
-              $ {units * item.unitPrice}
+              Rs. {item.unitPrice}
             </span>
             <img
               src={dlt}
               alt=""
               className=" pl-10 cursor-pointer hover:opacity-35"
+              onClick={del}
+              
             />
           </div>
           <div className=" ">

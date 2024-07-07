@@ -1,51 +1,18 @@
-import React from "react";
-import ProductCard from "./ProductCard";
+import React, { useEffect, useState } from "react";
 import square from "../../Assets/Images/icons/square.svg";
 import Prod from './productCardv2'
+import axios from "axios";
 
 const Products = () => {
-  const products = [
-    {
-      image: require("../../Assets/Images/products/cardamon.jpg"),
-      name: "Product 1",
-      price: "100",
-    },
-    {
-      image: require("../../Assets/Images/products/cinnamon.jpg"),
-      name: "Product 2",
-      price: "200",
-    },
-    {
-      image: require("../../Assets/Images/products/clove.jpg"),
-      name: "Product 1",
-      price: "100",
-    },
-    {
-      image: require("../../Assets/Images/products/driedginger.jpg"),
-      name: "Product 2",
-      price: "200",
-    },
-    {
-      image: require("../../Assets/Images/products/nutmeg.jpg"),
-      name: "Product 1",
-      price: "100",
-    },
-    {
-      image: require("../../Assets/Images/products/pepper.jpg"),
-      name: "Product 2",
-      price: "200",
-    },
-    {
-      image: require("../../Assets/Images/products/turmeric.jpg"),
-      name: "Product 1",
-      price: "100",
-    },
-    {
-      image: "https://via.placeholder.com/100",
-      name: "Product 2",
-      price: "200",
-    },
-  ];
+
+  const [products,setproduts]=useState([])
+useEffect(()=>{
+  axios.get('/products',{withCredentials:true})
+.then(res=>{setproduts(res.data,products)})
+},[])
+
+  
+  
   return (
     <div className="flex flex-row bg-gray-100 pt-[60px]">
       <div className="w-96 h-96 p-4 pl-10 sticky">

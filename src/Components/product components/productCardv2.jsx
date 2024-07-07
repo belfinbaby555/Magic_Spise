@@ -1,19 +1,23 @@
 import React from "react";
-import arrow from "../../Assets/Images/icons/arrow.png";
 import pro from '../Css/product.module.css';
-import cart from "../../Assets/Images/icons/cart.png"
+import { Link,useNavigate } from "react-router-dom";
+
 
 const ProductCardv2 = ({ product }) => {
+  
+
   return (
-    <div className={pro.product_card} style={{backgroundImage:`url(${product.image})`}}>
+    
+    <Link to={`/item/${product.id}`}><div className={pro.product_card} style={{backgroundImage:`url(${product.img})`}} name={product.category}>
      
-            <div className={pro.details}>
+            <div className={pro.details} >
                 <h1>{product.name}</h1>
-                <p>100g | 200g</p>
+                <p>{product.quantity}g</p>
                 <h3>₹{product.price} <b>In stock</b></h3>
-                <button className="w-full h-10 bg-blue-600 text-stone-100 rounded my-2 mx-auto">Add to Cart</button>
+                <b className="hidden">{product.id}</b>
+                <button className="w-full h-10 bg-blue-600 text-stone-100 rounded my-2 mx-auto">Buy Now</button>
             </div>
-        </div>
+        </div></Link>
   );
 };
 

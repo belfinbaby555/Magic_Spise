@@ -95,7 +95,7 @@
     width: 90px;
 }
 .buttons{
-    width: 300px;
+    width: fit-content;
     height: fit-content;
     display: flex;
     flex-direction: row;
@@ -129,7 +129,7 @@
     width: 55px;
     height: fit-content;
     margin-left: 25px;
-    margin-right: auto;
+    margin-right: 25px;
     cursor: pointer;
 }
 .banner{
