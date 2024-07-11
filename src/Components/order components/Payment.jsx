@@ -8,7 +8,7 @@ export default function Pay() {
 
   const handlePayment = useCallback(async() => {
 
-axios.get("/getAmount",{withCredentials:true})
+await axios.get("/getAmount",{withCredentials:true})
 .then(res=>{
     const options = {
       key: res.data.razorpay_merchant_key,
@@ -30,7 +30,7 @@ axios.get("/getAmount",{withCredentials:true})
         address: "Razorpay Corporate Office",
       },
       theme: {
-        color: "#3399cc",
+        color: "#3e54d3",
       },
     };
 
