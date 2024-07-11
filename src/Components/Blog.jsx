@@ -2,7 +2,6 @@ import React from "react";
 import blog from "./Css/blog.module.css";
 import arrow from "../Assets/Images/icons/arrow.png"
 import hand from "../Assets/Images/hand.png"
-import side from "../Assets/Images/icons/side.png"
 
 
 function Blog(){

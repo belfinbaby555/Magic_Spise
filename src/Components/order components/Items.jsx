@@ -23,7 +23,7 @@ const Items = (item) => {
           <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end sm:text-right">
             <div className="flex flex-col">
               <p class="shrink-0 w-20 text-xl font-semibold text-gray-900 sm:order-2 sm:ml-8 ">
-                ${item.unitPrice}
+                Rs. {item.unitPrice}
               </p>
               <p class="shrink-0 w-20 text-sm text-gray-400 sm:order-2 sm:ml-8 ">
                 Qty: {item.quantity}

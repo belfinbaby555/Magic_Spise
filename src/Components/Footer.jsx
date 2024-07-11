@@ -10,22 +10,22 @@ const Footer = () => {
             <h2 className="mb-6 text-sm font-semibold ">the MAGIC SPICE</h2>
             <ul className="">
               <li className="mb-2">
-                <a href="#" className=" hover:underline">
+                <a href="\" className=" hover:underline">
                   Home
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:underline">
+                <a href="\" className="hover:underline">
                   Blog
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:underline">
+                <a href="\" className="hover:underline">
                   Products
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:underline">
+                <a href="\" className="hover:underline">
                   About
                 </a>
               </li>
@@ -35,22 +35,22 @@ const Footer = () => {
             <h2 className="mb-6 text-sm font-semibold ">Address</h2>
             <ul className=" hover:no-underline">
               <li className="">
-                <a href="#" className="cursor-default">
+                <a href="\" className="cursor-default">
                   Thomas & Thomas Enterprise
                 </a>
               </li>
               <li className="">
-                <a href="#" className="cursor-default">
+                <a href="\" className="cursor-default">
                   Perumba
                 </a>
               </li>
               <li className="">
-                <a href="#" className="cursor-default">
+                <a href="\" className="cursor-default">
                   Payyanur, Kannur
                 </a>
               </li>
               <li className="">
-                <a href="#" className="cursor-default">
+                <a href="\" className="cursor-default">
                   Kerala, 670307
                 </a>
               </li>
@@ -67,22 +67,22 @@ const Footer = () => {
             <h2 className="mb-6 text-sm font-semibold ">Social</h2>
             <ul className="">
               <li className="mb-2">
-                <a href="#" className="hover:underline">
+                <a href="\" className="hover:underline">
                   Youtube
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:underline">
+                <a href="\" className="hover:underline">
                   Instagram
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:underline">
+                <a href="\" className="hover:underline">
                   Facebook
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:underline">
+                <a href="\" className="hover:underline">
                   Twitter
                 </a>
               </li>
@@ -94,12 +94,12 @@ const Footer = () => {
           <div>
             <h1 className="text-xl font-bold">the MAGIC SPICE</h1>
             <span className="text-sm -center ">
-              The Magic Spice © 2024 <a href=""></a>. All Rights Reserved.
+              The Magic Spice © 2024 <a href="\">  </a>. All Rights Reserved.
             </span>
           </div>
 
           <div className="flex mt-4 sm:justify-end  md:mt-0 space-x-5 rtl:space-x-reverse">
-            <a href="#" className="hover:text-gray-900 dark:hover:text-white">
+            <a href="\" className="hover:text-gray-900 dark:hover:text-white">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -115,7 +115,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Facebook page</span>
             </a>
-            <a href="#" className=" hover:text-gray-900 dark:hover:text-white">
+            <a href="\" className=" hover:text-gray-900 dark:hover:text-white">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -127,7 +127,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Discord community</span>
             </a>
-            <a href="#" className=" hover:text-gray-900 dark:hover:text-white">
+            <a href="\" className=" hover:text-gray-900 dark:hover:text-white">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -143,7 +143,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Twitter page</span>
             </a>
-            <a href="#" className=" hover:text-gray-900 dark:hover:text-white">
+            <a href="\" className=" hover:text-gray-900 dark:hover:text-white">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -159,7 +159,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">GitHub account</span>
             </a>
-            <a href="#" className=" hover:text-gray-900 dark:hover:text-white">
+            <a href="\" className=" hover:text-gray-900 dark:hover:text-white">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"

@@ -1,11 +1,28 @@
 import React, { useEffect, useState } from "react";
 import history from "../../Assets/Images/icons/history.png";
-import side from "../../Assets/Images/icons/side.png";
 import Address from "./Address";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Delivery = () => {
 const [add,setaddress]=useState(false);
+const [status,getstatus]=useState(false);
+const [address,getaddress]=useState([])
+
+useEffect(()=>{
+  axios.get('/getaddr',{withCredentials:true})
+  .then(res=>{
+    if(res.data.address==='None'){
+      getstatus(status=>true)
+    }
+    else{
+      const info=res.data.address;
+      const out=info.split('β')
+      getaddress(address=>out)
+      
+      }
+  })
+},[])
 
   const chan=()=>{
     setaddress(()=>{
@@ -14,20 +31,30 @@ const [add,setaddress]=useState(false);
     })}
 
 
+
   return (
-    <div className="pt-24 flex flex-row justify-center">
+    <div>
+      {status && (
+      <div className="pt-24 h-full flex flex-row justify-center">
+    <div className=" w-[500px]">
+      <Address/>
+      </div>
+    </div>)}
+
+    {!status && (
+    <div className="pt-24 h-full flex flex-row justify-center">
       <div className="mb-10">
       <h1 className="text-center text-3xl font-bold">Delivery Address</h1>
       <div class="mt-5 bg-blue-100 shadow rounded-xl w-[400px] mx-auto">
         <div class="flex">
           <div class="flex-1 py-5 pl-5 ">
             <ul>
-              <li class="text-xl font-medium uppercase ">Belfin Baby</li>
+              <li class="text-xl font-medium uppercase ">{address[0] + " " + address[1]}</li>
               {/* Name & other details  */}
-              <li>Cherupuzha, Kannur, 670690</li>
-              <li class="text-gray-500">847 Jewes Bridge</li>
-              <li class="text-gray-500">Apt. 17 London</li>
-              <li class="text-gray-500">UK 474-769-3919</li>
+              <li className="capitalize">{address[4] + " ," + address[5] + ' ,' + address[6]}</li>
+              <li class="text-gray-500 capitalize">{address[3]}</li>
+              <li class="text-gray-500 capitalize">{address[8]}</li>
+              <li class="text-gray-500 capitalize">{address[2]}</li>
             </ul>
           </div>
           <div class="flex-none pt-2.5 pr-2.5 pl-1">
@@ -47,6 +74,7 @@ const [add,setaddress]=useState(false);
       <Address/>
       </div>)}
       
+    </div>)}
     </div>
   );
 };

@@ -1,12 +1,50 @@
+import axios from "axios";
 import React from "react";
 
-const Address = () => {
+function Address () {
+  
+
+
+const handle = (event)=>{
+  event.preventDefault()
+var csrf
+
+  
+  const data={'address': 
+    event.target.fname.value + "β" +
+    event.target.lname.value + "β" +
+    event.target.phone.value + "β" +
+    event.target.place.value + "β" +
+    event.target.area.value + "β" +
+    event.target.town.value + "β" +
+    event.target.pincode.value + "β" +
+    event.target.state.value + "β" +
+    event.target.landmark.value
+  }
+axios.post('/setaddr',data,{
+  headers:{
+    "Content-Type":"application/json",
+    "X-CSRFToken":csrf,
+  },
+  withCredentials:true
+})
+.then(res=>{console.log(res.data)
+if(res.data.message === 'Save successful'){
+  window.location.reload()
+}
+})
+
+
+}
+
+
+
   return (
-    <div className="pt-0 ">
+    <div className="pt-0">
       <h1 className="text-center text-2xl  font-bold">Add a New Address</h1>
       <div className="flex items-center justify-center p-5 ">
         <div className="mx-auto w-full max-w-[550px] bg-blue-100 p-10 rounded-lg">
-          <form>
+          <form onSubmit={handle}>
             <div className="mb-5">
               <label
                 for="fname"
@@ -18,7 +56,8 @@ const Address = () => {
                 type="text"
                 name="fname"
                 id="fname"
-                placeholder="Belfin"
+                placeholder="First Name (eg:'John')"
+                required
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
@@ -27,13 +66,15 @@ const Address = () => {
                 for="lname"
                 className="mb-3 block text-base font-medium text-[#07074D]"
               >
-                Enter Your First Name
+                Enter Your Last Name
               </label>
               <input
+              key="cart"
                 type="text"
                 name="lname"
+                required
                 id="lname"
-                placeholder="Baby"
+                placeholder="Last Name (eg:'Doe')"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
@@ -46,6 +87,7 @@ const Address = () => {
               </label>
               <input
                 type="text"
+                required
                 name="phone"
                 id="phone"
                 placeholder="+91 342-2344-34"
@@ -57,12 +99,13 @@ const Address = () => {
                 for="address"
                 className="mb-3 block text-base font-medium text-[#07074D]"
               >
-                Enter Your House / Flat / Apartment
+                Enter Your Place / Flat / Apartment
               </label>
               <input
                 type="text"
-                name="address"
-                id="address"
+                required
+                name="place"
+                id="place"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
@@ -71,11 +114,12 @@ const Address = () => {
                 for="area"
                 className="mb-3 block text-base font-medium text-[#07074D]"
               >
-                Area / Sector / Village
+                Area / Sector / Village / Post Office
               </label>
               <input
                 type="text"
                 name="area"
+                required
                 id="area"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
@@ -85,10 +129,11 @@ const Address = () => {
                 for="town"
                 className="mb-3 block text-base font-medium text-[#07074D]"
               >
-                Town / City
+                Town / City / District
               </label>
               <input
                 type="text"
+                required
                 name="town"
                 id="town"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -103,6 +148,7 @@ const Address = () => {
               </label>
               <input
                 type="text"
+                required
                 name="pincode"
                 id="pincode"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -118,30 +164,18 @@ const Address = () => {
               <input
                 type="text"
                 name="state"
+                required
                 id="state"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
-            <div className="mb-5">
-              <label
-                for="town"
-                className="mb-3 block text-base font-medium text-[#07074D]"
-              >
-                District
-              </label>
-              <input
-                type="text"
-                name="district"
-                id="district"
-                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-              />
-            </div>
+            
             <div className="mb-5">
               <label
                 for="landmark"
                 className="mb-3 block text-base font-medium text-[#07074D]"
               >
-                Landmark
+                Landmark (Optional)
               </label>
               <input
                 type="text"
@@ -151,60 +185,8 @@ const Address = () => {
               />
             </div>
 
-            {/* <div className="mb-5 pt-3">
-              <label className="mb-5 block text-base font-semibold text-[#07074D] sm:text-xl">
-                Address Details
-              </label>
-              <div className="-mx-3 flex flex-wrap">
-                <div className="w-full px-3 sm:w-1/2">
-                  <div className="mb-5">
-                    <input
-                      type="text"
-                      name="area"
-                      id="area"
-                      placeholder="Enter area"
-                      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    />
-                  </div>
-                </div>
-                <div className="w-full px-3 sm:w-1/2">
-                  <div className="mb-5">
-                    <input
-                      type="text"
-                      name="city"
-                      id="city"
-                      placeholder="Enter city"
-                      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    />
-                  </div>
-                </div>
-                <div className="w-full px-3 sm:w-1/2">
-                  <div className="mb-5">
-                    <input
-                      type="text"
-                      name="state"
-                      id="state"
-                      placeholder="Enter state"
-                      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    />
-                  </div>
-                </div>
-                <div className="w-full px-3 sm:w-1/2">
-                  <div className="mb-5">
-                    <input
-                      type="text"
-                      name="post-code"
-                      id="post-code"
-                      placeholder="Post Code"
-                      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
             <div>
-              <button className="hover:shadow-form w-full rounded-md bg-blue-700 hover:bg-gray-800 py-3 px-8 text-center text-base font-semibold text-white outline-none">
+              <button type="submit" className="hover:shadow-form w-full rounded-md bg-blue-700 hover:bg-gray-800 py-3 px-8 text-center text-base font-semibold text-white outline-none">
                 Add as New Address
               </button>
             </div>

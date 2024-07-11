@@ -8,7 +8,7 @@ const Products = () => {
   const [products,setproduts]=useState([])
 useEffect(()=>{
   axios.get('/products',{withCredentials:true})
-.then(res=>{setproduts(res.data,products)})
+.then(res=>{setproduts(products=>res.data)})
 },[])
 
   

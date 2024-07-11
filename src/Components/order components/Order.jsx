@@ -1,38 +1,57 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import razor from "../../Assets/Images/icons/razor.png";
 import Item from "../order components/Items";
+import axios from "axios";
+import Pay from "./Payment";
 
-const Order = () => {
-  const items = [
-    {
-      id: 1,
-      name: "Black Clove",
-      inStock: true,
-      quantity: 1,
-      unitPrice: 25,
-    },
-    {
-      id: 2,
-      name: "Cinnamon",
-      inStock: true,
-      quantity: 2,
-      unitPrice: 45,
-    },
-    {
-      id: 3,
-      name: "Turmeric",
-      inStock: true,
-      quantity: 3,
-      unitPrice: 25,
-    },
-    {
-      id: 4,
-      name: "Nutmeg",
-      inStock: true,
-      quantity: 1,
-      unitPrice: 25,
-    },
-  ];
+
+function Order() {
+  const [items,setitems] = useState([])
+  const [address,getaddress]=useState([])
+  
+
+  
+  var total=0;
+
+
+
+
+  useEffect(()=>{
+    axios.get("/get_cart",{withCredentials:true})
+  .then(res=>{setitems(items=>res.data.cart)
+
+    
+  })
+  },[])
+
+  useEffect(()=>{
+    axios.get('/getaddr',{withCredentials:true})
+    .then(res=>{
+      if(res.data.address==='None'){
+        
+      }
+      else{
+        const info=res.data.address;
+        const out=info.split('β')
+        getaddress(address=>out)
+        
+        }
+    })
+  },[])
+
+  
+
+  for(let i=0;i<=Object.entries(items).length-1;i++){
+    total=total+items[i].price;
+  }
+  
+  const amount={
+    'price':total,
+    'delivery':60,
+    'discount':5,
+    'gst':Math.round(total*0.18)
+  }
+
   return (
     <div>
       <h1 className="text-center">Order Confirmation</h1>
@@ -52,10 +71,10 @@ const Order = () => {
                       return (
                         <Item
                           key={item.id}
-                          name={item.name}
+                          name={item.item}
                           inStock={item.inStock}
                           quantity={item.quantity}
-                          unitPrice={item.unitPrice}
+                          unitPrice={item.price}
                         />
                       );
                     })}
@@ -78,12 +97,12 @@ const Order = () => {
                   Delivery Address
                 </h1>
                 <ul className="mt-3 text-gray-700">
-                  <li class="text-lg font-medium ">Belfin Baby</li>
+                  <li class="text-lg font-medium capitalize">{address[0] + " " + address[1]}</li>
                   {/* Name & other details  */}
-                  <li>Cherupuzha, Kannur, 670690</li>
-                  <li class="text-gray-500">847 Jewes Bridge</li>
-                  <li class="text-gray-500">Apt. 17 London</li>
-                  <li class="text-gray-500">UK 474-769-3919</li>
+                  <li className="capitalize">{address[4] + " ," + address[5] + ' ,' + address[6]}</li>
+                  <li class="text-gray-500 capitalize">{address[3]}</li>
+                  <li class="text-gray-500 capitalize">{address[8]}</li>
+                  <li class="text-gray-500 capitalize">{address[2]}</li>
                 </ul>
 
                 <h1 class="text-2xl mt-5 font-semibold text-gray-900 pt-5">
@@ -95,23 +114,23 @@ const Order = () => {
                   </h1>
                   <div class="flex items-center justify-between text-gray-600">
                     <p class="">Order</p>
-                    <p class="font-semibold ">$239.00</p>
+                    <p class="font-semibold ">Rs. {amount.price}</p>
                   </div>
                   <div class="flex items-center justify-between text-gray-600">
                     <p class="">Delivery</p>
-                    <p class="font-semibold ">$5.30</p>
+                    <p class="font-semibold ">Rs. {amount.delivery}</p>
                   </div>
                   <div class="flex items-center justify-between text-gray-600">
                     <p class="">Discount</p>
-                    <p class="font-semibold ">$12.00</p>
+                    <p class="font-semibold ">Rs. {amount.discount}</p>
                   </div>
                   <div class="flex items-center justify-between text-gray-600">
                     <p class="">GST Tax</p>
-                    <p class="font-semibold ">$2.00</p>
+                    <p class="font-semibold ">Rs. {amount.gst}</p>
                   </div>
                   <div class="flex items-center font-bold justify-between text-black pt-5">
                     <p class="">Total</p>
-                    <p class=" ">$2.00</p>
+                    <p class=" ">Rs.{amount.delivery + amount.gst + amount.price - amount.discount}</p>
                   </div>
                 </div>
                 <div class="mt-6 flex items-center justify-between">
@@ -121,28 +140,7 @@ const Order = () => {
                   </p>
                 </div>
 
-                <div class="mt-6 text-center">
-                  <button
-                    type="button"
-                    class="group inline-flex w-full items-center justify-center rounded-md bg-blue-700 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out duration-500 focus:shadow hover:bg-gray-800"
-                  >
-                    Place Order
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="group-hover:ml-8 ml-4 h-6 w-6 transition-all"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                <Pay/>
               </div>
             </div>
           </div>

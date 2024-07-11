@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import nav from "./Css/navi.module.css"
 import logo from "../Assets/Images/logos/logo_default.png";
 import s_icon from "../Assets/Images/icons/search.png"
@@ -12,33 +12,33 @@ const [cart,setcart]=useState('')
 
 axios.get('/dash',{withCredentials:true})
 .then(res=>{
-    if(res.data.message=="User not logged in"){
-        setstatus(true,status);
+    if(res.data.message==="User not logged in"){
+        setstatus(status=>true);
     }
     else{
         setstatus(false,status)
-        setcart(res.data.cart_count,cart)
+        setcart(cart=>res.data.cart_count)
         
     }
 })
 
     return(
         <div>
-            <div className={nav.bar}>
-                <img src={logo} className={nav.logo}></img>
+            <div className={nav.bar} id='navbar'>
+                <img src={logo} alt="logo" className={nav.logo}></img>
                 
                 <div className={nav.option}>
                     <a href="/">Home<span></span></a>
                     <a href="/products">Products<span></span></a>
                     <a href="/#about">About us<span></span></a>
-                    <a  className="relative">More <i className="fa fa-angle-down text-xl mt-[-10px]"></i><span></span></a>
+                    <a href="/" className="relative">More <i className="fa fa-angle-down text-xl mt-[-10px]"></i><span></span></a>
                     <div className="w-[200px] h-0 flex bg-stone-100 absolute top-[50px] right-[175px] flex-col rounded border-[1px] border-slate-300">
-                        <a href="">Blog</a>
-                        <a href="">Partnership</a>
-                        <a href="">Gift</a>
+                        <a href="/">Blog</a>
+                        <a href="/">Partnership</a>
+                        <a href="/">Gift</a>
                     </div>
                     <form>
-                        <button><img src={s_icon}/></button>
+                        <button><img alt="search" src={s_icon}/></button>
                         <input type="text" placeholder="Search" />
                     </form>
                 </div>

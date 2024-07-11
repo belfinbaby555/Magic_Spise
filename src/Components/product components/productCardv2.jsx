@@ -1,6 +1,6 @@
 import React from "react";
 import pro from '../Css/product.module.css';
-import { Link,useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const ProductCardv2 = ({ product }) => {

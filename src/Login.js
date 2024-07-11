@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import login from './Assets/login.module.css'
 import axios from "axios";
 
@@ -59,7 +59,8 @@ var info=JSON.stringify({
                         document.getElementById('pass_error').innerHTML=res.data.message
                         document.getElementById('mail_error').innerHTML=''
                         break;
-                       
+                    default:
+                        
                 }
         })
         
@@ -80,7 +81,7 @@ const resend=()=>{
             }
             console.log(time)
         },1000)
-        inter;
+        
         console.log(mail)
     }
     

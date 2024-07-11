@@ -1,6 +1,5 @@
 import React from "react";
 import pro from './Css/product.module.css';
-import cart from "../Assets/Images/icons/cart.png"
 
 
 function Product(){

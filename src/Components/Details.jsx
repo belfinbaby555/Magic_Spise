@@ -36,7 +36,18 @@ function add_cart(){
   try{
   axios.get(`/cart/${String(prod.name)}/${units}`,{withCredentials:true})
   .then((res)=>{
-
+    console.log(res.data)
+    if(res.data.status=='ok'){
+      document.getElementById("message").innerHTML=res.data.message;
+      document.getElementById("message").style.opacity='100%'
+      
+      setTimeout(()=>{
+        document.getElementById("message").style.opacity='0%'
+        window.location.reload()
+      },1500)
+    }
+    else{}
+    
   })
   }
   catch(e){
@@ -73,7 +84,7 @@ return(
           </span>
             <h2 className="capitalize text-3xl">{prod.name}</h2>
             {prod.quantity ? <h3 className="capitalize text-green-600 text-2xl py-4 border-b-2 border-gray-300">in stock</h3> 
-            : <h3 className="capitalize text-red-600 text-2xl py-4 border-b-2 border-gray-300">in stock</h3>}
+            : <h3 className="capitalize text-red-600 text-2xl py-4 border-b-2 border-gray-300">Out of stock</h3>}
             <h3 className="text-3xl text-blue-700 py-3">Rs.{prod.price}</h3>
             <h4 className="line-through text-xl text-gray-500 border-b-2 border-gray-300 pb-4"> Rs.400 </h4>
             <div className="flex flex-col ">
@@ -104,7 +115,9 @@ return(
                     
                     <button onClick={add_cart} className="px-12 py-3 bg-blue-600 rounded-full mx-5 font-normal text-stone-50 text-base flex justify-center my-auto">
                       <img src={cart} className="w-5 my-auto mr-2" />Add to Cart</button>
+                      
                     </div>
+                    <div id="message" className="w-full bg-green-200 mt-10 px-5 opacity-0 transition-opacity py-2 rounded-md"></div>
             </div>
         </div>
     </div>

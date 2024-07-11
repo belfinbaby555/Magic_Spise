@@ -21,7 +21,7 @@ const Item = (item) => {
 const del=()=>{
   axios.get(`/delete/${item.name}`,{withCredentials:true})
 
-  location.reload()}
+  window.location.reload()}
 
   return (
     <div className="justify-between mb-6 rounded-lg px-3 pb-1 shadow-md sm:flex sm:justify-start bg-blue-100 ">
@@ -56,7 +56,7 @@ const del=()=>{
                 alt=""
                 className={
                   "rotate-180 h-10 cursor-pointer" +
-                  (units == 1 ? ` opacity-20` : ``)
+                  (units === 1 ? ` opacity-20` : ``)
                 }
                 onClick={decUnit}
               />
