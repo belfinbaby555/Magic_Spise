@@ -18,8 +18,22 @@ await axios.get("/getAmount",{withCredentials:true})
       description: "Test Transaction",
       image: logo,
       order_id: res.data.razorpay_order_id,
-      handler: (res) => {
-        console.log(res);
+      handler: function(response){
+        console.log(JSON.stringify(response))
+        axios.post("/paymenthandler",JSON.stringify(response),{
+          headers:{
+            "Content-Type":"application/json",
+            "X-CSRFToken":"csrf",
+          },
+          withCredentials:true
+
+        })
+        .then(res=>{
+          console.log(res.data)
+          if (res.data.message==="Payment completed and order placed successfully!"){
+            window.location.href="/"
+          }
+        })
       },
       prefill: {
         name: "Piyush Garg",
