@@ -11,37 +11,33 @@
     margin-bottom: 15px;
     font-weight: 600;
     font-family: var(--font);
+    box-sizing: border-box;
+    padding: 0px 10px;
 }
 .trusted_clients > .client_scroll_container{
     width: calc(100vw - 150px);
     height: 100px;
-    overflow-x: scroll;
-    display: flex;
-  align-items: center;
-  justify-content: center;
     margin: auto;
     margin-bottom: 50px;
-    scrollbar-width: none;
-    position: relative;
-    box-sizing: border-box;
-    mask-image: linear-gradient(to right,rgba(255, 255, 255, 0) ,rgb(255, 255, 255) 20%,rgb(255, 255, 255) 80%,rgba(255, 255, 255, 0));
-}
-.client_scroll_container > img{
-    display: block;
+    background-image: url(../../Assets/Images/trusted.png);
+    background-size: cover;
+    background-position-x: calc(100vw - 150px);
+    background-repeat: repeat-x;
+    background-attachment: scroll;
+    animation-name: marq;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    }
+.client_scroll_container > div{
+    background-image:linear-gradient(to right,rgba(255, 255, 255) 0% ,rgb(255, 255, 255,0) 20%,rgb(255, 255, 255,0) 80%,rgba(255, 255, 255));
     width: 100%;
-    height: fit-content;
-    position: absolute;
-    white-space: nowrap;
-    animation: marq 30s linear infinite;
-    left: -100%;
-}
-.client_scroll_container > img:nth-child(2){
-    animation-delay: 15s;
+    height: 100%;
 }
 @keyframes marq {
-    0%{left: -100%;}
-    50%{left: 0%;}
-    100%{left:100%}
+    0%{background-position-x: 0;}
+    
+    
     
 }
 .client_scroll_container::-webkit-scrollbar{
@@ -50,10 +46,27 @@
 .trusted_clients > .deal_of_the_day{
     width: calc(100vw - 150px);
     margin: auto ;
-    background-image: url(/src/Assets/Images/poster.png);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    height:calc((100vw - 150px)/2.9);
+    background-image:linear-gradient(to right,#e4e9feaa,#b2cbfec1);
+    height:fit-content;
     margin-bottom: 0px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+}
+@media screen and (max-width:650px) {
+    .trusted_clients > .deal_of_the_day{
+        flex-direction: column;
+        width: calc(100vw - 40px);
+    }
+    .trusted_clients > .client_scroll_container{
+        width: calc(100vw - 40px);
+        background-position-x: calc(100px * 12.18);
+    }
+    .client_scroll_container > img{
+        
+        height: 100px;
+    }
+    .trusted_clients > h5{
+        font-size: 22px;
+    }
 }

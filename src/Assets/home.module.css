@@ -16,3 +16,9 @@ html,body{
     --font-color:#272727;
     --font:"Outfit", sans-serif;
 }
+.category{
+    scrollbar-width: 0px;
+}
+.category::-webkit-scrollbar{
+    display: none;
+}
