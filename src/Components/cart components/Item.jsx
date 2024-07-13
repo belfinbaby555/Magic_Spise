@@ -20,30 +20,35 @@ const Item = (item) => {
 
 const del=()=>{
   axios.get(`/delete/${item.name}`,{withCredentials:true})
+  .then(res=>{
+    if(res.data.status=="ok"){
+      window.location.reload()
+    }
+  })
 
-  window.location.reload()}
+}
 
   return (
-    <div className="justify-between mb-6 rounded-lg px-3 pb-1 shadow-md sm:flex sm:justify-start bg-blue-100 ">
+    <div className="justify-between mb-6 rounded-lg px-3 pb-4 sm:pb-1 pt-1 sm:pt-0 shadow-md sm:flex sm:flex-row flex-col sm:justify-start bg-blue-100 ">
       {/* Change image here with appropriate spices */}
       <img
-        src="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+        src={item.img}
         alt="product-image"
-        className="w-full rounded-lg sm:w-16 sm:h-20 mt-4"
+        className="w-full rounded-lg mb-2 sm:w-fit sm:h-20 mt-3"
       />
-      <div className="sm:ml-4 sm:flex sm:w-full sm:items-center sm:justify-between">
-        <div className="mt-5 sm:mt-0">
+      <div className="sm:ml-4 ml-1 flex sm:w-full sm:items-center justify-between">
+        <div className="mt-5 sm:mt-0 w-fit">
           <h2 className="text-lg font-bold text-gray-900">{item.name}</h2>
           <p className="mt-1 text-xs text-gray-700">
-            <span className="text-green-700 font-medium">In Stock</span> |{" "}
-            {item.quantity}KG
+            <span className="text-green-700 text-sm font-medium">In Stock</span> |{" "}
+            {item.quantity} KG
           </p>
         </div>
 
-        <div className="mt-4 flex justify-between  sm:mt-0 sm:block sm:space-x-6 ">
+        <div className="mt-4 flex justify-between w-fit sm:mt-0 sm:block sm:space-x-6 ">
           <div className="flex items-center">
-            <span className="">{units}</span>
-            <div className="">
+            {/* <span className="mr-5">{units}</span> */}
+            {/* <div className="">
               <img
                 src={up}
                 alt=""
@@ -60,22 +65,22 @@ const del=()=>{
                 }
                 onClick={decUnit}
               />
-            </div>
+            </div> */}
             <span className="w-[70px] ml-3 text-blue-700 font-bold text-lg">
               Rs. {item.unitPrice}
             </span>
             <img
               src={dlt}
               alt=""
-              className=" pl-10 cursor-pointer hover:opacity-35"
+              className=" pl-10 cursor-pointer  hover:opacity-35"
               onClick={del}
               
             />
           </div>
-          <div className=" ">
+          {/* <div className=" ">
             <input type="checkbox" />
             <span className="text-gray-700"> This item will be a Gift</span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

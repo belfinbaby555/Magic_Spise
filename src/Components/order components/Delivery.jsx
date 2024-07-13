@@ -64,7 +64,7 @@ useEffect(()=>{
         <button onClick={chan} className="hover:shadow-form w-[300px] hover:bg-gray-800 duration-500 mx-10 mb-5 rounded-md bg-blue-700 py-3 px-8 text-center text-base font-semibold text-white outline-none">
           Add as New Address
         </button>
-       <Link to="/payment"><button className="hover:shadow-form hover:bg-gray-800 duration-500 w-[300px] mx-10 mb-5 rounded-md bg-blue-700 hover py-3 px-8 text-center text-base font-semibold text-white outline-none">
+       <Link to="/checkout"><button className="hover:shadow-form hover:bg-gray-800 duration-500 w-[300px] mx-10 mb-5 rounded-md bg-blue-700 hover py-3 px-8 text-center text-base font-semibold text-white outline-none">
           Procced
         </button></Link>
       </div>

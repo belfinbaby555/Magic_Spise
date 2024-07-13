@@ -29,7 +29,7 @@ const amount={
   return (
     
     <div>
-      <div class={"pt-24 h-[100vh]" }>
+      <div class={"pt-24 h-fit md:h-[100vh]" }>
 
         <h1 class="mb-10 text-2xl  font-bold border-l-4 ml-4 px-3 border-sky-900 text-left sm:ml-56">My Cart</h1>
         {Boolean(Object.entries(items).length) && (
@@ -46,12 +46,13 @@ const amount={
                   quantity={item.quantity}
                   unitPrice={item.price}
                   isGift={item.isGift}
+                  img={item.img}
                 />
               );
             })}
           </div>
 
-          <div class="mt-6 h-full rounded-lg border bg-blue-100 px-4 py-3 shadow-md md:mt-0 md:w-1/3">
+          <div class="mt-6 h-full rounded-lg border bg-blue-100 px-4 py-3 mb-5 shadow-md md:mt-0 md:w-1/3">
             <h1 className="text-xl font-medium">Subtotal</h1>
             <p className="text-gray-600 font-medium pb-5">({Object.entries(items).length} items)</p>
             <div class=" space-y-3 pb-5 px-5 rounded-md bg-white">
@@ -76,7 +77,7 @@ const amount={
               </div>
               <div class="flex items-center font-bold justify-between text-black pt-5">
                 <p class="">Total</p>
-                <p class=" ">Rs. {amount.price + amount.delivery + amount.gst - amount.discount}</p>
+                <p class=" ">Rs. {Math.round(amount.price + amount.delivery + amount.gst - amount.discount)}</p>
               </div>
             </div>
             <Link to="/order"><button class="mt-6 w-full rounded-md bg-blue-700 py-1.5 font-medium text-blue-50 duration-500 hover:bg-gray-800">

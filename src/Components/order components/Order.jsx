@@ -54,7 +54,7 @@ function Order() {
 
   return (
     <div>
-      <h1 className="text-center">Order Confirmation</h1>
+     
       <section class="py-12 sm:py-16 lg:py-20">
         <div class="mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-center "></div>
@@ -67,6 +67,7 @@ function Order() {
               <div class="px-4 py-6 sm:px-8 sm:py-10">
                 <div class="flow-root">
                   <ul class="-my-8">
+                   
                     {items.map((item) => {
                       return (
                         <Item
@@ -75,6 +76,7 @@ function Order() {
                           inStock={item.inStock}
                           quantity={item.quantity}
                           unitPrice={item.price}
+                          img={item.img}
                         />
                       );
                     })}

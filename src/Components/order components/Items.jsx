@@ -2,11 +2,11 @@ import React from "react";
 
 const Items = (item) => {
   return (
-    <li class="flex flex-col py-6 sm:py-4 text-left sm:flex-row sm:space-x-5">
+    <li class="flex flex-col h-fit py-6 sm:py-4 text-left sm:flex-row sm:space-x-5">
       <div class="shrink-0 relative">
         <img
-          class="h-20 w-20 max-w-full rounded-lg object-cover"
-          src="https://images.unsplash.com/photo-1588484628369-dd7a85bfdc38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNuZWFrZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=150&q=60"
+          class=" w-20 max-w-full rounded-lg object-cover"
+          src={item.img}
           alt=""
         />
       </div>

@@ -31,7 +31,7 @@ await axios.get("/getAmount",{withCredentials:true})
         .then(res=>{
           console.log(res.data)
           if (res.data.message==="Payment completed and order placed successfully!"){
-            window.location.href="/"
+            window.location.href="/orders"
           }
         })
       },

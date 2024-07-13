@@ -1,6 +1,5 @@
 import { useEffect,useState} from "react";
-import { useLocation, useParams } from "react-router-dom";
-import test from '../Assets/Images/products/driedginger.jpg'
+import { useParams } from "react-router-dom";
 import cart from '../Assets/Images/icons/cart.png'
 import axios from "axios";
 
@@ -38,13 +37,20 @@ function add_cart(){
   .then((res)=>{
     console.log(res.data)
     if(res.data.status=='ok'){
-      document.getElementById("message").innerHTML=res.data.message;
-      document.getElementById("message").style.opacity='100%'
-      
+      document.getElementById("message").innerHTML="✔ Item added";
+      document.getElementById("message").style.height='48px'
+      document.getElementById("message").style.width='207px'
       setTimeout(()=>{
-        document.getElementById("message").style.opacity='0%'
-        window.location.reload()
-      },1500)
+      document.getElementById("message").innerHTML=""
+      document.getElementById("message").style.height='0px'
+      document.getElementById("message").style.width='0px'
+    },2000)
+      
+      axios.get('/dash',{withCredentials:true})
+      .then(res=>{
+        document.getElementById("cart").innerHTML=res.data.cart_count
+      })
+      
     }
     else{}
     
@@ -113,11 +119,11 @@ return(
                     <button className="text-xl py-2">{units}</button>
                     <button type="button" onClick={incUnit} className="px-4 text-lg">+</button></span>
                     
-                    <button onClick={add_cart} className="px-12 py-3 bg-blue-600 rounded-full mx-5 font-normal text-stone-50 text-base flex justify-center my-auto">
+                    <button onClick={add_cart} className="px-12 py-3 overflow-hidden relative bg-blue-600 rounded-full mx-5 font-normal text-stone-50 text-base flex justify-center my-auto">
+                      <div id="message" className="whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute bg-green-600" style={{height:"0px",width:"0px",opacity:1}}>Item added</div>
                       <img src={cart} className="w-5 my-auto mr-2" />Add to Cart</button>
-                      
                     </div>
-                    <div id="message" className="w-full bg-green-200 mt-10 px-5 opacity-0 transition-opacity py-2 rounded-md"></div>
+                    
             </div>
         </div>
     </div>
