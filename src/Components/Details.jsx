@@ -103,8 +103,8 @@ return(
             </h3> 
             : <h3 className="capitalize text-red-600 text-2xl py-4 border-b-2 border-gray-300">Out of stock</h3>}
             {+prod.quantity ? <div>
-            <h3 className="text-3xl text-blue-700 py-3">Rs.{prod.price}</h3>
-            {+prod.percentage  ? <h4 className="line-through text-xl text-gray-500  pb-2"> Rs.{+prod.price + (+prod.price * +prod.percentage/100)} </h4>: <h4 ></h4>}
+            <h3 className="text-3xl text-blue-700 py-3">Rs.{prod.price - (+prod.price * +prod.percentage/100)}</h3>
+            {+prod.percentage  ? <h4 className="line-through text-xl text-gray-500  pb-2"> Rs.{+prod.price } </h4>: <h4 ></h4>}
             </div>: <h3 className="text-3xl text-blue-700 py-3">Currently unavailable</h3>}
             {+prod.quantity ? <div className="flex flex-col ">
                 <h5 className="capitalize text-base py-5 text-gray-600">Choose quantity</h5>
