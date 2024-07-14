@@ -9,8 +9,6 @@ useEffect(()=>{
     axios.get("/user_orders",{withCredentials:true})
 .then(res=>{
     getitems(items=>res.data.orders)
-    var text=res.data.orders[0].address
-    console.log(text)
 })
 },[])
 
@@ -25,6 +23,9 @@ useEffect(()=>{
                 <OrderedItems
                 name={item.items}
                 id={item.order_id}
+                address={item.address}
+                price={item.total_amount}
+                date={item.order_date}
                 />
                 );
             })}

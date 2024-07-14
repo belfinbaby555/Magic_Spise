@@ -26,22 +26,22 @@ useEffect(()=>{
           <li className="rounded-full w-fit px-5 py-1 text-white bg-blue-600 cursor-pointer select-none h-fit whitespace-nowrap">
             All Products
           </li>
-          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white bg-slate-300 select-none cursor-pointer  h-fit whitespace-nowrap ">
+          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white bg-slate-300 sm:text-black sm:bg-transparent select-none cursor-pointer  h-fit whitespace-nowrap ">
             Whole Spices
           </li>
-          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white bg-slate-300 select-none cursor-pointer  h-fit whitespace-nowrap">
+          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white sm:text-black sm:bg-transparent bg-slate-300 select-none cursor-pointer  h-fit whitespace-nowrap">
             Nuts & Seeds
           </li>
-          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white bg-slate-300 select-none cursor-pointer  h-fit whitespace-nowrap">
+          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white sm:text-black sm:bg-transparent bg-slate-300 select-none cursor-pointer  h-fit whitespace-nowrap">
             Tea & Coffee
           </li>
-          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white bg-slate-300 select-none cursor-pointer  h-fit whitespace-nowrap">
+          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white sm:text-black sm:bg-transparent bg-slate-300 select-none cursor-pointer  h-fit whitespace-nowrap">
             Masalas
           </li>
-          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white bg-slate-300 select-none cursor-pointer h-fit whitespace-nowrap">
+          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white sm:text-black sm:bg-transparent bg-slate-300 select-none cursor-pointer h-fit whitespace-nowrap">
             Health & Wellness
           </li>
-          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white bg-slate-300 select-none cursor-pointer h-fit whitespace-nowrap">
+          <li className="rounded-full w-fit px-5 py-1 hover:bg-blue-600 hover:text-white sm:text-black sm:bg-transparent bg-slate-300 select-none cursor-pointer h-fit whitespace-nowrap">
             Others
           </li>
         </ul>

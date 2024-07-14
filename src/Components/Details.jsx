@@ -28,7 +28,9 @@ const [prod,getprod]=useState({});
 
 useEffect(()=>{
   axios.get(`/product/${param.id}`,{withCredentials:true})
-  .then((res)=>{getprod(res.data,prod)})
+  .then((res)=>{getprod(res.data,prod);
+    
+  })
 },[])
 
 function add_cart(){
@@ -66,7 +68,12 @@ function add_cart(){
 return(
     <div className="w-screen h-fit flex box-border py-5 px-10 pt-24">
         <div className="w-full flex flex-col box-border px-10">
-            <div className="bg-cover bg-center rounded-xl w-full h-96" style={{backgroundImage:`url(${prod.img})`}}></div>
+            <div className="bg-cover bg-center rounded-xl w-full h-96" id="main" style={{backgroundImage:`url(${prod.img1})`}}></div>
+            <div className="w-full h-fit flex">
+              <img src={prod.img1} onClick={()=>{document.getElementById("main").style.backgroundImage=`url(${prod.img1})`}} className="w-fit h-20 my-3 mx-2 rounded"></img>
+              <img src={prod.img2} onClick={()=>{document.getElementById("main").style.backgroundImage=`url(${prod.img2})`}} className="w-fit h-20 my-3 mx-2 rounded"></img>
+              <img src={prod.img3} onClick={()=>{document.getElementById("main").style.backgroundImage=`url(${prod.img3})`}} className="w-fit h-20 my-3 mx-2 rounded"></img>
+            </div>
             <h3 className="capitalize text-4xl mt-8 font-medium">More Information</h3>
             <h4 className="capitalize text-xl py-4">unit</h4>
             <p className="text-base text-gray-500">1kg</p>
@@ -85,14 +92,18 @@ return(
           <span className="text-blue-700 my-3 font-normal bg-blue-100 px-3 py-[2px] capitalize w-fit rounded">
             Home <i className="fa fa-angle-right mx-2"></i>
             Products <i className="fa fa-angle-right mx-2"></i>
-            Whole Spice <i className="fa fa-angle-right mx-2"></i>
+            {prod.category} <i className="fa fa-angle-right mx-2"></i>
             {prod.name}
           </span>
-            <h2 className="capitalize text-3xl">{prod.name}</h2>
-            {prod.quantity ? <h3 className="capitalize text-green-600 text-2xl py-4 border-b-2 border-gray-300">in stock</h3> 
+          
+            <h2 className="capitalize text-3xl flex justify-between">{prod.name}</h2>
+            
+            {+prod.quantity ? <h3 className="capitalize text-green-600 text-2xl py-4 border-b-2 border-gray-300">in stock
+              {+prod.percentage ? <p className="float-right text-green-600 text-sm">{+prod.percentage}% Discount</p>:<p className="float-right text-sm"></p>}
+            </h3> 
             : <h3 className="capitalize text-red-600 text-2xl py-4 border-b-2 border-gray-300">Out of stock</h3>}
             <h3 className="text-3xl text-blue-700 py-3">Rs.{prod.price}</h3>
-            <h4 className="line-through text-xl text-gray-500 border-b-2 border-gray-300 pb-4"> Rs.400 </h4>
+            <h4 className="line-through text-xl text-gray-500 border-b-2 border-gray-300 pb-4"> Rs.{+prod.price + (+prod.price * +prod.percentage/100)} </h4>
             <div className="flex flex-col ">
                 <h5 className="capitalize text-base py-5 text-gray-600">Choose quantity</h5>
 

@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Delivery = () => {
 const [add,setaddress]=useState(false);
-const [status,getstatus]=useState(false);
+const [status,getstatus]=useState();
 const [address,getaddress]=useState([])
 
 useEffect(()=>{

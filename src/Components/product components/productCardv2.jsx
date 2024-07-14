@@ -8,7 +8,7 @@ const ProductCardv2 = ({ product }) => {
 
   return (
     
-    <Link to={`/item/${product.id}`}><div className={pro.product_card} style={{backgroundImage:`url(${product.img})`}} name={product.category}>
+    <Link to={`/item/${product.id}`}><div className={pro.product_card} style={{backgroundImage:`url(${product.img1})`}} name={product.category}>
      
             <div className={pro.details} >
                 <h1>{product.name}</h1>
