@@ -99,12 +99,14 @@ return(
             <h2 className="capitalize text-3xl flex justify-between">{prod.name}</h2>
             
             {+prod.quantity ? <h3 className="capitalize text-green-600 text-2xl py-4 border-b-2 border-gray-300">in stock
-              {+prod.percentage ? <p className="float-right text-green-600 text-sm">{+prod.percentage}% Discount</p>:<p className="float-right text-sm"></p>}
+              {+prod.percentage ? <p className="float-right text-green-600 font-normal text-base">{+prod.percentage}% Discount on this product</p>:<p className="float-right text-sm"></p>}
             </h3> 
             : <h3 className="capitalize text-red-600 text-2xl py-4 border-b-2 border-gray-300">Out of stock</h3>}
+            {+prod.quantity ? <div>
             <h3 className="text-3xl text-blue-700 py-3">Rs.{prod.price}</h3>
-            <h4 className="line-through text-xl text-gray-500 border-b-2 border-gray-300 pb-4"> Rs.{+prod.price + (+prod.price * +prod.percentage/100)} </h4>
-            <div className="flex flex-col ">
+            {+prod.percentage  ? <h4 className="line-through text-xl text-gray-500  pb-2"> Rs.{+prod.price + (+prod.price * +prod.percentage/100)} </h4>: <h4 ></h4>}
+            </div>: <h3 className="text-3xl text-blue-700 py-3">Currently unavailable</h3>}
+            {+prod.quantity ? <div className="flex flex-col ">
                 <h5 className="capitalize text-base py-5 text-gray-600">Choose quantity</h5>
 
 
@@ -135,7 +137,7 @@ return(
                       <img src={cart} className="w-5 my-auto mr-2" />Add to Cart</button>
                     </div>
                     
-            </div>
+            </div> : <div></div>}
         </div>
     </div>
 )
