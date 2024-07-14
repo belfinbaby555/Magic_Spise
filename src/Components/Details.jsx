@@ -10,6 +10,7 @@ function ProductDetails(){
     let param=useParams();
 
     const [units, setUnits] = useState(1); 
+    const [prod,getprod]=useState({});
     
     const incUnit = () => {
       setUnits(() => {
@@ -24,15 +25,18 @@ function ProductDetails(){
       });
     };
 
-const [prod,getprod]=useState({});
+
 
 useEffect(()=>{
   axios.get(`/product/${param.id}`,{withCredentials:true})
-  .then((res)=>{getprod(res.data,prod);
+  .then((res)=>{getprod(res.data);
     
   })
 },[])
 
+useEffect(()=>{
+
+})
 function add_cart(){
   try{
   axios.get(`/cart/${String(prod.name)}/${units}`,{withCredentials:true})
@@ -103,8 +107,8 @@ return(
             </h3> 
             : <h3 className="capitalize text-red-600 text-2xl py-4 border-b-2 border-gray-300">Out of stock</h3>}
             {+prod.quantity ? <div>
-            <h3 className="text-3xl flex text-blue-700 py-3">Rs.{prod.price - (+prod.percentage ? +prod.price * +prod.percentage/100:0)-prod.tax} <p className="text-base mt-auto ml-1"> + Rs.{+prod.tax} tax</p></h3>
-            {+prod.percentage  ? <h4 className="line-through text-xl text-gray-500  pb-2"> Rs.{+prod.price } </h4>: <h4 ></h4>}
+            <h3 className="text-3xl flex text-blue-700 py-3">₹ {prod.price - (+prod.percentage ? +prod.price * +prod.percentage/100:0)-prod.tax} <p className="text-base mt-auto ml-1"> + ₹ {+prod.tax} tax</p></h3>
+            {+prod.percentage  ? <h4 className="line-through text-xl text-gray-500  pb-2">₹ {+prod.price } </h4>: <h4 ></h4>}
             </div>: <h3 className="text-3xl text-blue-700 py-3">Currently unavailable</h3>}
             {+prod.quantity ? <div className="flex flex-col ">
                 <h5 className="capitalize text-base py-5 text-gray-600">Choose quantity</h5>

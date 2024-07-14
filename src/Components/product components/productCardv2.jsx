@@ -13,9 +13,12 @@ const ProductCardv2 = ({ product }) => {
             <div className={pro.details} >
                 <h1>{product.name}</h1>
                 <p>{product.quantity}g</p>
-                <h3>₹{product.price} <b>In stock</b></h3>
-                <b className="hidden">{product.id}</b>
-                <button className="w-full h-10 bg-blue-600 text-stone-100 rounded my-2 mx-auto">Buy Now</button>
+                {+product.quantity ? <div>
+                <h3>₹{product.price} <b>In stock</b></h3><b className="hidden">{product.id}</b>
+                <button className="w-full h-10 bg-blue-600 text-stone-100 rounded my-2 mx-auto">Buy Now</button></div>
+                :<h4 className="text-red-500 text-center py-2 font-semibold">Out Of Stock</h4>}
+                
+                
             </div>
         </div></Link>
   );
