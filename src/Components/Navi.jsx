@@ -9,6 +9,7 @@ function Navi(){
 
 const [status,setstatus]=useState(false)
 const [cart,setcart]=useState('')
+const [filteredProducts, setFilteredProducts] = useState([]);
 
 axios.get('/dash',{withCredentials:true})
 .then(res=>{
@@ -21,6 +22,23 @@ axios.get('/dash',{withCredentials:true})
         
     }
 })
+const handleSearch = async() => {
+    const res = await axios.get("/products",{withCredentials:true})
+    const products=await res.data
+    const value = document.getElementById("search").value.toLowerCase();
+    if(value===""){
+        setFilteredProducts([]);
+        document.getElementById("result").style.display="none"
+    }
+    else{
+        document.getElementById("result").style.display="block"
+    const filtered = products.filter(product =>
+      product.name.toLowerCase().includes(value) ||
+      product.category.toLowerCase().includes(value)
+    );
+    setFilteredProducts(filtered);
+}
+  };
 
     return(
         <div id='navbar'>
@@ -39,7 +57,18 @@ axios.get('/dash',{withCredentials:true})
                     </div>
                     <form>
                         <button><img alt="search" src={s_icon}/></button>
-                        <input type="text" placeholder="Search" />
+                        <input type="text" id="search" placeholder="Search" onChange={handleSearch} />
+                        <ul id="result" className="w-60  absolute bg-blue-100 top-9 right-0 px-3 py-2 rounded" style={{display:'none'}}>
+                        
+                        
+                        {filteredProducts.map(prod=>[
+                            <li className="w-full box-border py-2 my-1 relative bg-white px-3 rounded capitalize text-lg  font-semibold cursor-pointer" onClick={()=>{window.location.href=`/item/${prod.id}`}}>
+                                <img src={prod.img1} className="w-fit h-12 float-right top-0 rounded"/>{prod.name}
+                            <p className="text-gray-500 text-sm font-light">{prod.category}</p>
+                            
+                            </li>
+                        ])}
+                        </ul>
                     </form>
                 </div>
                 
