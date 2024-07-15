@@ -6,12 +6,17 @@ import axios from "axios";
 
 
 function ProductDetails(){
-  let num=['1kg','2kg'];
+  
     let param=useParams();
 
     const [units, setUnits] = useState(1); 
     const [prod,getprod]=useState({});
-    
+    const [qty,getqty]=useState([]);
+    const [stock,setstock]=useState([])
+    const [ind,getind]=useState([])
+    const [num,getnum]=useState([]);
+    const [selectedOption, setSelectedOption] = useState();
+    const [price,setprice]=useState([])    
     const incUnit = () => {
       setUnits(() => {
         return units + 1;
@@ -30,16 +35,28 @@ function ProductDetails(){
 useEffect(()=>{
   axios.get(`/product/${param.id}`,{withCredentials:true})
   .then((res)=>{getprod(res.data);
-    
+    const q=res.data.quantity;
+    const s=res.data.stock;
+    const pr=res.data.price;
+  getqty(q.split(":"))
+  getnum(pr.split(":"))
+  setstock(s.split(":"))
+  setSelectedOption(q.split(":")[0])
+  setprice(pr.split(":")[0])
+  getind(s.split(":")[0])
+  
   })
 },[])
 
-useEffect(()=>{
+const qty_price=(index)=>{
+  setprice(num[index])
+  setSelectedOption(qty[index])
+  getind(stock[index])
+}
 
-})
 function add_cart(){
   try{
-  axios.get(`/cart/${String(prod.name)}/${units}`,{withCredentials:true})
+  axios.get(`/cart/${String(prod.name)}/${units}/${selectedOption}`,{withCredentials:true})
   .then((res)=>{
     console.log(res.data)
     if(res.data.status=='ok'){
@@ -79,14 +96,14 @@ return(
               <img src={prod.img3} onClick={()=>{document.getElementById("main").style.backgroundImage=`url(${prod.img3})`}} className="w-fit h-20 my-3 mx-2 rounded"></img>
             </div>
             <h3 className="capitalize text-4xl mt-8 font-medium">More Information</h3>
-            <h4 className="capitalize text-xl py-4">unit</h4>
-            <p className="text-base text-gray-500">1kg</p>
+            <h4 className="capitalize text-xl py-4">units</h4>
+            <p className="text-base text-gray-500">{qty.map(q=>q + prod.si_unit + " ")}</p>
             <h4 className="capitalize text-xl py-4">Shelf Life</h4>
-            <p className="taxt-base text-gray-500">12 Months</p>
+            <p className="taxt-base text-gray-500">{prod.shelf_life}</p>
             <h4 className="capitalize text-xl py-4">country of origin</h4>
             <p className="taxt-base text-gray-500">india</p>
             <h4 className="capitalize text-xl py-4">FSSAI Licence</h4>
-            <p className="taxt-base text-gray-500">1145896632548</p>
+            <p className="taxt-base text-gray-500">{prod.fssai_info}</p>
             <h4 className="capitalize text-xl py-4">Description</h4>
             <p className="taxt-base text-gray-500">{prod.description}</p>
                 
@@ -102,34 +119,34 @@ return(
           
             <h2 className="capitalize text-3xl flex justify-between">{prod.name}</h2>
             
-            {+prod.quantity ? <h3 className="capitalize text-green-600 text-2xl py-4 border-b-2 border-gray-300">in stock
+            {stock.reduce((acc, value) => acc + Number(value), 0) || +ind ? <h3 className="capitalize text-green-600 text-2xl py-4 border-b-2 border-gray-300">in stock
               {+prod.percentage ? <p className="float-right text-green-600 font-normal text-base">{+prod.percentage}% Discount on this product</p>:<p className="float-right text-sm"></p>}
             </h3> 
             : <h3 className="capitalize text-red-600 text-2xl py-4 border-b-2 border-gray-300">Out of stock</h3>}
-            {+prod.quantity ? <div>
-            <h3 className="text-3xl flex text-blue-700 py-3">₹ {prod.price - (+prod.percentage ? +prod.price * +prod.percentage/100:0)-prod.tax} <p className="text-base mt-auto ml-1"> + ₹ {+prod.tax} tax</p></h3>
-            {+prod.percentage  ? <h4 className="line-through text-xl text-gray-500  pb-2">₹ {+prod.price } </h4>: <h4 ></h4>}
+            {stock.reduce((acc, value) => acc + Number(value), 0) ? <div>
+            <h3 className="text-3xl flex text-blue-700 py-3">₹ {Math.round(price - (+prod.percentage ? +price * +prod.percentage/100:0)-prod.tax)} <p className="text-base mt-auto ml-1"> + ₹ {+prod.tax} tax</p></h3>
+            {+prod.percentage  ? <h4 className="line-through text-xl text-gray-500  pb-2">₹ {price } </h4>: <h4 ></h4>}
             </div>: <h3 className="text-3xl text-blue-700 py-3">Currently unavailable</h3>}
-            {+prod.quantity ? <div className="flex flex-col ">
+            {stock.reduce((acc, value) => acc + Number(value), 0) ? <div className="flex flex-col ">
                 <h5 className="capitalize text-base py-5 text-gray-600">Choose quantity</h5>
 
 
 
                 <div className="flex flex-row mb-6 pb-5 border-gray-300 border-b-2">
 
-                {num.map((item)=>{
+                {qty.map((item,index)=>{
 
         return(
-           <div className="flex justify-center py-1 px-2 bg-gray-200 rounded mr-2">
-            <input type="radio" name="item" id={item} style={{accentColor:"blue"}}/>
-            <label htmlFor={item} className="ml-1 text-gray-600 text-sm">{item}</label>
+           <div onClick={()=>{qty_price(index)}} className="flex justify-center py-1 px-2 bg-gray-200 rounded mr-2">
+            <input type="radio" name="item" checked={selectedOption===item} id={item} style={{accentColor:"blue"}}/>
+            <label htmlFor={item} className="ml-1 text-gray-600 text-sm">{item + prod.si_unit}</label>
             </div>
         )
     })}
                 </div>
 
 
-
+              {+ind ? 
                 <div className="flex ">
                 <span className="w-28 flex justify-between text-blue-600 rounded-full bg-gray-200" >
                     <button type="button" onClick={decUnit} className="px-4 text-lg">-</button>
@@ -140,6 +157,8 @@ return(
                       <div id="message" className="whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute bg-green-600" style={{height:"0px",width:"0px",opacity:1}}>Item added</div>
                       <img src={cart} className="w-5 my-auto mr-2" />Add to Cart</button>
                     </div>
+              : <div></div>}
+                
                     
             </div> : <div></div>}
         </div>

@@ -15,6 +15,7 @@ const Products = () => {
       try {
         const res = await axios.get('/products', { withCredentials: true });
         const productsData = res.data;
+        console.log(products)
         setproducts(productsData);
         setcategory(productsData);
 
