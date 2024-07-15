@@ -119,7 +119,7 @@ return(
           
             <h2 className="capitalize text-3xl flex justify-between">{prod.name}</h2>
             
-            {stock.reduce((acc, value) => acc + Number(value), 0) || +ind ? <h3 className="capitalize text-green-600 text-2xl py-4 border-b-2 border-gray-300">in stock
+            {stock.reduce((acc, value) => acc + Number(value), 0) && +ind ? <h3 className="capitalize text-green-600 text-2xl py-4 border-b-2 border-gray-300">in stock
               {+prod.percentage ? <p className="float-right text-green-600 font-normal text-base">{+prod.percentage}% Discount on this product</p>:<p className="float-right text-sm"></p>}
             </h3> 
             : <h3 className="capitalize text-red-600 text-2xl py-4 border-b-2 border-gray-300">Out of stock</h3>}

@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 
 
 const ProductCardv2 = ({ product }) => {
-  const stock=product.stock.split(":");
-  const total=stock.reduce((acc, value) => acc + Number(value), 0)
+  const stock=product.quantity.split(":");
+  const qty=product.stock.split(":")
+  const total=qty.reduce((acc, value) => acc + Number(value), 0)
 console.log(total)
   return (
     
