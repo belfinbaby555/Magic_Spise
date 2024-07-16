@@ -9,9 +9,11 @@ import Cart from "./Cart"
 import Order from "./Useradress";
 import Pay from "./Confirm"
 import ProductDetail from "./ProductDetails";
+import Terms from "./Terms";
 import User from "./User";
 import "./index.css";
 import axios from "axios";
+
 
 
 export default function App(){
@@ -30,6 +32,7 @@ export default function App(){
   <Route path="/checkout" element={<Pay/>}/>
   <Route path={`/item/:id`} Component={ProductDetail} />
   <Route path="/orders" element={<User/>}/>
+  <Route path="/termsandcondition" element={<Terms/>}/>
   </Routes>
   </BrowserRouter>
   )

@@ -35,18 +35,18 @@ useEffect(()=>{
   return (
     <div>
       {status && (
-      <div className="pt-24 h-full flex flex-row justify-center">
+      <div className="pt-24 h-full flex sm:flex-row flex-col justify-center">
     <div className=" w-[500px]">
       <Address/>
       </div>
     </div>)}
 
     {!status && (
-    <div className="pt-24 h-full flex flex-row justify-center">
+    <div className="pt-24 h-full flex sm:flex-row flex-col justify-center">
       <div className="mb-10">
       <h1 className="text-center text-3xl font-bold">Delivery Address</h1>
-      <div class="mt-5 bg-blue-100 shadow rounded-xl w-[400px] mx-auto">
-        <div class="flex">
+      <div class="mt-5 bg-blue-100 flex flex-col shadow rounded-xl sm:w-[400px] mx-auto">
+        <div class="flex justify-around">
           <div class="flex-1 py-5 pl-5 ">
             <ul>
               <li class="text-xl font-medium uppercase ">{address[0] + " " + address[1]}</li>
@@ -61,10 +61,10 @@ useEffect(()=>{
             <img src={history} alt="" className="h-5 ml-1" />
           </div>
         </div>
-        <button onClick={chan} className="hover:shadow-form w-[300px] hover:bg-gray-800 duration-500 mx-10 mb-5 rounded-md bg-blue-700 py-3 px-8 text-center text-base font-semibold text-white outline-none">
+        <button onClick={chan} className="hover:shadow-form w-[300px] hover:bg-gray-800 duration-500  mx-auto mb-5 rounded-md bg-blue-700 py-3 px-8 text-center text-base font-semibold text-white outline-none">
           Add as New Address
         </button>
-       <Link to="/checkout"><button className="hover:shadow-form hover:bg-gray-800 duration-500 w-[300px] mx-10 mb-5 rounded-md bg-blue-700 hover py-3 px-8 text-center text-base font-semibold text-white outline-none">
+       <Link to="/checkout" className="mx-auto "><button className="hover:shadow-form hover:bg-gray-800 duration-500 w-[300px] sm:mx-10 mx-auto mb-5 rounded-md bg-blue-700 hover py-3 px-8 text-center text-base font-semibold text-white outline-none">
           Procced
         </button></Link>
       </div>

@@ -8,9 +8,10 @@ const Cart = () => {
   var total=0
   
 
+
   useEffect(()=>{
     axios.get("/get_cart",{withCredentials:true})
-  .then(res=>{setitems(items=>res.data.cart)
+  .then(res=>{setitems(res.data.cart)
     
   })
   },[])
@@ -42,9 +43,10 @@ const amount={
                 <Item
                   id={item.product_id}
                   name={item.item}
-                  unit={item.num}
+                  unit={item.number}
                   quantity={item.quantity}
-                  unitPrice={item.price-Number(item.delivery_fees)-(item.price * Number(item.tax)/100)+(item.price * Number(item.discount)/100)}
+                  price={item.price}
+                  unitPrice={Math.round((item.price-Number(item.delivery_fees)-(item.price * Number(item.tax)/100)+(item.price * Number(item.discount)/100))*100)/100}
                   img={item.img}
                   discount={item.discount}
                   delivery={item.delivery_fees}

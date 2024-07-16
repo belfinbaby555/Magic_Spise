@@ -43,7 +43,7 @@ if(res.data.message === 'Save successful'){
     <div className="pt-0">
       <h1 className="text-center text-2xl  font-bold">Add a New Address</h1>
       <div className="flex items-center justify-center p-5 ">
-        <div className="mx-auto w-full max-w-[550px] bg-blue-100 p-10 rounded-lg">
+        <div className="mx-auto w-full max-w-[550px] bg-blue-100 sm:p-10 p-2 rounded-lg">
           <form onSubmit={handle}>
             <div className="mb-5">
               <label

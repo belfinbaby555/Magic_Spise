@@ -26,6 +26,7 @@ useEffect(()=>{
                 address={item.address}
                 price={item.total_amount}
                 date={item.order_date}
+                status={item.order_status}
                 />
                 );
             })}

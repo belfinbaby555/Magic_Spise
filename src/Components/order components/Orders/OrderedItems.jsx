@@ -11,9 +11,11 @@ const info=JSON.parse(details)
 const adde=item.address.split("β");
 
 const cancel=()=>{
-  axios.get("/cancel/8",{withCredentials:true,})
+  axios.get(`/cancel/${item.id}`,{withCredentials:true,})
   .then(res=>{
-    console.log(res.data)
+    if(res.data.message){
+      window.location.reload()
+    }
   })
 }
 
@@ -24,7 +26,7 @@ const cancel=()=>{
         
         <img
           class=" sm:w-32 max-w-full rounded-lg sm:m-2 box-border object-cover"
-          src={info.product0.image}
+          src={info.image}
           alt=""
         />
       </div>
@@ -32,10 +34,10 @@ const cancel=()=>{
       <div class="relative flex flex-1 flex-col justify-between">
         <div class="sm:col-gap-5 sm:grid sm:grid-cols-2 sm:my-auto my-4 flex justify-between">
           <div class="pr-8 sm:pr-5 my-auto pl-3">
-            <p class="text-lg capitalize font-semibold text-gray-900">{info.product0.name}</p>
+            <p class="text-lg capitalize font-semibold text-gray-900">{info.name}</p>
           
             <p class="shrink-0 w-20 text-sm text-gray-400 sm:order-2 sm:ml-0 ">
-                Qty: {info.product0.quantity}
+                Qty: {info.quantity}
               </p>
           </div>
 
@@ -58,10 +60,10 @@ const cancel=()=>{
           </button> */}
         </div>
       </div>
-      <button onClick={cancel} className="bottom-0 right-0 px-3 py-2 h-14 sm:h-24 sm:pb-2 bg-blue-600 rounded-lg sm:rounded-none sm:rounded-bl-xl text-slate-50">Cancel</button>
+      {item.status==="canceled" ? <div className="hidden"></div>:<button onClick={cancel} className="bottom-0 right-0 px-3 py-2 h-14 sm:h-24 sm:pb-2 bg-blue-600 rounded-lg sm:rounded-none sm:rounded-bl-xl text-slate-50">Cancel</button> }
       
     </li>
-    <div className="px-5 py-5 flex bg-blue-100 rounded-b-lg justify-between">
+    <div className="px-5 py-5 flex sm:flex-row flex-col bg-blue-100 rounded-b-lg justify-between">
       
       <ul className="my-auto scale-105">
       <h1 class="text-2xl font-semibold text-gray-900  mb-5">
@@ -73,8 +75,9 @@ const cancel=()=>{
               <li class="text-gray-500 capitalize">{adde[3]}</li>
               <li class="text-gray-500 capitalize">{adde[8]}</li>
               <li class="text-gray-500 capitalize">{adde[2]}</li>
+              <p className={"mt-7 px-2 py-1 capitalize text-white rounded text-center " + (item.status==="canceled"? "bg-red-600":"bg-green-600")}>{item.status}</p>
             </ul>
-            <div class="mt-6  pb-8 w-1/2 px-6 rounded-md bg-white">
+            <div class="mt-6  pb-8 w-full sm:w-1/2 px-6 rounded-md bg-white">
             <div className="space-y-3">
                   <h1 className="border-b border-gray-300 text-gray-700  py-2">
                     Summary
@@ -85,11 +88,11 @@ const cancel=()=>{
                   </div>
                   <div class="flex items-center justify-between text-gray-600">
                     <p class="">Unit price</p>
-                    <p class="font-semibold ">Rs. {info.product0.price}</p>
+                    <p class="font-semibold ">Rs. {info.price}</p>
                   </div>
                   <div class="flex items-center justify-between text-gray-600">
                     <p class="">Quatity</p>
-                    <p class="font-semibold ">{info.product0.quantity}</p>
+                    <p class="font-semibold ">{info.quantity}</p>
                   </div>
                   <div class="flex items-center font-bold justify-between text-black pt-5">
                     <p class="">Total</p>

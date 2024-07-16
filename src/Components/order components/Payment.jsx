@@ -32,6 +32,7 @@ await axios.get("/getAmount",{withCredentials:true})
           console.log(res.data)
           if (res.data.message==="Payment completed and order placed successfully!"){
             window.location.href="/orders"
+            console.log(res.data.message)
           }
         })
       },
