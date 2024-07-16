@@ -40,13 +40,14 @@ const amount={
             {items.map((item) => {
               return (
                 <Item
-                  key={item.id}
+                  id={item.product_id}
                   name={item.item}
-                  inStock={item.inStock}
+                  unit={item.num}
                   quantity={item.quantity}
-                  unitPrice={item.price}
-                  isGift={item.isGift}
+                  unitPrice={item.price-Number(item.delivery_fees)-(item.price * Number(item.tax)/100)+(item.price * Number(item.discount)/100)}
                   img={item.img}
+                  discount={item.discount}
+                  delivery={item.delivery_fees}
                 />
               );
             })}

@@ -119,12 +119,12 @@ return(
           
             <h2 className="capitalize text-3xl flex justify-between">{prod.name}</h2>
             
-            {stock.reduce((acc, value) => acc + Number(value), 0) && +ind ? <h3 className="capitalize text-green-600 text-2xl py-4 border-b-2 border-gray-300">in stock
+            {stock.reduce((acc, value) => acc + Number(value), 0) && +ind>0 ? <h3 className="capitalize text-green-600 text-2xl py-4 border-b-2 border-gray-300">in stock
               {+prod.percentage ? <p className="float-right text-green-600 font-normal text-base">{+prod.percentage}% Discount on this product</p>:<p className="float-right text-sm"></p>}
             </h3> 
             : <h3 className="capitalize text-red-600 text-2xl py-4 border-b-2 border-gray-300">Out of stock</h3>}
             {stock.reduce((acc, value) => acc + Number(value), 0) ? <div>
-            <h3 className="text-3xl flex text-blue-700 py-3">₹ {Math.round(price - (+prod.percentage ? +price * +prod.percentage/100:0)-prod.tax)} <p className="text-base mt-auto ml-1"> + ₹ {+prod.tax} tax</p></h3>
+            <h3 className="text-3xl flex text-blue-700 py-3">₹ {Math.round((price - (+prod.percentage ? +price * +prod.percentage/100:0)-(+price * +prod.tax/100))*100)/100} <p className="text-base mt-auto ml-1"> + ₹ {Math.round(((+price * +prod.tax/100))*100)/100} tax</p></h3>
             {+prod.percentage  ? <h4 className="line-through text-xl text-gray-500  pb-2">₹ {price } </h4>: <h4 ></h4>}
             </div>: <h3 className="text-3xl text-blue-700 py-3">Currently unavailable</h3>}
             {stock.reduce((acc, value) => acc + Number(value), 0) ? <div className="flex flex-col ">
@@ -146,7 +146,7 @@ return(
                 </div>
 
 
-              {+ind ? 
+              {+ind>0 ? 
                 <div className="flex ">
                 <span className="w-28 flex justify-between text-blue-600 rounded-full bg-gray-200" >
                     <button type="button" onClick={decUnit} className="px-4 text-lg">-</button>

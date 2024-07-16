@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import up from "../../Assets/Images/icons/arrow_up.svg";
 import dlt from "../../Assets/Images/icons/dlt.svg";
 import axios from "axios";
 
@@ -19,9 +18,9 @@ const Item = (item) => {
   };
 
 const del=()=>{
-  axios.get(`/delete/${item.name}`,{withCredentials:true})
+  axios.get(`/delete/${item.id}`,{withCredentials:true})
   .then(res=>{
-    if(res.data.status=="ok"){
+    if(res.data.status==="ok"){
       window.location.reload()
     }
   })
