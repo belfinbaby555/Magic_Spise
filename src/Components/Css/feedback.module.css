@@ -44,7 +44,7 @@
 }
 .feedback1{
     width: 350px;
-    height: 100%;
+    height: fit-content;
     border-radius: 10px;
     background-color: #3e54d342;
     display:flex;

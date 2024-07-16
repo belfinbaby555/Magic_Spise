@@ -94,7 +94,7 @@ const Footer = () => {
           <div>
             <h1 className="text-xl font-bold">the MAGIC SPICE</h1>
             <span className="text-sm -center ">
-              The Magic Spice © 2024 <a href="\">  </a>. All Rights Reserved.
+              The Magic Spice © 2024 <a href="/termsandcondition"> Terms and Condition </a>. All Rights Reserved.
             </span>
           </div>
 

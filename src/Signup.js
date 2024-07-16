@@ -71,7 +71,7 @@ var info=JSON.stringify({
                 <p className="w-full h-fit text-red-600" id="mail_error"></p>
                 <h5>Password</h5>
                 <input type="password" id="pass" placeholder="Password" required></input>
-                <span><input type="checkbox"></input><p> I agree to <a>terms and conditions</a></p></span>
+                <span><input type="checkbox"></input><p> I agree to <a href='/termsandcondition'>terms and conditions</a></p></span>
                 <button className={sig.signin} type="submit">Sign Up</button>
                 </form>
                 {/* <button className="google"><i class="fas fa-clock"></i>Sign-in with Google</button> */}

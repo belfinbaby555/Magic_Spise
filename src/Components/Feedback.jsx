@@ -15,17 +15,17 @@ function Feedback(){
                 </div>
                 <div className={feed.feedback1}>
                     <img src={coma} className="w-20 pb-6"/>
-                    <p className="text-xl">Lorem ipsum nifjvijfeofjnvej
-                        wkdjbckjkjdvksjds sdjs d dfhbeid ied iefdvi efh
-                         iejfdvik jfivf niefv iefv iefuvief iernvf ir jfv
+                    <p className="text-xl">I've been using The Magic Spice's range of spices for a few months now,
+                         and they have truly transformed my cooking.  I highly recommend their spices to anyone 
+                          looking to elevate their culinary experience
                     </p>
                     <h3 className="pt-10 leading-7 text-stone-600">Prince Thomas<br/>2023-04-06</h3>
                 </div>
                 <div className={feed.feedback1}>
                     <img src={coma} className="w-20 pb-6"/>
-                    <p className="text-xl">Lorem ipsum nifjvijfeofjnvej
-                        wkdjbckjkjdvksjds sdjs d dfhbeid ied iefdvi efh
-                         iejfdvik jfivf niefv iefv iefuvief iernvf ir jfv
+                    <p className="text-xl">The virgin coconut oil from The Magic Spice has been a game-changer for 
+                        me. It's incredibly pure and has a wonderful aroma. I use it not just in my 
+                        cooking but also as a part of my skincare routine. 
                     </p>
                     <h3 className="pt-10 leading-7 text-stone-600">Prince Thomas<br/>2023-04-06</h3>
                 </div>

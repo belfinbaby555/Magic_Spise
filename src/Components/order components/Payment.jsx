@@ -29,17 +29,10 @@ await axios.get("/getAmount",{withCredentials:true})
 
         })
         .then(res=>{
-          console.log(res.data)
           if (res.data.message==="Payment completed and order placed successfully!"){
-            window.location.href="/orders"
-            console.log(res.data.message)
+            window.location.href='/orders'
           }
         })
-      },
-      prefill: {
-        name: "Piyush Garg",
-        email: "youremail@example.com",
-        contact: "9999999999",
       },
       notes: {
         address: "Razorpay Corporate Office",
