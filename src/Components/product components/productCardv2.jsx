@@ -14,7 +14,12 @@ console.log(total)
      
             <div className={pro.details} >
                 <h1>{product.name}</h1>
-                <p>{stock.map(qty=>(qty+product.si_unit+" | "))}</p>
+                <p>{stock.map((qty, index) => (
+  <React.Fragment key={index}>
+    {qty} {product.si_unit}
+    {index !== stock.length - 1 && ' | '}
+  </React.Fragment>
+))}</p>
                 {total ? <div>
                 <h3>₹{product.price[0]} <b>In stock</b></h3><b className="hidden">{product.id}</b>
                 <button className="w-full h-10 bg-blue-600 text-stone-100 rounded my-2 mx-auto">Buy Now</button></div>

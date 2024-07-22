@@ -3,6 +3,7 @@ import square from "../../Assets/Images/icons/square.svg";
 import Prod from './productCardv2'
 import axios from "axios";
 import home from "../../Assets/home.module.css"
+import Loading from "../Loading";
 
 const Products = () => {
 
@@ -53,7 +54,8 @@ function sort(cat){
   
   
   return (
-    <div className="flex sm:flex-row flex-col bg-gray-100 pt-[60px]">
+    <div className="flex sm:flex-row flex-col bg-gray-100 relative pt-[60px]">
+     {products.length ? <div></div>:<Loading/>}
       <div className="sm:w-96 sm:h-96 sm:p-4 pl-1 sm:pl-10">
         <div>
         <h2 className="text-xl font-bold my-10 sm:flex hidden gap-2">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import nav from "./Css/navi.module.css"
 import logo from "../Assets/Images/logos/logo_default.png";
 import s_icon from "../Assets/Images/icons/search.png"
@@ -7,21 +7,33 @@ import axios from "axios";
 
 function Navi(){
 
-const [status,setstatus]=useState(false)
+const [status,setstatus]=useState(true)
 const [cart,setcart]=useState('')
 const [filteredProducts, setFilteredProducts] = useState([]);
 
-axios.get('/dash',{withCredentials:true})
-.then(res=>{
-    if(res.data.message==="User not logged in"){
-        setstatus(status=>true);
-    }
-    else{
-        setstatus(false,status)
-        setcart(cart=>res.data.cart_count)
-        
-    }
-})
+useEffect(()=>{
+try{
+    axios.get('/dash',{withCredentials:true})
+    .then(res=>{
+        if(res.data.message==="User not logged in"){
+            setstatus(true);
+        }
+        else{
+            setstatus(false)
+            setcart(res.data.cart_count)
+            
+        }
+    })
+    .catch((e)=>[
+        alert(e)
+    ])
+}
+catch(e){
+    console.log(e);
+}
+   
+},[])
+
 const handleSearch = async() => {
     const res = await axios.get("/products",{withCredentials:true})
     const products=await res.data

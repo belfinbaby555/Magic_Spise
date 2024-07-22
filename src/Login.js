@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import login from './Assets/login.module.css'
 import axios from "axios";
 
@@ -11,10 +11,14 @@ function Login(){
 
         axios.get("/get_csrf",{withCredentials:true})
         .then(res=>csrf=res.data)
+        .catch((e)=>{
+           document.getElementById("alert").style.display="block"
+        })
 
     
 
-setTimeout(!verify && (()=>{
+useEffect(!verify && (()=>{
+    try{
     document.getElementById("submi_login").addEventListener("submit",(event)=>{
         event.preventDefault()
 
@@ -63,9 +67,17 @@ var info=JSON.stringify({
                         
                 }
         })
+        .catch((e)=>{
+            document.getElementById("alert").style.display="block"
+        })
         
-    })
-}),100)
+    })}
+
+catch(e){
+    document.getElementById("alert").style.display="block"
+}
+
+}),[])
 
 const resend=()=>{
     axios.get('/resend',{withCredentials:true})
@@ -89,6 +101,7 @@ const resend=()=>{
     return(
         <div className={login.wallpaper}>
         <div className={login.background}>
+        <h6 className="text-center text-white border-l-8 rounded-md uppercase text-xl border-red-600 absolute right-2 top-10 bg-red-600/50 px-4 py-3 duration-500" id="alert" style={{display:'none'}}>Something went wrong !!!</h6>
                 {!verify && (
                 <div className={login.login_container}>
                     <h1>#the MAGIC SPICE</h1>

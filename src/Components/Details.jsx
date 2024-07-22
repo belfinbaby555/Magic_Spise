@@ -1,7 +1,9 @@
+import React from "react";
 import { useEffect,useState} from "react";
 import { useParams } from "react-router-dom";
 import cart from '../Assets/Images/icons/cart.png'
 import axios from "axios";
+import Loading from "./Loading";
 
 
 
@@ -46,6 +48,9 @@ useEffect(()=>{
   getind(s.split(":")[0])
   
   })
+  .catch((e)=>{
+    alert(e)
+  })
 },[])
 
 const qty_price=(index)=>{
@@ -78,6 +83,20 @@ function add_cart(){
     else{}
     
   })
+  .catch((e)=>{
+    if(e.message==="Request failed with status code 500"){
+      document.getElementById("message").innerHTML="✘ Login to add";
+      document.getElementById("message").style.height='48px'
+      document.getElementById("message").style.width='207px'
+      document.getElementById("message").style.backgroundColor='red'
+      setTimeout(()=>{
+      document.getElementById("message").innerHTML=""
+      document.getElementById("message").style.height='0px'
+      document.getElementById("message").style.width='0px'
+      document.getElementById("message").style.backgroundColor='none'
+    },2000)
+    }
+  })
   }
   catch(e){
     console.log(e)
@@ -88,6 +107,7 @@ function add_cart(){
 
 return(
     <div className="w-screen h-fit flex box-border py-5 px-10 pt-24">
+      {selectedOption? <div></div>:<Loading/>}
         <div className="w-full flex flex-col box-border px-10">
             <div className="bg-cover bg-center rounded-xl w-full h-96" id="main" style={{backgroundImage:`url(${prod.img1})`}}></div>
             <div className="w-full h-fit flex">
@@ -97,7 +117,12 @@ return(
             </div>
             <h3 className="capitalize text-4xl mt-8 font-medium">More Information</h3>
             <h4 className="capitalize text-xl py-4">units</h4>
-            <p className="text-base text-gray-500">{qty.map(q=>q + prod.si_unit + " ")}</p>
+            <p className="text-base text-gray-500">{qty.map((q,index)=>(
+              <React.Fragment key={index}>
+              {q} {prod.si_unit}
+              {index !== stock.length - 1 && ', '}
+            </React.Fragment>
+            ))}</p>
             <h4 className="capitalize text-xl py-4">Shelf Life</h4>
             <p className="taxt-base text-gray-500">{prod.shelf_life}</p>
             <h4 className="capitalize text-xl py-4">country of origin</h4>
@@ -143,7 +168,7 @@ return(
                 {qty.map((item,index)=>{
 
         return(
-           <div onClick={()=>{qty_price(index)}} className="flex justify-center py-1 px-2 bg-gray-200 rounded mr-2">
+           <div onClick={()=>{qty_price(index)}}  className="flex justify-center py-1 px-2 bg-gray-200 rounded mr-2">
             <input type="radio" name="item" checked={selectedOption===item} id={item} style={{accentColor:"blue"}}/>
             <label htmlFor={item} className="ml-1 text-gray-600 text-sm">{item + prod.si_unit}</label>
             </div>

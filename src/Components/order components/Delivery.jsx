@@ -9,18 +9,23 @@ const [add,setaddress]=useState(false);
 const [status,getstatus]=useState();
 const [address,getaddress]=useState([])
 
-useEffect(()=>{
-  axios.get('/getaddr',{withCredentials:true})
+useEffect(async()=>{
+  await axios.get('/getaddr',{withCredentials:true})
   .then(res=>{
     if(res.data.address==='None'){
-      getstatus(status=>true)
+      getstatus(true)
     }
     else{
       const info=res.data.address;
       const out=info.split('β')
-      getaddress(address=>out)
+      getaddress(out)
       
       }
+  })
+  .catch((e)=>{
+    if(e.message==="Request failed with status code 500"){
+      window.location.href="/login"
+    }
   })
 },[])
 
@@ -34,6 +39,7 @@ useEffect(()=>{
 
   return (
     <div>
+      {}
       {status && (
       <div className="pt-24 h-full flex sm:flex-row flex-col justify-center">
     <div className=" w-[500px]">

@@ -3,33 +3,49 @@ import cli from "./Css/client.module.css";
 import cork from "../Assets/Images/cork_jar.png"
 import bowl from "../Assets/Images/bowl.png"
 import axios from "axios";
+import Loading from "./Loading";
 
 function Client() {
 const [deal,setdeal]=useState([]);
 
 useEffect(()=>{
+ try{
   async function per(){
-  await axios.get('/products',{withCredentials:true})
-  .then((res)=>{
-    const dta=res.data
-    
-    const percentage = dta.map(product => product.percentage);
-    const max = Math.max(...percentage);
-    const index=percentage.indexOf(String(max))
-    setdeal(dta[index])
-   
-    })
-}per()},[])
+    await axios.get('/products',{withCredentials:true})
+    .then((res)=>{
+      const dta=res.data
+      
+      const percentage = dta.map(product => product.percentage);
+      const max = Math.max(...percentage);
+      const index=percentage.indexOf(String(max))
+      setdeal(dta[index])
+     
+      })
+      .catch((e)=>{
+        
+      })
+  }per()
+ }
+ catch(e){
+  console.log(e)
+ }
+
+},[])
   
 
   return (
-    <div className="flex text-center">
+    
+    <div className="flex text-center h-fit">
+      
       <div className={cli.trusted_clients}>
         <h5>Trusted by Over 50+ Client Nationwide</h5>
         <div className={cli.client_scroll_container}><div></div></div>
         <div className={cli.deal_of_the_day}>
+
+        {deal.percentage ? <div></div>:<Loading/>}
           <img src={cork} className="w-24 h-fit hidden sm:block m-3 sm:mt-auto"/>
           <div className="flex flex-col justify-around items-start sm:pl-24 sm:pt-16 pt-10 h-fit m-2">
+            
             <span className="text-blue-800 font-[700] text-xl w-full text-center sm:text-left pl-1">{deal.percentage}% Off</span>
             <h1 className="sm:text-[55px] text-[40px] w-full font-[600] sm:font-normal text-center sm:text-left ">Deal of the Day</h1>
             <h1 className="sm:text-5xl text-3xl sm:text-left text-center font-medium w-full">

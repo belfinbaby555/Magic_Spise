@@ -52,6 +52,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 @media screen and (max-width:650px) {
     .trusted_clients > .deal_of_the_day{
