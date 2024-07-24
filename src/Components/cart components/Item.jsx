@@ -51,7 +51,7 @@ const del=()=>{
         <div className="mt-5 sm:mt-0 w-fit">
           <h2 className="text-lg font-bold text-gray-900">{item.name}</h2>
           <p className="mt-1 text-sm text-gray-700">
-            {+stock<item.unit ? <span className="text-green-700 text-sm font-medium">In Stock</span>: <span className="text-red-700 text-sm font-medium">Out Of Stock</span>} |{" "}
+            {!+stock<=item.unit ? <span className="text-green-700 text-sm font-medium">In Stock</span>: <span className="text-red-700 text-sm font-medium">Out Of Stock</span>} |{" "}
             {item.quantity} KG
           </p>
         </div>

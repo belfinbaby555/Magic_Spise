@@ -6,7 +6,7 @@ import axios from "axios";
 function Login(){
     const [verify,setverify]=useState(false)
     const [mail,setmail]=useState('');
-    const [time,settime]=useState('');
+    const [time,settime]=useState(10);
     var csrf;
 
         axios.get("/get_csrf",{withCredentials:true})
@@ -68,7 +68,7 @@ var info=JSON.stringify({
                 }
         })
         .catch((e)=>{
-            document.getElementById("alert").style.display="block"
+            document.getElementById("mail_error").innerHTML=e;
         })
         
     })}
@@ -82,21 +82,22 @@ catch(e){
 const resend=()=>{
     axios.get('/resend',{withCredentials:true})
     .then(res=>console.log(res.data.message))
+    .catch((e)=>{
+        alert(e)
+    })
 }
 
-    const countdown = ()=>{
-        const inter = setInterval(()=>{
-            settime(time-1,time)
-            if(time<=0){
-                settime('Resend',time)
-                clearInterval(inter)
-            }
-            console.log(time)
-        },1000)
-        
-        console.log(mail)
-    }
-    
+const countdown = () => {
+    const inter = setInterval(() => {
+      settime(prev => prev - 1);
+
+      if (time >= 0) {
+        clearInterval(inter); 
+        alert("yu[p")
+        settime('Resend');
+      }
+    }, 1000);
+  };
 
     return(
         <div className={login.wallpaper}>

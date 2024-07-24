@@ -11,12 +11,20 @@ const info=JSON.parse(details)
 const adde=item.address.split("β");
 
 const cancel=()=>{
+  try{
   axios.get(`/cancel/${item.id}`,{withCredentials:true,})
   .then(res=>{
     if(res.data.message){
       window.location.reload()
     }
   })
+  .catch(e=>{
+    alert(e)
+  })
+}
+catch(e){
+  alert(e)
+}
 }
 
   return (
@@ -60,7 +68,7 @@ const cancel=()=>{
           </button> */}
         </div>
       </div>
-      {item.status==="canceled" ? <div className="hidden"></div>:<button onClick={cancel} className="bottom-0 right-0 px-3 py-2 h-14 sm:h-24 sm:pb-2 bg-blue-600 rounded-lg sm:rounded-none sm:rounded-bl-xl text-slate-50">Cancel</button> }
+      {item.status!="ordered" ? <div className="hidden"></div>:<button onClick={cancel} className="bottom-0 right-0 px-3 py-2 h-14 sm:h-24 sm:pb-2 bg-blue-600 rounded-lg sm:rounded-none sm:rounded-bl-xl text-slate-50">Cancel</button> }
       
     </li>
     <div className="px-5 py-5 flex sm:flex-row flex-col bg-blue-100 rounded-b-lg justify-between">

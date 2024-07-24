@@ -99,7 +99,7 @@
     width: 90px;
 }
 .buttons{
-    width: 300px;
+    width: fit-content;
     height: fit-content;
     display: flex;
     flex-direction: row;
@@ -120,6 +120,7 @@
     margin: auto 10px;
     cursor:pointer;
     position: relative;
+    margin-left: auto;
 }
 .cart{
     width: 30px;

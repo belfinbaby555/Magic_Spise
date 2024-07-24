@@ -18,7 +18,9 @@ function ProductDetails(){
     const [ind,getind]=useState([])
     const [num,getnum]=useState([]);
     const [selectedOption, setSelectedOption] = useState();
-    const [price,setprice]=useState([])    
+    const [price,setprice]=useState([])  
+    const [item,setitem]=useState(false)
+    
     const incUnit = () => {
       setUnits(() => {
         return units + 1;
@@ -59,26 +61,16 @@ const qty_price=(index)=>{
   getind(stock[index])
 }
 
-function add_cart(){
+async function add_cart(){
   try{
-  axios.get(`/cart/${String(prod.name)}/${units}/${selectedOption}`,{withCredentials:true})
+  await axios.get(`/cart/${String(prod.name)}/${units}/${selectedOption}`,{withCredentials:true})
   .then((res)=>{
     console.log(res.data)
     if(res.data.status=='ok'){
-      document.getElementById("message").innerHTML="✔ Item added";
-      document.getElementById("message").style.height='48px'
-      document.getElementById("message").style.width='207px'
+      setitem(true)
       setTimeout(()=>{
-      document.getElementById("message").innerHTML=""
-      document.getElementById("message").style.height='0px'
-      document.getElementById("message").style.width='0px'
+      setitem(false)
     },2000)
-      
-      axios.get('/dash',{withCredentials:true})
-      .then(res=>{
-        document.getElementById("cart").innerHTML=res.data.cart_count
-      })
-      
     }
     else{}
     
@@ -185,7 +177,7 @@ return(
                     <button type="button" onClick={incUnit} className="px-4 text-lg">+</button></span>
                     
                     <button onClick={add_cart} className="px-12 py-3 overflow-hidden relative bg-blue-600 rounded-full mx-5 font-normal text-stone-50 text-base flex justify-center my-auto">
-                      <div id="message" className="whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute bg-green-600" style={{height:"0px",width:"0px",opacity:1}}>Item added</div>
+                      <div id="message" className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute bg-green-600" + (item ? " w-52 h-12": " w-0 h-0")} >✔ Item added</div>
                       <img src={cart} className="w-5 my-auto mr-2" />Add to Cart</button>
                     </div>
               : <div></div>}

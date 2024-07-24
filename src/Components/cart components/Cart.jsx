@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Loading from "../Loading";
 
 const Cart = () => {
   const [items,setitems]=useState([])
+  const [load,setload]=useState(false)
   var total=0
   
 
@@ -12,7 +14,13 @@ const Cart = () => {
   useEffect(()=>{
     axios.get("/get_cart",{withCredentials:true})
   .then(res=>{setitems(res.data.cart)
-    
+    setload(true)
+  })
+  .catch(e=>{
+    if(e.message==="Request failed with status code 500"){
+      window.location.href='/login'
+      setload(false)
+    }
   })
   },[])
   
@@ -29,8 +37,9 @@ const amount={
 
   return (
     
-    <div>
-      <div class={"pt-24 h-fit md:h-[100vh]" }>
+    <div className="relative">
+      {load?<div></div>:<Loading/>}
+      <div class={"pt-24 h-fit"}>
 
         <h1 class="mb-10 text-2xl  font-bold border-l-4 ml-4 px-3 border-sky-900 text-left sm:ml-56">My Cart</h1>
         {Boolean(Object.entries(items).length) && (
@@ -89,7 +98,7 @@ const amount={
           </div>
         </div> )}
         {!Object.entries(items).length && (
-        <div class="mx-auto max-w-5xl justify-center px-6 md:flex sm:mt-28 flex-col md:space-x-6 xl:px-0">
+        <div class="mx-auto max-w-5xl justify-center px-6 md:flex sm:my-28 flex-col md:space-x-6 xl:px-0">
           <h1 className="text-3xl font-semibold ml-6 text-center">Your cart is Empty</h1>
           <p className="mx-auto text-center my-4">Add items to cart to view here</p>
           <div className="flex justify-center"><Link to='/products'><button className="w-40 h-10 rounded-md text-slate-50 bg-blue-700">Add products</button></Link></div>

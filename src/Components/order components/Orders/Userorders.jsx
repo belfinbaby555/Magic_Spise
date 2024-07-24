@@ -6,10 +6,18 @@ function UserOrder(){
 const [items,getitems]=useState([])
 
 useEffect(()=>{
+    try{
     axios.get("/user_orders",{withCredentials:true})
-.then(res=>{
+    .then(res=>{
     getitems(items=>res.data.orders)
-})
+    })
+    .catch(e=>{
+        alert(e)
+    })
+}
+catch(e){
+    alert(e)
+}
 },[])
 
 

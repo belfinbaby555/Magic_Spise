@@ -10,6 +10,9 @@ function Navi(){
 const [status,setstatus]=useState(true)
 const [cart,setcart]=useState('')
 const [filteredProducts, setFilteredProducts] = useState([]);
+const [email,getemail]=useState('');
+const [dropm,setdrop]=useState(false)
+const [dropo,setdropo]=useState(false)
 
 useEffect(()=>{
 try{
@@ -21,6 +24,7 @@ try{
         else{
             setstatus(false)
             setcart(res.data.cart_count)
+            getemail(res.data.user_name)
             
         }
     })
@@ -33,6 +37,12 @@ catch(e){
 }
    
 },[])
+const drop=()=>{
+    setdrop(!dropm)
+}
+const dropop=()=>{
+    setdropo(!dropo)
+}
 
 const handleSearch = async() => {
     const res = await axios.get("/products",{withCredentials:true})
@@ -60,10 +70,10 @@ const handleSearch = async() => {
                 <div className={nav.option}>
                     <a href="/">Home<span></span></a>
                     <a href="/products">Products<span></span></a>
-                    <a href="/#about">About us<span></span></a>
-                    <a href="/" className="relative">More <i className="fa fa-angle-down text-xl mt-[-10px]"></i><span></span></a>
-                    <div className="w-[200px] h-0 flex bg-stone-100 absolute top-[50px] right-[175px] flex-col rounded border-[1px] border-slate-300">
-                        <a href="/">Blog</a>
+                    <a href="#about">About us<span></span></a>
+                    <a onClick={dropop} className="relative">More <i className="fa fa-angle-down text-xl mt-[-10px]"></i><span></span></a>
+                    <div onMouseLeave={dropop} className={"w-[200px] -z-10 flex bg-sky-100 absolute top-[50px] duration-300 right-[175px] flex-col justify-around rounded border-slate-300"+(dropo?" h-36 border-[1px]":" h-0 border-0")}>
+                        <a href="/" >Blog</a>
                         <a href="/">Partnership</a>
                         <a href="/">Gift</a>
                     </div>
@@ -93,13 +103,16 @@ const handleSearch = async() => {
                 )}
                 {!status && (
                     <div>
-                    <Link to="/orders"><button className={nav.login}>My orders</button></Link>
-                <Link to="/cart" className="ml-auto"><button className={nav.cart}>  <b className="absolute text-xs bg-sky-600 rounded-full top-0 text-stone-100 w-4 h-4 right-[-5px]" id="cart">{cart}</b>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
-                    </button></Link>
+                   <button onClick={drop} className="w-fit rounded-full px-4 text-lg m-0 text-white py-[7px] bg-blue-700"><b className="invert text-xl ">👤</b> My Account</button>
                     </div>
                 )}
                 </div>
+            </div>
+            <div className={"w-72 h-fit duration-500 fixed right-0 top-16 bg-sky-100 flex flex-col px-5 box-border py-4 z-50" + (dropm?" -translate-y-0":" -translate-y-72")}>
+                <p className="capitalize text-4xl bg-blue-600 h-12 w-12 rounded-full align-middle mx-auto text-white mt-4 text-center">{email.split("")[0]}</p>
+                <b className="font-normal text-center my-4">{email}</b>
+                <Link to="/cart"><button className="bg-blue-600 text-white w-full flex justify-between my-1 rounded p-2 items-center">My Cart <b className="h-6 w-6 text-center rounded-full bg-red-500">{cart}</b></button></Link>
+                <Link to="/orders"><button className="bg-blue-600 text-white w-full flex justify-between rounded my-1 p-2 items-center">My Orders </button></Link>
             </div>
         </div>
     )

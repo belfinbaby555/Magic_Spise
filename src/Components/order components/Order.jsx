@@ -11,14 +11,14 @@ function Order() {
   
 
   
-  var total=0;
+  const  [total,gettotal]=useState(0);
 
 
 
 
   useEffect(()=>{
     axios.get("/get_cart",{withCredentials:true})
-  .then(res=>{setitems(items=>res.data.cart)
+  .then(res=>{setitems(res.data.cart)
 
     
   })
@@ -33,17 +33,25 @@ function Order() {
       else{
         const info=res.data.address;
         const out=info.split('β')
-        getaddress(address=>out)
+        getaddress(out)
         
         }
+    })
+    .catch(e=>{
+      
     })
   },[])
 
   
-
+useEffect(()=>{
+var tot = 0;
   for(let i=0;i<=Object.entries(items).length-1;i++){
-    total=total+items[i].price;
+    tot=tot+items[i].price;
   }
+  gettotal(tot)
+
+},[])
+  
   
   const amount={
     'price':total,
@@ -100,7 +108,6 @@ function Order() {
                 </h1>
                 <ul className="mt-3 text-gray-700">
                   <li class="text-lg font-medium capitalize">{address[0] + " " + address[1]}</li>
-                  {/* Name & other details  */}
                   <li className="capitalize">{address[4] + " ," + address[5] + ' ,' + address[6]}</li>
                   <li class="text-gray-500 capitalize">{address[3]}</li>
                   <li class="text-gray-500 capitalize">{address[8]}</li>

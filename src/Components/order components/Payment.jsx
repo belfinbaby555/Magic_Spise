@@ -45,6 +45,9 @@ await axios.get("/getAmount",{withCredentials:true})
     const rzpay = new Razorpay(options);
     rzpay.open();
 })
+.catch(e=>{
+  alert(e.message)
+})
   }, [Razorpay]);
 
   return (

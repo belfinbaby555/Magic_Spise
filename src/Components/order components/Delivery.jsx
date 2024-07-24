@@ -3,22 +3,26 @@ import history from "../../Assets/Images/icons/history.png";
 import Address from "./Address";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Loading from "../Loading";
 
 const Delivery = () => {
 const [add,setaddress]=useState(false);
 const [status,getstatus]=useState();
 const [address,getaddress]=useState([])
+const [load,setload]=useState(true)
 
 useEffect(async()=>{
   await axios.get('/getaddr',{withCredentials:true})
   .then(res=>{
     if(res.data.address==='None'){
       getstatus(true)
+      setload(false)
     }
     else{
       const info=res.data.address;
       const out=info.split('β')
       getaddress(out)
+      setload(false)
       
       }
   })
@@ -38,8 +42,8 @@ useEffect(async()=>{
 
 
   return (
-    <div>
-      {}
+    <div className="relative">
+      {load?<Loading/>:<div></div>}
       {status && (
       <div className="pt-24 h-full flex sm:flex-row flex-col justify-center">
     <div className=" w-[500px]">
