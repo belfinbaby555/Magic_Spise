@@ -164,6 +164,11 @@
     color: rgb(68, 68, 68);
     font-weight: 600;
 }
+svg{
+    height: 18px;
+    fill:var(--prime);
+    width: 20px;
+}
 @media screen and (max-width:650px) {
     
     .banner{
@@ -219,5 +224,6 @@
         margin-top: auto;
         justify-content: center;
     }
+    
     
 }

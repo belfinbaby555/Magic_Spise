@@ -45,53 +45,36 @@ const del=()=>{
       <img
         src={item.img}
         alt="product-image"
-        className="w-full rounded-lg mb-2 sm:w-fit sm:h-20 mt-3"
+        className="w-fir rounded-lg mb-2 md:w-fit md:h-20 mt-3"
       />
-      <div className="sm:ml-4 ml-1 flex sm:w-full sm:items-center justify-between">
-        <div className="mt-5 sm:mt-0 w-fit">
+      <div className="sm:ml-4 ml-1 flex md:flex-row flex-col md:w-full sm:items-center justify-between">
+        <div className="mt-5 sm:mt-0 md:w-fit full flex items-center justify-between">
+          <div>
           <h2 className="text-lg font-bold text-gray-900">{item.name}</h2>
           <p className="mt-1 text-sm text-gray-700">
             {!+stock<=item.unit ? <span className="text-green-700 text-sm font-medium">In Stock</span>: <span className="text-red-700 text-sm font-medium">Out Of Stock</span>} |{" "}
             {item.quantity} KG
           </p>
+          </div>
+          <span className="mr-0 md:hidden block">Qty: <b>{units}</b></span>
         </div>
 
-        <div className="mt-4 flex justify-between w-fit sm:mt-0 sm:block sm:space-x-6 ">
-          <div className="flex items-center">
-            <span className="mr-10">Qty: <b>{units}</b></span>
-            {/* <div className="">
-              <img
-                src={up}
-                alt=""
-                className="h-10 cursor-pointer"
-                onClick={incUnit}
-              />
-
-              <img
-                src={up}
-                alt=""
-                className={
-                  "rotate-180 h-10 cursor-pointer" +
-                  (units === 1 ? ` opacity-20` : ``)
-                }
-                onClick={decUnit}
-              />
-            </div> */}
-            <span className="w-20 ml-3 text-blue-700 font-bold text-lg">
-            ₹ {item.unitPrice}
+        <div className="mt-6 flex justify-between md:w-fit w-full sm:mt-0 sm:flex-row  ">
+          <div className="flex w-full items-center justify-between">
+            <span className="mr-10 md:block hidden">Qty: <b>{units}</b></span>
+            
+            <span className="w-20 md:ml-3 text-blue-700 font-bold text-xl md:text-lg">
+            ₹ {item.unitPrice} /-
             </span>
             <img
               src={dlt}
               alt=""
-              className=" pl-10 cursor-pointer  hover:opacity-35"
+              className=" md:pl-10 cursor-pointer  hover:opacity-35"
               onClick={del}
               
             />
           </div>
-          {/* <div className=" ">
-            <input type="checkbox" />
-            <span className="text-gray-700"> This item will be a Gift</span>
-          </div> */}
+         
         </div>
       </div>
       <p className="absolute bottom-0 right-1 text-sm text-gray-700">Delivery: ₹{item.delivery}</p>

@@ -29,7 +29,8 @@ await axios.get("/getAmount",{withCredentials:true})
 
         })
         .then(res=>{
-          if (res.data.message==="Payment completed and order placed successfully!"){
+          alert(res.data.message)
+          if (res.data.message==="Payment completed and orders placed successfully!"){
             window.location.href='/orders'
           }
         })
@@ -58,6 +59,7 @@ await axios.get("/getAmount",{withCredentials:true})
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
         </button>
+        <div className="w-full bg-white h-12 rounded-b-xl"></div>
     </div>
   );
 }

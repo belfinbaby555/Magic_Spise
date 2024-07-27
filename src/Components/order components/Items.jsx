@@ -1,8 +1,21 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
+import axios from "axios";
 
 const Items = (item) => {
+  const [stock,setstock]=useState()
+
+  useEffect(()=>{
+    axios.get(`/product/${item.id}`)
+    .then(res=>{
+      const stock=res.data.stock.split(":")
+      const qty=res.data.quantity.split(":")
+      const itemStock=stock[qty.indexOf(String(item.quantity))]
+      setstock(stock[itemStock])
+      
+    })
+  },[])
   return (
-    <li class="flex flex-col h-fit py-6 sm:py-4 text-left sm:flex-row sm:space-x-5">
+    <li class="flex  justify-between h-fit py-6 sm:py-4 text-left sm:flex-row sm:space-x-5">
       <div class="shrink-0 relative">
         <img
           class=" w-20 max-w-full rounded-lg object-cover"
@@ -16,7 +29,7 @@ const Items = (item) => {
           <div class="pr-8 sm:pr-5">
             <p class="text-base font-semibold text-gray-900">{item.name}</p>
             <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">
-              In Stock | {item.quantity}KG
+            {!+stock<=item.unit ? <span className="text-green-700 text-sm font-medium">In Stock</span>: <span className="text-red-700 text-sm font-medium">Out Of Stock</span>} | {item.quantity}KG
             </p>
           </div>
 

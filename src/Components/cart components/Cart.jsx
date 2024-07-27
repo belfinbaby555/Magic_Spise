@@ -39,12 +39,12 @@ const amount={
     
     <div className="relative">
       {load?<div></div>:<Loading/>}
-      <div class={"pt-24 h-fit"}>
+      <div class={"pt-24" + (Object.entries(items).length?" h-fit":" h-screen")}>
 
-        <h1 class="mb-10 text-2xl  font-bold border-l-4 ml-4 px-3 border-sky-900 text-left sm:ml-56">My Cart</h1>
+        <h1 class="mb-10 text-2xl  font-bold border-l-4 ml-4 px-3 border-blue-600 text-left sm:ml-56">My Cart</h1>
         {Boolean(Object.entries(items).length) && (
        
-        <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
+        <div class="mx-auto max-w-5xl justify-center px-3 md:px-6 md:flex md:space-x-6 xl:px-0">
         
           <div class="rounded-lg md:w-2/3">
             {items.map((item) => {
@@ -64,10 +64,10 @@ const amount={
             })}
           </div>
 
-          <div class="mt-6 h-full rounded-lg border bg-blue-100 px-4 py-3 mb-5 shadow-md md:mt-0 md:w-1/3">
+          <div class="mt-6 h-full rounded-lg border bg-blue-100 px-2 md:px-4 py-3 mb-5 shadow-md md:mt-0 md:w-1/3">
             <h1 className="text-xl font-medium">Subtotal</h1>
             <p className="text-gray-600 font-medium pb-5">({Object.entries(items).length} items)</p>
-            <div class=" space-y-3 pb-5 px-5 rounded-md bg-white">
+            <div class=" space-y-3 pb-5 px-3 md:px-5 rounded-md bg-white">
               <h1 className="border-b border-gray-300 text-gray-700  py-2">
                 Summary
               </h1>

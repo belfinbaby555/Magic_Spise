@@ -39,7 +39,7 @@ function sort(cat){
   }
 
   for(var i=0;i<=document.getElementsByName("options").length-1;i++){
-    document.getElementsByName("options")[i].style.backgroundColor="transparent"
+    document.getElementsByName("options")[i].style.backgroundColor="rgb(203 213 225)"
     document.getElementsByName("options")[i].style.color="black"
   }
   document.getElementById(cat).style.backgroundColor="rgb(37 99 235)"
@@ -63,12 +63,12 @@ function sort(cat){
           <span>Categories</span>
         </h2>
         <ul className={"flex sm:flex-col flex-row gap-1 sm:gap-5 overflow-x-scroll "+home.category}>
-          <li onClick={()=>sort("all")} id="all" name="options" style={{color:"white",backgroundColor:"rgb(37 99 235)"}} className="rounded-full w-fit px-5 py-1 cursor-pointer select-none h-fit whitespace-nowrap">
+          <li onClick={()=>sort("all")} id="all" name="options" style={{color:"white",backgroundColor:"rgb(37 99 235)"}} className="rounded-full duration-500 w-fit px-5 py-1 cursor-pointer select-none h-fit whitespace-nowrap">
             All Products
           </li>
           
           {(options.map((categor)=>(
-            <li onClick={()=>sort(categor)} id={categor} name="options" className="rounded-full capitalize w-fit px-5 py-1 hover:bg-blue-600 hover:text-white bg-slate-300 sm:text-black sm:bg-transparent select-none cursor-pointer  h-fit whitespace-nowrap ">
+            <li onClick={()=>sort(categor)} id={categor} name="options" className="rounded-full duration-500 capitalize w-fit px-5 py-1 hover:bg-blue-600 hover:text-white bg-slate-300 sm:text-black sm:bg-transparent select-none cursor-pointer  h-fit whitespace-nowrap ">
             {categor}
           </li>
           )))}
