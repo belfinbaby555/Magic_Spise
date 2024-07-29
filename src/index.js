@@ -17,7 +17,7 @@ import axios from "axios";
 
 
 export default function App(){
-  axios.defaults.baseURL="http://localhost:8000";
+  axios.defaults.baseURL="https://magicspice.pythonanywhere.com";
 
   return(
   <BrowserRouter basename="/Magic_Spise">
