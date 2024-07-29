@@ -20,17 +20,17 @@ export default function App(){
   axios.defaults.baseURL="http://localhost:8000";
 
   return(
-  <BrowserRouter>
+  <BrowserRouter basename="/Magic_Spise">
   
   <Routes>
   <Route index element={<Home/>}/>
   <Route path="/login" element={<Login/>}/>
   <Route path="/signup" element={<Signup/>}/>
-  <Route path="/products" Component={Produc}/>
+  <Route path="/products" element={Produc}/>
   <Route path="/cart" element={<Cart/>}/>
   <Route path="/order" element={<Order/>}/>
   <Route path="/checkout" element={<Pay/>}/>
-  <Route path={`/item/:id`} Component={ProductDetail} />
+  <Route path={`/item/:id`} element={ProductDetail} />
   <Route path="/orders" element={<User/>}/>
   <Route path="/termsandcondition" element={<Terms/>}/>
   </Routes>
