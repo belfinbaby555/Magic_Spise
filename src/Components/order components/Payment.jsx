@@ -10,6 +10,7 @@ export default function Pay() {
 
 await axios.get("/getAmount",{withCredentials:true})
 .then(res=>{
+  
     const options = {
       key: res.data.razorpay_merchant_key,
       amount: String(res.data.razorpay_amount),
@@ -28,6 +29,7 @@ await axios.get("/getAmount",{withCredentials:true})
           withCredentials:true
 
         })
+        
         .then(res=>{
           alert(res.data.message)
           if (res.data.message==="Payment completed and orders placed successfully!"){

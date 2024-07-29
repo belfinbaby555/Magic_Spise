@@ -10,7 +10,7 @@ const Items = (item) => {
       const stock=res.data.stock.split(":")
       const qty=res.data.quantity.split(":")
       const itemStock=stock[qty.indexOf(String(item.quantity))]
-      setstock(stock[itemStock])
+      setstock(itemStock)
       
     })
   },[])
@@ -39,7 +39,7 @@ const Items = (item) => {
                 Rs. {item.unitPrice}
               </p>
               <p class="shrink-0 w-20 text-sm text-gray-400 sm:order-2 sm:ml-8 ">
-                Qty: {item.quantity}
+                Qty: {item.unit}
               </p>
             </div>
           </div>

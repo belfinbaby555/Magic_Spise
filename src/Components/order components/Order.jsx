@@ -38,7 +38,9 @@ function Order() {
         setLoad(false);
       } catch (error) {
         console.error("Error fetching data:", error);
-        alert("Error fetching data");
+        if(error.message==="Request failed with status code 500"){
+          window.location.href="/login"
+        }
         setLoad(false); 
       }
     };
@@ -76,10 +78,10 @@ function Order() {
                         key={item.product_id}
                         id={item.product_id}
                         name={item.item}
-                        inStock={item.inStock}
                         quantity={item.quantity}
                         unitPrice={item.price}
                         img={item.img}
+                        unit={item.number}
                       />
                     ))}
                   </ul>
