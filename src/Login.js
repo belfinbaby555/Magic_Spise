@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import login from './Assets/login.module.css'
 import axios from "axios";
 
@@ -38,7 +38,7 @@ var info=JSON.stringify({
         .then(async(res)=>{
                 switch(res.data.message){
                     case 'success':
-                        <Link to='/'/>
+                        <Navigate to='/'/>
                         break;
                         
                     case 'verify':

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import {  Navigate } from 'react-router-dom';
 import sig from './Assets/login.module.css'
 import axios from "axios";
 
@@ -44,7 +44,7 @@ useEffect(async()=>{
                         
                         case 'success':
                             document.getElementById('mail_error').innerHTML="";
-                            <Link to='/login' />;
+                            <Navigate to='/login' />;
                             
                             break;
                         
