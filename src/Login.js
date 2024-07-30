@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, Redirect } from 'react-router-dom';
 import login from './Assets/login.module.css'
 import axios from "axios";
 
@@ -37,7 +38,7 @@ var info=JSON.stringify({
         .then(async(res)=>{
                 switch(res.data.message){
                     case 'success':
-                        window.location.href='/'
+                        <Link to='/'/>
                         break;
                         
                     case 'verify':
@@ -68,7 +69,7 @@ var info=JSON.stringify({
                 }
         })
         .catch((e)=>{
-            document.getElementById("mail_error").innerHTML=e;
+            document.getElementById("mail_error").innerHTML=e.message;
         })
         
     })}

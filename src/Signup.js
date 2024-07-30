@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import sig from './Assets/login.module.css'
 import axios from "axios";
 
@@ -42,8 +43,8 @@ useEffect(async()=>{
                     switch(res.data.message){
                         
                         case 'success':
-                            document.getElementById('mail_error').innerHTML=""
-                            window.location.href='/login'
+                            document.getElementById('mail_error').innerHTML="";
+                            <Link to='/login' />;
                             
                             break;
                         
