@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import Home from "./Home";
 import Login from "./Login"
@@ -20,7 +20,7 @@ export default function App(){
   axios.defaults.baseURL="https://magicspice.pythonanywhere.com";
 
   return(
-  <HashRouter basename="/Magic_Spise">
+  <BrowserRouter basename="/Magic_Spise">
   
   <Routes>
   <Route index element={<Home/>}/>
@@ -34,7 +34,7 @@ export default function App(){
   <Route path="/orders" element={<User/>}/>
   <Route path="/termsandcondition" element={<Terms/>}/>
   </Routes>
-  </HashRouter>
+  </BrowserRouter>
   )
 };
 const root=ReactDOM.createRoot(document.getElementById('root'))
