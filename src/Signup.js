@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import {  Navigate } from 'react-router-dom';
+import {  Link, Navigate } from 'react-router-dom';
 import sig from './Assets/login.module.css'
 import axios from "axios";
 
@@ -44,7 +44,7 @@ useEffect(async()=>{
                         
                         case 'success':
                             document.getElementById('mail_error').innerHTML="";
-                            <Navigate to='/login' />;
+                            window.location.href='/Magic_Spice/login'
                             
                             break;
                         
@@ -87,11 +87,11 @@ useEffect(async()=>{
                 <p className="w-full h-fit text-red-600" id="mail_error"></p>
                 <h5>Password</h5>
                 <input type="password" id="pass" placeholder="Password" required></input>
-                <span><input type="checkbox" required></input><p> I agree to <a href='/termsandcondition'>terms and conditions</a></p></span>
+                <span><input type="checkbox" required></input><p> I agree to <Link to='/termsandcondition'>terms and conditions</Link></p></span>
                 <button className={sig.signin} type="submit">Sign Up</button>
                 </form>
                 {/* <button className="google"><i class="fas fa-clock"></i>Sign-in with Google</button> */}
-                <p>Already have an account?  <a href="/login">Sign In</a></p>
+                <p>Already have an account?  <Link to="/login">Sign In</Link></p>
             </div>
         </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import login from './Assets/login.module.css'
 import axios from "axios";
 
@@ -34,11 +34,12 @@ var info=JSON.stringify({
                     "X-CSRFToken":csrf,
             },
             withCredentials:true
+      
         })
         .then(async(res)=>{
                 switch(res.data.message){
                     case 'success':
-                        <Navigate to='/'/>
+                        window.location.href="/Magic_Spice"
                         break;
                         
                     case 'verify':
@@ -119,7 +120,7 @@ const countdown = () => {
                     <button className={login.signin} type="submit">Sign in</button>
                     </form>
                     {/* <button className="google"><i class="fas fa-clock"></i>Sign-in with Google</button> */}
-                    <p>Dont't have an account yet? <a href="/signup">Register for free</a></p>
+                    <p>Dont't have an account yet? <Link href="/signup">Register for free</Link></p>
                 </div>
 )}
                 {verify && (
