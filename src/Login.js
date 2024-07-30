@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, redirect } from 'react-router-dom';
 import login from './Assets/login.module.css'
 import axios from "axios";
 
@@ -39,7 +39,7 @@ var info=JSON.stringify({
         .then(async(res)=>{
                 switch(res.data.message){
                     case 'success':
-                        window.location.href="/Magic_Spice"
+                        redirect("/");
                         break;
                         
                     case 'verify':
