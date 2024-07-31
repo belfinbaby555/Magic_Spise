@@ -1,12 +1,17 @@
 import axios from "axios";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import useRazorpay from "react-razorpay";
 import logo from "../../Assets/Images/logos/logo_blue.png"
+import { useNavigate } from "react-router-dom";
+import Loading from "../Loading";
 
 export default function Pay() {
   const [Razorpay] = useRazorpay();
+  const [load , setload]=useState(false);
+  const navigate=useNavigate();
 
   const handlePayment = useCallback(async() => {
+    setload(true);
 
 await axios.get("/getAmount",{withCredentials:true})
 .then(res=>{
@@ -31,9 +36,8 @@ await axios.get("/getAmount",{withCredentials:true})
         })
         
         .then(res=>{
-          alert(res.data.message)
           if (res.data.message==="Payment completed and orders placed successfully!"){
-            window.location.href='/orders'
+            navigate('/orders')
           }
         })
       },
@@ -54,7 +58,8 @@ await axios.get("/getAmount",{withCredentials:true})
   }, [Razorpay]);
 
   return (
-    <div class="mt-6 text-center" >
+    <div class="mt-6 text-center relative" >
+      {load?<Loading/>:null}
         <button onClick={handlePayment}type="button"class="group inline-flex w-full items-center justify-center rounded-md bg-blue-700 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
             Place Order
             <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:ml-8 ml-4 h-6 w-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

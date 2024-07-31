@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Magic_Spise/static/css/main.87af2c8c.css",
-    "main.js": "/Magic_Spise/static/js/main.623e31ca.js",
+    "main.css": "/Magic_Spise/static/css/main.b7e52b08.css",
+    "main.js": "/Magic_Spise/static/js/main.7a61032c.js",
     "static/media/wallpaper_withname.png": "/Magic_Spise/static/media/wallpaper_withname.46f6c42dc7f34038a031.png",
     "static/media/wallpaper_phone.jpg": "/Magic_Spise/static/media/wallpaper_phone.ab5e970b5553559a1913.jpg",
     "static/media/wallpaper.jpg": "/Magic_Spise/static/media/wallpaper.67dc490552048ee5410d.jpg",
@@ -28,11 +28,11 @@
     "static/media/square.svg": "/Magic_Spise/static/media/square.10d94aab082eaa456bd6e52bb64f69c5.svg",
     "index.html": "/Magic_Spise/index.html",
     "static/media/dlt.svg": "/Magic_Spise/static/media/dlt.642da2f9203fed7e99a03988591b154e.svg",
-    "main.87af2c8c.css.map": "/Magic_Spise/static/css/main.87af2c8c.css.map",
-    "main.623e31ca.js.map": "/Magic_Spise/static/js/main.623e31ca.js.map"
+    "main.b7e52b08.css.map": "/Magic_Spise/static/css/main.b7e52b08.css.map",
+    "main.7a61032c.js.map": "/Magic_Spise/static/js/main.7a61032c.js.map"
   },
   "entrypoints": [
-    "static/css/main.87af2c8c.css",
-    "static/js/main.623e31ca.js"
+    "static/css/main.b7e52b08.css",
+    "static/js/main.7a61032c.js"
   ]
 }

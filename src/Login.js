@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, redirect } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import login from './Assets/login.module.css'
 import axios from "axios";
 
@@ -8,6 +8,7 @@ function Login(){
     const [verify,setverify]=useState(false)
     const [mail,setmail]=useState('');
     const [time,settime]=useState(10);
+    const navi=useNavigate()
     var csrf;
 
         axios.get("/get_csrf",{withCredentials:true})
@@ -39,8 +40,8 @@ var info=JSON.stringify({
         .then(async(res)=>{
                 switch(res.data.message){
                     case 'success':
-                        redirect("/");
-                        break;
+                        navi("/")
+                        break
                         
                     case 'verify':
                         axios.get('/unverified',{withCredentials:true})
@@ -120,7 +121,7 @@ const countdown = () => {
                     <button className={login.signin} type="submit">Sign in</button>
                     </form>
                     {/* <button className="google"><i class="fas fa-clock"></i>Sign-in with Google</button> */}
-                    <p>Dont't have an account yet? <Link href="/signup">Register for free</Link></p>
+                    <p>Dont't have an account yet? <Link to="/signup">Register for free</Link></p>
                 </div>
 )}
                 {verify && (

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import {  Link, Navigate, redirect } from 'react-router-dom';
+import {  Link, useNavigate } from 'react-router-dom';
 import sig from './Assets/login.module.css'
 import axios from "axios";
 
 function Signup(){
 
-        
+        const navi=useNavigate()
         var csrf;
 try{
     axios.get("/get_csrf",{withCredentials:true})
@@ -44,7 +44,7 @@ useEffect(async()=>{
                         
                         case 'success':
                             document.getElementById('mail_error').innerHTML="";
-                            redirect('/login')
+                            navi('/login')
                             
                             break;
                         

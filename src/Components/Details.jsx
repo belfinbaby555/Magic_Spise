@@ -21,6 +21,7 @@ function ProductDetails(){
     const [selectedOption, setSelectedOption] = useState();
     const [price,setprice]=useState([])  
     const [item,setitem]=useState(false)
+    const [login ,setlog]=useState(false)
     
     const incUnit = () => {
       setUnits(() => {
@@ -66,7 +67,6 @@ async function add_cart(){
   try{
   await axios.get(`/cart/${String(prod.name)}/${units}/${selectedOption}`,{withCredentials:true})
   .then((res)=>{
-    console.log(res.data)
     if(res.data.status=='ok'){
       setitem(true)
       setTimeout(()=>{
@@ -77,22 +77,17 @@ async function add_cart(){
     
   })
   .catch((e)=>{
+    console.log(e.message)
     if(e.message==="Request failed with status code 500"){
-      document.getElementById("message").innerHTML="✘ Login to add";
-      document.getElementById("message").style.height='48px'
-      document.getElementById("message").style.width='207px'
-      document.getElementById("message").style.backgroundColor='red'
+      setlog(true)
       setTimeout(()=>{
-      document.getElementById("message").innerHTML=""
-      document.getElementById("message").style.height='0px'
-      document.getElementById("message").style.width='0px'
-      document.getElementById("message").style.backgroundColor='none'
+      setlog(false)
     },2000)
     }
   })
   }
   catch(e){
-    console.log(e)
+    console.log(e.status)
   }
 }
 
@@ -132,8 +127,8 @@ return(
                 {qty.map((item,index)=>{
 
         return(
-           <div onClick={()=>{qty_price(index)}}  className="flex justify-center py-1 px-2 w-full bg-gray-200 rounded mr-2">
-            <input type="radio" name="item" checked={selectedOption===item} id={item} style={{accentColor:"blue"}}/>
+           <div  className="flex justify-center py-1 px-2 w-full bg-gray-200 rounded mr-2">
+            <input onClick={()=>{qty_price(index)}} type="radio" name="item"  id={item} style={{accentColor:"blue"}}/>
             <label htmlFor={item} className="ml-1 text-gray-600 text-sm">{item + prod.si_unit}</label>
             </div>
         )
@@ -149,7 +144,7 @@ return(
                     <button type="button" onClick={incUnit} className="px-4 text-lg">+</button></span>
                     
                     <button onClick={add_cart} className="px-5 py-3 overflow-hidden relative bg-blue-600 rounded-full font-normal text-stone-50 text-base flex justify-center my-auto">
-                      <div id="message" className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute bg-green-600" + (item ? " w-52 h-12": " w-0 h-0")} >✔ Item added</div>
+                      <div  className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute " + (item ? " w-52 h-12 bg-green-600": "")||(login ? "w-52 h-12 bg-red-700":'')} >{item? "✔ Item added":""} {login?"✘ Login to Add":''}</div>
                       <img src={cart} className="w-5 my-auto mr-2" />Add to Cart</button>
                     </div>
               : <div></div>}
@@ -229,7 +224,7 @@ return(
                     <button type="button" onClick={incUnit} className="px-4 text-lg">+</button></span>
                     
                     <button onClick={add_cart} className="px-12 py-3 overflow-hidden relative bg-blue-600 rounded-full mx-5 font-normal text-stone-50 text-base flex justify-center my-auto">
-                      <div id="message" className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute bg-green-600" + (item ? " w-52 h-12": " w-0 h-0")} >✔ Item added</div>
+                      <div className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute" + (item ? " w-52 h-12 bg-green-600": " w-0 h-0") +  (login ? " w-52 h-12 bg-red-700":' w-0 h-0')} >{item? "✔ Item added":""} {login?"✘ Login to Add":''}</div>
                       <img src={cart} className="w-5 my-auto mr-2" />Add to Cart</button>
                     </div>
               : <div></div>}

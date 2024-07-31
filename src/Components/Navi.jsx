@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import nav from "./Css/navi.module.css"
 import logo from "../Assets/Images/logos/logo_default.png";
 import s_icon from "../Assets/Images/icons/search.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ham from "../Assets/Images/menu.png"
 
@@ -14,13 +14,14 @@ const [filteredProducts, setFilteredProducts] = useState([]);
 const [email,getemail]=useState('');
 const [dropm,setdrop]=useState(false)
 const [dropo,setdropo]=useState(false)
-const [navi,setnav]=useState(false)
+const [navi,setnav]=useState(false);
+const navigate=useNavigate()
 
 const logout=async()=>{
     axios.get("/logout",{withCredentials:true})
     .then(res=>{
         if(res.data.message==="Logged out successfully"){
-            window.location.href="/";
+            return navigate("/")
         }
     })
     .catch(e=>{
@@ -129,6 +130,7 @@ const handleSearch = async() => {
                 <b className="font-normal text-center my-4">{email}</b>
                 <Link to="/cart"><button className="bg-blue-600 text-white w-full flex justify-between my-1 rounded p-2 items-center">My Cart <b className="h-6 w-6 text-center rounded-full bg-red-500">{cart}</b></button></Link>
                 <Link to="/orders"><button className="bg-blue-600 text-white w-full flex justify-between rounded my-1 p-2 items-center">My Orders </button></Link>
+                <button onClick={logout} className="bg-blue-600 text-white w-full flex justify-between rounded my-1 p-2 items-center">Logout</button>
             </div>
         </div>
 
