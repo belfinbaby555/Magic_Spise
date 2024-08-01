@@ -20,10 +20,10 @@ export default function App(){
   axios.defaults.baseURL="https://magicspice.pythonanywhere.com"
 
   return(
-  <BrowserRouter basename="/Magic_Spice">
+  <BrowserRouter basename="/Magic_Spice/">
   
   <Routes>
-  <Route path='/' element={<Home/>}/>
+  <Route index element={<Home/>}/>
   <Route path="/login" element={<Login/>}/>
   <Route path="/signup" element={<Signup/>}/>
   <Route path="/products" element={<Produc/>}/>
