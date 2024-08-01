@@ -23,7 +23,7 @@ export default function App(){
   <BrowserRouter basename="/Magic_Spice">
   
   <Routes>
-  <Route index element={<Home/>}/>
+  <Route path='/' element={<Home/>}/>
   <Route path="/login" element={<Login/>}/>
   <Route path="/signup" element={<Signup/>}/>
   <Route path="/products" element={<Produc/>}/>
