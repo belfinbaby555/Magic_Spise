@@ -17,7 +17,7 @@ import axios from "axios";
 
 
 export default function App(){
-  axios.defaults.baseURL="https://1e2d-103-175-136-146.ngrok-free.app/"
+  axios.defaults.baseURL="http://localhost:8000"
   axios.defaults.withCredentials = true;
 
   return(
