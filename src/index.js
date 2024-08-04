@@ -17,10 +17,11 @@ import axios from "axios";
 
 
 export default function App(){
-  axios.defaults.baseURL="https://magicspice.pythonanywhere.com"
+  axios.defaults.baseURL="https://1e2d-103-175-136-146.ngrok-free.app/"
+  axios.defaults.withCredentials = true;
 
   return(
-  <BrowserRouter basename="/Magic_Spice/">
+  <BrowserRouter>
   
   <Routes>
   <Route index element={<Home/>}/>

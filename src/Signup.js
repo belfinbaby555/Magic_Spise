@@ -5,7 +5,7 @@ import axios from "axios";
 
 function Signup(){
 
-        const navi=useNavigate()
+        const navigates=useNavigate()
         var csrf;
 try{
     axios.get("/get_csrf",{withCredentials:true})
@@ -44,7 +44,7 @@ useEffect(async()=>{
                         
                         case 'success':
                             document.getElementById('mail_error').innerHTML="";
-                            navi('/login')
+                            navigates('/login')
                             
                             break;
                         
@@ -87,11 +87,11 @@ useEffect(async()=>{
                 <p className="w-full h-fit text-red-600" id="mail_error"></p>
                 <h5>Password</h5>
                 <input type="password" id="pass" placeholder="Password" required></input>
-                <span><input type="checkbox" required></input><p> I agree to <Link to='/termsandcondition'>terms and conditions</Link></p></span>
+                <span><input type="checkbox" required></input><p> I agree to <Link to='/termsandcondition'><a>terms and conditions</a></Link></p></span>
                 <button className={sig.signin} type="submit">Sign Up</button>
                 </form>
                 {/* <button className="google"><i class="fas fa-clock"></i>Sign-in with Google</button> */}
-                <p>Already have an account?  <Link to="/login">Sign In</Link></p>
+                <p>Already have an account?  <Link to="/login"><a>Sign In</a></Link></p>
             </div>
         </div>
         </div>

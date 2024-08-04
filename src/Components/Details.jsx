@@ -144,7 +144,7 @@ return(
                     <button type="button" onClick={incUnit} className="px-4 text-lg">+</button></span>
                     
                     <button onClick={add_cart} className="px-5 py-3 overflow-hidden relative bg-blue-600 rounded-full font-normal text-stone-50 text-base flex justify-center my-auto">
-                      <div  className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute " + (item ? " w-52 h-12 bg-green-600": "")||(login ? "w-52 h-12 bg-red-700":'')} >{item? "✔ Item added":""} {login?"✘ Login to Add":''}</div>
+                      <div  className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute " + (item ? " w-52 h-12 bg-green-600": "")||(login ? " w-52 h-12 bg-red-700":'')} >{item? "✔ Item added":""} {login?"✘ Login to Add":''}</div>
                       <img src={cart} className="w-5 my-auto mr-2" />Add to Cart</button>
                     </div>
               : <div></div>}
@@ -224,7 +224,7 @@ return(
                     <button type="button" onClick={incUnit} className="px-4 text-lg">+</button></span>
                     
                     <button onClick={add_cart} className="px-12 py-3 overflow-hidden relative bg-blue-600 rounded-full mx-5 font-normal text-stone-50 text-base flex justify-center my-auto">
-                      <div className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute" + (item ? " w-52 h-12 bg-green-600": " w-0 h-0") +  (login ? " w-52 h-12 bg-red-700":' w-0 h-0')} >{item? "✔ Item added":""} {login?"✘ Login to Add":''}</div>
+                      <div className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute" + (item ? " w-52 h-12 bg-green-600": "") +  (login ? " w-52 h-12 bg-red-700":'')} >{item? "✔ Item added":""} {login?"✘ Login to Add":''}</div>
                       <img src={cart} className="w-5 my-auto mr-2" />Add to Cart</button>
                     </div>
               : <div></div>}
