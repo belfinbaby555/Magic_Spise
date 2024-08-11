@@ -45,7 +45,7 @@ const Delivery = () => {
       {load ? <Loading /> : <div></div>}
       {status && (
         <div className="pt-24 h-full flex sm:flex-row flex-col justify-center">
-          <div className=" w-[500px]">
+          <div className=" w-full sm:w-[500px]">
             <Address />
           </div>
         </div>

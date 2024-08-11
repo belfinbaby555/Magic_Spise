@@ -96,7 +96,7 @@ const countdown = () => {
 
       if (time >= 0) {
         clearInterval(inter); 
-        alert("yu[p")
+        
         settime('Resend');
       }
     }, 1000);

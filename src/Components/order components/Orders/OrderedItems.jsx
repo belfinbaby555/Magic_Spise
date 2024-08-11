@@ -33,7 +33,7 @@ catch(e){
       <div class="shrink-0 relative">
         
         <img
-          class=" sm:w-32 max-w-full rounded-lg sm:m-2 box-border object-cover"
+          class="sm:w-32  mx-auto rounded-lg sm:m-2 box-border object-cover"
           src={info.image}
           alt=""
         />
@@ -69,7 +69,7 @@ catch(e){
         </div>
       </div>
       {item.status!="ordered" ? <div className="hidden"></div>:<button onClick={cancel} className="bottom-0 right-0 px-3 py-2 h-14 sm:h-24 sm:pb-2 bg-blue-600 rounded-lg sm:rounded-none sm:rounded-bl-xl text-slate-50">Cancel</button> }
-      
+      {item.status!="ordered" ? <div className="hidden"></div>:<p className="text-gray-500 text-sm">**Order cannot be cancelled after shipping</p>}
     </li>
     <div className="px-5 py-5 flex sm:flex-row flex-col bg-blue-100 rounded-b-lg justify-between">
       

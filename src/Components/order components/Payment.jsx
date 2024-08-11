@@ -37,7 +37,7 @@ await axios.get("/getAmount",{withCredentials:true})
         
         .then(res=>{
           if (res.data.message==="Payment completed and orders placed successfully!"){
-            navigate('/orders')
+            return navigate('/orders')
           }
         })
       },
@@ -51,6 +51,7 @@ await axios.get("/getAmount",{withCredentials:true})
 
     const rzpay = new Razorpay(options);
     rzpay.open();
+    setload(false)
 })
 .catch(e=>{
   alert(e.message)

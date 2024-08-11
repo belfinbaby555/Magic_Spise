@@ -4,9 +4,11 @@ import cork from "../Assets/Images/cork_jar.png"
 import bowl from "../Assets/Images/bowl.png"
 import axios from "axios";
 import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 
 function Client() {
 const [deal,setdeal]=useState([]);
+const navi=useNavigate();
 
 useEffect(()=>{
  try{
@@ -52,7 +54,7 @@ useEffect(()=>{
              <b>{deal.name}</b>
               
             </h1>
-            <button onClick={()=>{window.location.href=`/item/${deal.id}`}}
+            <button onClick={()=>{navi(`/item/${deal.id}`)}}
               type="button"
               className="text-white hidden sm:block font-normal w-full sm:w-fit tracking-[1px] mt-5 bg-blue-700 active:bg-gray-800 sm:hover:bg-gray-800 duration-200 rounded-full text-[17px] px-8 py-2.5 text-center "
             >
@@ -60,7 +62,7 @@ useEffect(()=>{
             </button>
           </div>
           <img src={bowl} className="sm:w-[45%] sm:py-7 w-96 h-fit my-auto mr-auto sm:mr-0 ml-auto mt-5 sm:mt-auto"/>
-          <button onClick={()=>{window.location.href=`/item/${deal.id}`}}
+          <button onClick={()=>{navi(`/item/${deal.id}`)}}
               type="button"
               className="text-white block sm:hidden font-normal w-4/5 mx-auto mb-5 sm:w-fit tracking-[1px] mt-5 bg-blue-700 active:bg-gray-800 sm:hover:bg-gray-800 duration-200 rounded-full text-[17px] px-8 py-2.5 text-center "
             >

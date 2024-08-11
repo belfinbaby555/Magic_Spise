@@ -26,7 +26,7 @@ const Description = () => {
           <div className="flex sm:gap-5 items-center sm:mt-10">
             <img src={e_icon} alt="Image" className="h-12" />
             <div>
-              <p className=" sm:text-3xl text-blue-700 font-medium">7 Tons +</p>
+              <p className=" sm:text-3xl text-blue-700 font-medium">55 Tons +</p>
               <span className="text-gray-500 font-normal whitespace-nowrap">
                 Spices Exported
               </span>

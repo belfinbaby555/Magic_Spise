@@ -21,11 +21,11 @@ const logout=async()=>{
     axios.get("/logout",{withCredentials:true})
     .then(res=>{
         if(res.data.message==="Logged out successfully"){
-            return navigate("/")
+            navigate("/")
         }
     })
     .catch(e=>{
-
+        console.error(e.message)
     })
 }
 
@@ -44,11 +44,11 @@ try{
         }
     })
     .catch((e)=>[
-        alert(e)
+        console.error(e.message)
     ])
 }
 catch(e){
-    console.log(e);
+    console.error(e.message);
 }
    
 },[])

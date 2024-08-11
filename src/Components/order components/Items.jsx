@@ -24,8 +24,8 @@ const Items = (item) => {
         />
       </div>
 
-      <div class="relative flex flex-1 flex-col justify-between">
-        <div class="sm:col-gap-5 sm:grid sm:grid-cols-2">
+      <div class="relative flex flex-1 ml-3 flex-col justify-between">
+        <div class="sm:col-gap-5 flex items-center sm:grid sm:grid-cols-2 justify-between">
           <div class="pr-8 sm:pr-5">
             <p class="text-base font-semibold text-gray-900">{item.name}</p>
             <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">
@@ -35,10 +35,10 @@ const Items = (item) => {
 
           <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end sm:text-right">
             <div className="flex flex-col">
-              <p class="shrink-0 w-20 text-xl font-semibold text-gray-900 sm:order-2 sm:ml-8 ">
+              <p class="shrink-0 sm:w-20 text-xl font-semibold text-gray-900 sm:order-2 sm:ml-8 ">
                 Rs. {item.unitPrice}
               </p>
-              <p class="shrink-0 w-20 text-sm text-gray-400 sm:order-2 sm:ml-8 ">
+              <p class="shrink-0 sm:w-20 text-sm text-gray-400 sm:order-2 sm:ml-8 ">
                 Qty: {item.unit}
               </p>
             </div>
