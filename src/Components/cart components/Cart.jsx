@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Item from "./Item";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "../Loading";
 
@@ -8,7 +8,7 @@ const Cart = () => {
   const [items,setitems]=useState([])
   const [load,setload]=useState(false)
   var total=0
-  
+  const navigate=useNavigate();
 
 
   useEffect(()=>{
@@ -18,8 +18,11 @@ const Cart = () => {
   })
   .catch(e=>{
     if(e.message==="Request failed with status code 500"){
-      window.location.href='/login'
+      navigate("/login")
       setload(false)
+    }
+    else{
+      console.error(e.message)
     }
   })
   },[])

@@ -1,8 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Loading from "../../Loading";
+import { useNavigate } from "react-router-dom";
 
 const OrderedItems = (item) => {
 var text=item.name;
+
+const [load,setload]=useState(false);
+
+const navigate=useNavigate();
 
 const details=text.replace(/'/g, '"');
 
@@ -11,19 +17,21 @@ const info=JSON.parse(details)
 const adde=item.address.split("β");
 
 const cancel=()=>{
+  setload(true);
   try{
   axios.get(`/cancel/${item.id}`,{withCredentials:true,})
   .then(res=>{
     if(res.data.message){
-      window.location.reload()
+      window.location.reload();
+      setload(false)
     }
   })
   .catch(e=>{
-    alert(e)
+    console.error(e)
   })
 }
 catch(e){
-  alert(e)
+  console.error(e)
 }
 }
 
@@ -68,8 +76,8 @@ catch(e){
           </button> */}
         </div>
       </div>
-      {item.status!="ordered" ? <div className="hidden"></div>:<button onClick={cancel} className="bottom-0 right-0 px-3 py-2 h-14 sm:h-24 sm:pb-2 bg-blue-600 rounded-lg sm:rounded-none sm:rounded-bl-xl text-slate-50">Cancel</button> }
-      {item.status!="ordered" ? <div className="hidden"></div>:<p className="text-gray-500 text-sm">**Order cannot be cancelled after shipping</p>}
+      {item.status!="ordered" ? <div className="hidden"></div>:<button onClick={cancel} className="bottom-0 right-0 px-3 py-2 h-14 sm:h-24 sm:pb-2 bg-blue-600 rounded-lg sm:rounded-none sm:rounded-bl-xl text-slate-50">Cancel{load?<Loading/>:null}</button> }
+      {item.status!="ordered" ? <div className="hidden"></div>:<p className="text-gray-500 text-sm relative sm:absolute sm:right-0 bottom-0">**Order cannot be cancelled after shipping</p>}
     </li>
     <div className="px-5 py-5 flex sm:flex-row flex-col bg-blue-100 rounded-b-lg justify-between">
       

@@ -21,7 +21,7 @@ const logout=async()=>{
     axios.get("/logout",{withCredentials:true})
     .then(res=>{
         if(res.data.message==="Logged out successfully"){
-            navigate("/")
+            window.location.reload();
         }
     })
     .catch(e=>{

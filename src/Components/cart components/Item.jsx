@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import dlt from "../../Assets/Images/icons/dlt.svg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Item = (item) => {
   const [units, setUnits] = useState(item.unit); // change value here to og quantity when doing backend
-  const [stock,setstock]=useState()
+  const [stock,setstock]=useState();
+  const navigate=useNavigate();
   const incUnit = () => {
     setUnits(() => {
       return units + 1;
@@ -33,9 +35,13 @@ const del=()=>{
   axios.get(`/delete/${item.name}/${item.price}`,{withCredentials:true})
   .then(res=>{
     if(res.data.status==="ok"){
-      window.location.reload()
+      navigate("/cart")
     }
   })
+  .catch(e=>{
+    console.error(e.message);
+  })
+
 
 }
 

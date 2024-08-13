@@ -53,7 +53,7 @@ useEffect(()=>{
   
   })
   .catch((e)=>{
-    alert(e)
+    console.error(e.message)
   })
 },[])
 
@@ -61,6 +61,13 @@ const qty_price=(index)=>{
   setprice(num[index])
   setSelectedOption(qty[index])
   getind(stock[index])
+  
+}
+const qty2_price=(index)=>{
+  setprice(num[index])
+  setSelectedOption(qty[index]+"e")
+  getind(stock[index])
+  
 }
 
 async function add_cart(){
@@ -77,7 +84,7 @@ async function add_cart(){
     
   })
   .catch((e)=>{
-    console.log(e.message)
+    console.error(e.message)
     if(e.message==="Request failed with status code 500"){
       setlog(true)
       setTimeout(()=>{
@@ -87,7 +94,7 @@ async function add_cart(){
   })
   }
   catch(e){
-    console.log(e.status)
+    console.error(e)
   }
 }
 
@@ -114,7 +121,7 @@ return(
             </h3> 
             : <h3 className="capitalize text-red-600 text-2xl py-4 border-b-2 border-gray-300">Out of stock</h3>}
             {stock.reduce((acc, value) => acc + Number(value), 0) ? <div>
-            <h3 className="text-3xl flex text-blue-700 py-3">₹ {Math.round((price - (+prod.percentage ? +price * +prod.percentage/100:0)-(+price * +prod.tax/100))*100)/100} <p className="text-base mt-auto ml-1"> + ₹ {Math.round(((+price * +prod.tax/100))*100)/100} tax</p></h3>
+            <h3 className="text-3xl flex text-blue-700 py-3">₹ {Math.ceil((price - (+prod.percentage ? +price * +prod.percentage/100:0)-(+price * +prod.tax/100)))} <p className="text-base mt-auto ml-1"> + ₹ {Math.ceil(((+price * +prod.tax/100)))} tax</p></h3>
             {+prod.percentage  ? <h4 className="line-through text-xl text-gray-500  pb-2">₹ {price } </h4>: <h4 ></h4>}
             </div>: <h3 className="text-3xl text-blue-700 py-3">Currently unavailable</h3>}
             {stock.reduce((acc, value) => acc + Number(value), 0) ? <div className="flex flex-col ">
@@ -127,10 +134,8 @@ return(
                 {qty.map((item,index)=>{
 
         return(
-           <div  className="flex justify-center py-1 px-2 w-full bg-gray-200 rounded mr-2">
-            <input onClick={()=>{qty_price(index)}} type="radio" name="item"  id={item} style={{accentColor:"blue"}}/>
-            <label htmlFor={item} className="ml-1 text-gray-600 text-sm">{item + prod.si_unit}</label>
-            </div>
+          <label htmlFor={item} onClick={()=>{qty2_price(index)}} className={"flex justify-center py-1 px-4  rounded mr-3 text-[15px] border-2"+(selectedOption===item?" text-white bg-blue-600 border-blue-600":" text-gray-600 bg-transparent border-gray-600")}>{item + prod.si_unit}
+          <input type="radio" name="item" hidden checked={selectedOption===item+'e'} id={item+"e"}/></label>
         )
     })}
                 </div>
@@ -144,7 +149,7 @@ return(
                     <button type="button" onClick={incUnit} className="px-4 text-lg">+</button></span>
                     
                     <button onClick={add_cart} className="px-5 py-3 overflow-hidden relative bg-blue-600 rounded-full font-normal text-stone-50 text-base flex justify-center my-auto">
-                      <div  className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute " + (item ? " w-52 h-12 bg-green-600": "")||(login ? " w-52 h-12 bg-red-700":'')} >{item? "✔ Item added":""} {login?"✘ Login to Add":''}</div>
+                      <div  className={"whitespace-nowrap duration-700 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute " + (item ? " w-52 h-12 bg-green-600": "")+ (login ? " w-52 h-12 bg-red-700":'')+(!login&&!item?" w-0 h-0":"")} >{item? "✔ Item added":""} {login?"✘ Login to Add":''}</div>
                       <img src={cart} className="w-5 my-auto mr-2" />Add to Cart</button>
                     </div>
               : <div></div>}
@@ -194,7 +199,7 @@ return(
             </h3> 
             : <h3 className="capitalize text-red-600 text-2xl py-4 border-b-2 border-gray-300">Out of stock</h3>}
             {stock.reduce((acc, value) => acc + Number(value), 0) ? <div>
-            <h3 className="text-3xl flex text-blue-700 py-3">₹ {Math.round((price - (+prod.percentage ? +price * +prod.percentage/100:0)-(+price * +prod.tax/100))*100)/100} <p className="text-base mt-auto ml-1"> + ₹ {Math.round(((+price * +prod.tax/100))*100)/100} tax</p></h3>
+            <h3 className="text-3xl flex text-blue-700 py-3">₹ {Math.ceil((price - (+prod.percentage ? +price * +prod.percentage/100:0)-(+price * +prod.tax/100)))} <p className="text-base mt-auto ml-1"> + ₹ {Math.ceil(+price * +prod.tax/100)} tax</p></h3>
             {+prod.percentage  ? <h4 className="line-through text-xl text-gray-500  pb-2">₹ {price } </h4>: <h4 ></h4>}
             </div>: <h3 className="text-3xl text-blue-700 py-3">Currently unavailable</h3>}
             {stock.reduce((acc, value) => acc + Number(value), 0) ? <div className="flex flex-col ">
@@ -207,10 +212,8 @@ return(
                 {qty.map((item,index)=>{
 
         return(
-           <div onClick={()=>{qty_price(index)}}  className="flex justify-center py-1 px-2 bg-gray-200 rounded mr-2">
-            <input type="radio" name="item" checked={selectedOption===item} id={item} style={{accentColor:"blue"}}/>
-            <label htmlFor={item} className="ml-1 text-gray-600 text-sm">{item + prod.si_unit}</label>
-            </div>
+          <label htmlFor={item} onClick={()=>{qty_price(index)}} className={"flex justify-center py-1 px-4  rounded mr-3 text-[15px] border-2"+(selectedOption===item?" text-white bg-blue-600 border-blue-600":" text-gray-600 bg-transparent border-gray-600")}>{item + prod.si_unit}
+          <input type="radio" name="item" hidden checked={selectedOption===item} id={item}/></label>
         )
     })}
                 </div>
@@ -224,7 +227,7 @@ return(
                     <button type="button" onClick={incUnit} className="px-4 text-lg">+</button></span>
                     
                     <button onClick={add_cart} className="px-12 py-3 overflow-hidden relative bg-blue-600 rounded-full mx-5 font-normal text-stone-50 text-base flex justify-center my-auto">
-                      <div className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute" + (item ? " w-52 h-12 bg-green-600": "") +  (login ? " w-52 h-12 bg-red-700":'')} >{item? "✔ Item added":""} {login?"✘ Login to Add":''}</div>
+                      <div className={"whitespace-nowrap duration-500 text-center pt-2 text-lg overflow-hidden rounded-full top-0 absolute" + (item ? " w-52 h-12 bg-green-600": "") +  (login ? " w-52 h-12 bg-red-700":'')+(!login&&!item?" w-0 h-0":"")} >{item? "✔ Item added":""} {login?"✘ Login to Add":''}</div>
                       <img src={cart} className="w-5 my-auto mr-2" />Add to Cart</button>
                     </div>
               : <div></div>}
