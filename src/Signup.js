@@ -7,7 +7,7 @@ function Signup() {
   const [csrf, setCsrf] = useState('');
   const [error, setError] = useState('');
   const [showAlert, setShowAlert] = useState(false);
-  const [load,setload]=useState(false)
+  const [load, setLoad] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,13 +18,14 @@ function Signup() {
   }, []);
 
   const handleSubmit = async (event) => {
-    setload(true)
     event.preventDefault();
+    setLoad(true);
 
+    const { email, pass, phone } = event.target.elements;
     const info = JSON.stringify({
-      email: event.target.email.value,
-      password: event.target.pass.value,
-      name: event.target.phone.value,
+      email: email.value,
+      password: pass.value,
+      name: phone.value,
     });
 
     try {
@@ -46,9 +47,10 @@ function Signup() {
         default:
           setError(res.data.message);
       }
-      setload(false)
     } catch (e) {
       setShowAlert(true);
+    } finally {
+      setLoad(false);
     }
   };
 
@@ -56,7 +58,7 @@ function Signup() {
     <div className={sig.wallpaper}>
       <div className={sig.background}>
         {showAlert && (
-          <h6 className="text-center text-white border-l-8 rounded-md uppercase text-xl border-red-600 absolute right-2 top-10 bg-red-600/50 px-4 block py-3 duration-500">
+          <h6 className="text-center text-white border-l-8 rounded-md uppercase text-xl border-red-600 absolute right-2 top-10 bg-red-600/50 px-4 py-3 duration-500">
             Something went wrong !!!
           </h6>
         )}
@@ -73,9 +75,13 @@ function Signup() {
             <input type="password" id="pass" name="pass" placeholder="Password" required />
             <span>
               <input type="checkbox" required />
-              <p> I agree to <Link to='/termsandcondition'>terms and conditions</Link></p>
+              <p>I agree to <Link to='/termsandcondition'>terms and conditions</Link></p>
             </span>
-            <button className={sig.signin} type="submit">{load?<div className="w-7 h-7 rounded-full border-4 border-white border-l-transparent mx-auto animate-spin"></div>:"Sign Up"}</button>
+            <button className={sig.signin} type="submit">
+              {load ? (
+                <div className="w-7 h-7 rounded-full border-4 border-white border-l-transparent mx-auto animate-spin"></div>
+              ) : "Sign Up"}
+            </button>
           </form>
           <p>Already have an account? <Link to="/login">Sign In</Link></p>
         </div>

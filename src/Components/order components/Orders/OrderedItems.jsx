@@ -36,9 +36,9 @@ catch(e){
 }
 
   return (
-    <div className="flex flex-col" onClick={()=>{navigate(`/item/${item.id}`)}}>
+    <div className="flex flex-col" >
     <li class="flex flex-col p-2 sm:p-0 h-fit overflow-hidden relative text-left sm:flex-row sm:space-x-5 my-3 mb-0 rounded-t-lg bg-blue-100">
-      <div class="shrink-0 relative">
+      <div class="shrink-0 relative" onClick={()=>{navigate(`/item/${item.id}`)}}>
         
         <img
           class="sm:w-32  mx-auto rounded-lg sm:m-2 box-border object-cover"
