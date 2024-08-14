@@ -7,7 +7,7 @@ import Loading from "../Loading";
 const Cart = () => {
   const [items,setitems]=useState([])
   const [load,setload]=useState(false)
-  var total=0
+ 
   const navigate=useNavigate();
 
 
@@ -27,20 +27,26 @@ const Cart = () => {
   })
   },[])
   
-for(let i=0;i<=Object.entries(items).length-1;i++){
-  total=total+items[i].price;
-}
+  const total = Object.entries(items).reduce((accumulator, [key, item]) => {
+    return accumulator + Math.ceil((item.price - Number(item.delivery_fees)) - ((item.price - Number(item.delivery_fees))*(Number(item.tax)/100)));
+  }, 0);
+
+  const discount = Object.entries(items).reduce((accumulator, [key, item]) => {
+    return accumulator + ((item.price - Number(item.delivery_fees))*(Number(item.discount)/100));
+  }, 0);
+
+  const delivery=Object.entries(items).reduce((a, [key, item]) => {return a + Number(item.delivery_fees)}, 0)
 
 const amount={
   'price':total,
-  'delivery':60,
-  'discount':5,
+  'delivery':delivery,
+  'discount':discount,
   'gst':total*0.18
 }
 
   return (
     
-    <div className="relative">
+    <div className="">
       {load?<div></div>:<Loading/>}
       <div class={"pt-24" + (Object.entries(items).length?" h-fit":" h-screen")}>
 
@@ -58,7 +64,7 @@ const amount={
                   unit={item.number}
                   quantity={item.quantity}
                   price={item.price}
-                  unitPrice={Math.round((item.price-Number(item.delivery_fees)-(item.price * Number(item.tax)/100)+(item.price * Number(item.discount)/100))*100)/100}
+                  unitPrice={Math.round((item.price - item.delivery_fees)-(((item.price - item.delivery_fees) * Number(item.tax)/100)+((item.price - item.delivery_fees) * Number(item.discount)/100)))}
                   img={item.img}
                   discount={item.discount}
                   delivery={item.delivery_fees}

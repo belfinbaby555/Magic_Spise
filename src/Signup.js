@@ -7,6 +7,7 @@ function Signup() {
   const [csrf, setCsrf] = useState('');
   const [error, setError] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+  const [load,setload]=useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +18,7 @@ function Signup() {
   }, []);
 
   const handleSubmit = async (event) => {
+    setload(true)
     event.preventDefault();
 
     const info = JSON.stringify({
@@ -44,6 +46,7 @@ function Signup() {
         default:
           setError(res.data.message);
       }
+      setload(false)
     } catch (e) {
       setShowAlert(true);
     }
@@ -72,7 +75,7 @@ function Signup() {
               <input type="checkbox" required />
               <p> I agree to <Link to='/termsandcondition'>terms and conditions</Link></p>
             </span>
-            <button className={sig.signin} type="submit">Sign Up</button>
+            <button className={sig.signin} type="submit">{load?<div className="w-7 h-7 rounded-full border-4 border-white border-l-transparent mx-auto animate-spin"></div>:"Sign Up"}</button>
           </form>
           <p>Already have an account? <Link to="/login">Sign In</Link></p>
         </div>

@@ -36,7 +36,7 @@ catch(e){
 }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" onClick={()=>{navigate(`/item/${item.id}`)}}>
     <li class="flex flex-col p-2 sm:p-0 h-fit overflow-hidden relative text-left sm:flex-row sm:space-x-5 my-3 mb-0 rounded-t-lg bg-blue-100">
       <div class="shrink-0 relative">
         
@@ -76,7 +76,7 @@ catch(e){
           </button> */}
         </div>
       </div>
-      {item.status!="ordered" ? <div className="hidden"></div>:<button onClick={cancel} className="bottom-0 right-0 px-3 py-2 h-14 sm:h-24 sm:pb-2 bg-blue-600 rounded-lg sm:rounded-none sm:rounded-bl-xl text-slate-50">Cancel{load?<Loading/>:null}</button> }
+      {item.status!="ordered" ? <div className="hidden"></div>:<button onClick={cancel} className="bottom-0 relative right-0 px-3 py-2 h-14 sm:h-24 sm:pb-2 bg-blue-600 rounded-lg sm:rounded-none sm:rounded-bl-xl text-slate-50">Cancel{load?<Loading/>:null}</button> }
       {item.status!="ordered" ? <div className="hidden"></div>:<p className="text-gray-500 text-sm relative sm:absolute sm:right-0 bottom-0">**Order cannot be cancelled after shipping</p>}
     </li>
     <div className="px-5 py-5 flex sm:flex-row flex-col bg-blue-100 rounded-b-lg justify-between">

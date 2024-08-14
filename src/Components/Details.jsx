@@ -101,7 +101,7 @@ async function add_cart(){
 
 
 return(
-    <div className="w-screen h-fit flex box-border py-5 px-3 md:px-10 pt-24">
+    <div className="w-screen h-fit relative flex box-border py-5 px-3 md:px-10 pt-24">
       {selectedOption? <div></div>:<Loading/>}
         <div className="w-full flex flex-col box-border md:px-10">
             <div className="bg-cover bg-center rounded-xl w-full h-96" id="main" style={{backgroundImage:`url(${prod.img1})`}}></div>

@@ -152,7 +152,7 @@
         backdrop-filter: blur(2px);
     }
     .login_container{
-        
+        background-color: transparent;
         box-shadow: 0 0 0;
         padding:10vh 20px;
         justify-content: space-around;

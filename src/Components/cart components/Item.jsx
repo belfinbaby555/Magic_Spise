@@ -35,7 +35,7 @@ const del=()=>{
   axios.get(`/delete/${item.name}/${item.price}`,{withCredentials:true})
   .then(res=>{
     if(res.data.status==="ok"){
-      navigate("/cart")
+      window.location.reload();
     }
   })
   .catch(e=>{

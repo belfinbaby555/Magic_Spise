@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import OrderedItems from "./OrderedItems";
 import axios from "axios";
 import Loading from "../../Loading";
+import { useNavigate } from "react-router-dom";
 
 function UserOrder() {
   const [items, setItems] = useState([]);
   const [load,setload]=useState(true);
+ 
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get("/user_orders", { withCredentials: true });
         setItems(response.data.orders);
+        
         setload(false)
       } catch (error) {
         console.error("Error fetching orders:", error);
@@ -23,11 +26,14 @@ function UserOrder() {
   }, []);
 
   return (
-    <div className="h-fit sm:w-[50%] px-5 relative sm:px-0 box-border mx-auto py-10 pt-24">
+    <div className="h-fit sm:w-[50%] px-5 sm:px-0 box-border mx-auto py-10 pt-24" >
         {load?<Loading/>:null}
       <h1 className="border-l-4 border-blue-700 pl-2 text-2xl font-bold mb-10">My Orders</h1>
+      
       {items.length > 0 ? (
+         
         items.map((item) => (
+         
           <OrderedItems
             key={item.order_id} 
             name={item.items}
