@@ -1,0 +1,31 @@
+body{
+    background:#fff;
+    color:#000;
+    font-size:16px !important;line-height:28px !important;margin:0;}
+h1{font-size:40px !important;line-height:60px !important}h1,h2{font-weight:700 !important}
+h2{font-size:32px !important; line-height:48px !important}
+h3{font-size:24px !important;line-height:36px !important}
+h3,h4{font-weight:700 !important}
+h4{font-size:20px !important;line-height:30px !important}
+h5{font-size:16px !important}
+h5,h6{line-height:24px !important;font-weight:700 !important}
+h6{font-size:cacl(16px) !important}
+p{margin: 16px 0px !important;
+}
+a{text-decoration:none ;cursor:pointer;color:#000}
+a:hover,a[rel~=nofollow]{text-decoration:underline}
+a[rel~=nofollow]{color:#0452a5}
+a[rel~=nofollow]:hover{text-decoration:none}
+.visible{display:block}
+.hidden{display:none}
+.page{width:100%}
+.container{position:relative;width:90%;max-width:1024px;margin:0 auto}
+.header{color:#000;padding:16px 0}
+.header .title{font-size:24px;line-height:24px;font-weight:700;margin:0}
+.translationslistcontainer{color:#000;padding-bottom:8px;margin:0 0 16px}
+.translationslistcontainer .translationslist{margin:0;padding:0;list-style:none}
+.translationslistcontainer .translationslist .translationslistitem{display:inline-block;padding:0;margin:0 8px 8px 0;color:#fff}
+.translationslistcontainer .translationslist .translationslistitem a{display:inline-block;padding:4px 8px}
+.translationslistcontainer .translationslist .translationslistitem a.active{color:#fff;background:#334055}
+.translationscontentcontainer{padding-top:8px;border-top:1px solid #eee}
+.footer{border-top:1px solid #eee;margin:32px 0 0;padding:16px 0}

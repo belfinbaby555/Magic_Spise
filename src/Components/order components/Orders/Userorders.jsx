@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import OrderedItems from "./OrderedItems";
 import axios from "axios";
 import Loading from "../../Loading";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function UserOrder() {
   const [items, setItems] = useState([]);
@@ -45,7 +45,11 @@ function UserOrder() {
           />
         ))
       ) : (
-        <p>No orders found.</p> 
+        <div class="mx-auto max-w-5xl h-full justify-center px-6 md:flex sm:my-28 flex-col md:space-x-6 xl:px-0">
+          <h1 className="text-3xl font-semibold ml-6 text-center">No orders found</h1>
+          <p className="mx-auto text-center my-4">Place orders to view here </p>
+          <div className="flex justify-center"><Link to='/products'><button className="w-40 h-10 rounded-md text-slate-50 bg-blue-700">Add products</button></Link></div>
+        </div>
       )}
     </div>
   );
