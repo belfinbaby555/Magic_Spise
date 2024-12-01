@@ -28,7 +28,7 @@ axios.post('/setaddr',data,{
   },
   withCredentials:true
 })
-.then(res=>{console.log(res.data)
+.then(res=>{
 if(res.data.message === 'Save successful'){
   window.location.reload()
 }

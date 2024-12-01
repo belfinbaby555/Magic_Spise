@@ -17,7 +17,6 @@ import axios from "axios";
 
 
 export default function App(){
-  axios.defaults.baseURL="https://magicspice.pythonanywhere.com/"
   axios.defaults.withCredentials = true;
 
   return(

@@ -173,8 +173,8 @@ return(
             <p className="taxt-base text-gray-500">india</p>
             <h4 className="capitalize text-xl py-4">Seller Details</h4>
             <p className="taxt-base text-gray-500">{prod.seller_detail}</p>
-            <h4 className="capitalize text-xl py-4">FSSAI Licence</h4>
-            <p className="taxt-base text-gray-500">{prod.fssai_info}</p>
+            {/* <h4 className="capitalize text-xl py-4">FSSAI Licence</h4>
+            <p className="taxt-base text-gray-500">{prod.fssai_info}</p> */}
             <h4 className="capitalize text-xl py-4">Key Features</h4>
             <p className="taxt-base text-gray-500">{prod.key_features}</p>
             <h4 className="capitalize text-xl py-4">Description</h4>

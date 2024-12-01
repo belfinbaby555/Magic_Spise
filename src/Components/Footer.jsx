@@ -60,7 +60,7 @@ const Footer = () => {
             <h2 className="mb-6 text-sm font-semibold ">Regulatory Details</h2>
             <ul className="">
               <li className="mb-2">GSTIN - 32AAIFT4707F1ZE</li>
-              <li className="mb-2">FSSAI - 11320013000917</li>
+              
             </ul>
           </div>
           <div>

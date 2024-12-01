@@ -1,7 +1,6 @@
 import React from "react";
 import Navi from "./Components/Navi"
-
-import term from "../src/Components/Css/term.module.css"
+import Footer from "./Components/Footer"
 
 
 
@@ -10,15 +9,15 @@ function Terms(){
     return(
     <div>
         <Navi/>
-        <div class={term.page} className="pt-28">
-<div class={term.header}>
-<div class={term.container}>
-<p class={term.title}>Privacy Policy for The Magic Spice</p>
+        <div class="page" className="pt-28">
+<div class="header">
+<div class="container">
+<p class="title">Privacy Policy for The Magic Spice</p>
 </div>
 </div>
-<div class={term.translationscontentcontainer}>
-<div class={term.container}>
-<div class={term.tabcontent + term.translationscontentitem + term.en + term.visible} id="en">
+<div class="translations-content-container">
+<div class="container">
+<div class="tab-content translations-content-item en visible" id="en">
 <h1>Privacy Policy</h1>
 <p>Last updated: July 15, 2024</p>
 <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
@@ -213,15 +212,15 @@ function Terms(){
 <h2>Contact Us</h2>
 <p>If you have any questions about this Privacy Policy, You can contact us:</p>
 <ul>
-<li>By email: <a href="https://www.termsfeed.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="147b72727d777d757854607c717975737d7767647d77713a7d7a">[email&#160;protected]</a></li>
+<li>By email: <a href="/cdn-cgi/l/email-protection"></a></li>
 </ul>
 </div>
 </div>
 </div>
 
-<div class={term.footer}>
-<div class={term.container}>
-<p>Generated using <a href="https://www.termsfeed.com/privacy-policy-generator/" target="_blank">TermsFeed Privacy Policy Generator</a></p>
+<div class="footer">
+<div class="container">
+
 </div>
 </div>
 </div>
